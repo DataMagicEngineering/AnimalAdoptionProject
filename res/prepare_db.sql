@@ -1,0 +1,13 @@
+CREATE TABLE IF NOT EXISTS Vaccine(
+    name TEXT PRIMARY KEY NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS User(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT NOT NULL,
+    password TEXT NOT NULL,
+    firstName TEXT NOT NULL,
+    lastName TEXT NOT NULL,
+    dateOfBirth TIMESTAMP,
+    privilege INTEGER
+);
