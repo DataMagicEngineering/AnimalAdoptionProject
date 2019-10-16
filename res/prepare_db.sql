@@ -35,7 +35,11 @@ CREATE TABLE IF NOT EXISTS `Animal`(
     name TEXT,
     species TEXT,
     description TEXT,
+
+    -- One letter character to represent the animals gender (M, F)
     gender VARCHAR(1),
+
+    -- A list of colors, separated by a pipe character: '|'
     colors TEXT,
     adopted INTEGER,
     dateArrived TIMESTAMP,
