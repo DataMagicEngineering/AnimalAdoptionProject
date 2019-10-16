@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="identifier.sqlite" uuid="8eccf87f-f849-40fb-b470-5b417edcab43">
+    <data-source source="LOCAL" name="shelter.db" uuid="e688040f-012a-4fc2-a79b-60985224df86">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:identifier.sqlite</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/res/shelter.db</jdbc-url>
       <driver-properties>
         <property name="enable_load_extension" value="true" />
       </driver-properties>
