@@ -10,6 +10,7 @@
     <TextField fx:id="usernameText" layoutX="69.0" layoutY="86.0" prefHeight="35.0" prefWidth="212.0" promptText="Username" />
     <TextField fx:id="passwordText" layoutX="69.0" layoutY="135.0" prefHeight="35.0" prefWidth="212.0" promptText="Password" />
     <Button fx:id="loginButton" layoutX="133.0" layoutY="183.0" mnemonicParsing="false" onAction="#pressedLogin" prefHeight="35.0" prefWidth="85.0" text="Login" />
-    <Label fx:id="errorLabel" layoutX="67.0" layoutY="240.0" text="ERROR! Incorrect Username or Password!" textFill="RED" />
+    <Label fx:id="errorLabel" layoutX="67.0" layoutY="240.0" text="ERROR! Incorrect Username or Password!" textFill="RED" visible="false" />
+      <Label fx:id="logginLabel" layoutX="134.0" layoutY="240.0" text="User Logged In!" textFill="GREEN" visible="false" />
   </children>
 </AnchorPane>

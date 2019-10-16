@@ -19,15 +19,24 @@ public class LoginScreenController {
 
   @FXML private Label errorLabel;
 
+  @FXML
+  private Label logginLabel;
+
   /** @param event pressing the login button */
   @FXML
   void pressedLogin(ActionEvent event) {
-    String username = usernameText.getText();
-    String password = passwordText.getText();
     /*
     insert code that will take in the username and password and run it through
     the database to make sure there is a connection
      */
+    if (!usernameText.getText().equals("") && !passwordText.getText().equals("")) {
+      errorLabel.setVisible(false);
+      logginLabel.setVisible(true);
+    }
+    else {
+      logginLabel.setVisible(false);
+      errorLabel.setVisible(true);
+    }
     System.out.println("User logged in!");
   }
 }
