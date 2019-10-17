@@ -1,4 +1,10 @@
-#AnchorPane {
+#Pane {
   -fx-background-image: url("https://cdn2.thedogapi.com/images/qBYpfkZr1.jpg");
-  -fx-background-size: cover, auto;
+  -fx-background-size: cover;
+}
+#AnchorPane {
+  -fx-background-color: "#564D65";
+}
+#errorLabel {
+
 }
