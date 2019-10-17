@@ -1,14 +1,17 @@
-package models;
+package models.user;
 
-import java.util.Date;
+import java.time.Instant;
 
+/**
+ * Base class for a general User.
+ */
 public abstract class User {
   protected int id;
   protected String username;
   protected String password;
   protected String firstName;
   protected String lastName;
-  protected Date dateOfBirth;
+  protected Instant dateOfBirth;
   protected AuthorizationLevel privileges;
 
   public int getId() {
@@ -51,11 +54,11 @@ public abstract class User {
     this.lastName = lastName;
   }
 
-  public Date getDateOfBirth() {
+  public Instant getDateOfBirth() {
     return dateOfBirth;
   }
 
-  public void setDateOfBirth(Date dateOfBirth) {
+  public void setDateOfBirth(Instant dateOfBirth) {
     this.dateOfBirth = dateOfBirth;
   }
 
