@@ -1,12 +1,14 @@
 package main;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.Instant;
+import models.animal.Animal;
 import models.user.AuthorizationLevel;
 import models.user.Customer;
 import models.user.Employee;
@@ -120,6 +122,41 @@ public class Database {
     }
     // Return null if we didn't find a user to return above.
     return null;
+  }
+
+  /**
+   * Attempts to add new animal to DB
+   *
+   */
+  public void addAnimal(Animal animal){
+
+    // pre-making animal object that will be used to store info into db
+    String query = "INSERT INTO Animal ("
+        + "name, species, description, gender, colors, adopted, dateArrived, dateAdopted,"
+        + " dateOfBirth, serviceTrained, weight, height, breeds, bathroomTraining, aggression) "
+        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    try (PreparedStatement statement = conn.prepareStatement(query)) {
+      statement.setString(1, animal.getName());
+      statement.setString(2, animal.getSpecies());
+      statement.setString(3, animal.getDescription());
+      statement.setString(4, String.valueOf(animal.getGender()));
+      statement.setString(5, animal.getColorString());
+      statement.setBoolean(6,animal.isAdopted());
+      statement.setTimestamp(7, Timestamp.from(animal.getDateArrived()));
+      statement.setTimestamp(8, Timestamp.from(animal.getDateAdopted()));
+      statement.setTimestamp(9, Timestamp.from(animal.getDateOfBirth()));
+      statement.setBoolean(10, animal.isServiceTrained());
+      statement.setFloat(11, animal.getWeight());
+      statement.setFloat(12, animal.getHeight());
+      statement.setString(13, animal.getBreedString());
+      statement.setString(14, animal.getBathroomTraining().toString());
+      statement.setString(15, animal.getAggression().toString());
+
+      statement.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
   }
 
 }
