@@ -15,8 +15,8 @@ public class Animal {
   private Instant dateAdopted;
   private Instant dateOfBirth;
   private boolean serviceTrained;
-  private double weight; //in kg
-  private double height;
+  private float weight; //in kg
+  private float height;
   private List<String> breeds;
   private List<Trick> tricks;
   private Proficiency bathroomTraining;
@@ -35,7 +35,7 @@ public class Animal {
    */
   public Animal(String name, String species, String description, char gender,
       List<Color> colors, boolean adopted, Instant dateArrived, Instant dateAdopted,
-      Instant dateOfBirth, boolean serviceTrained, double weight, double height,
+      Instant dateOfBirth, boolean serviceTrained, float weight, float height,
       List<String> breeds, List<Trick> tricks, Proficiency bathroomTraining,
       List<Vaccine> vaccines, Color aggression) {
     this.name = name;
@@ -62,7 +62,7 @@ public class Animal {
    */
   public Animal(int id, String name, String species, String description, char gender,
       List<Color> colors, boolean adopted, Instant dateArrived, Instant dateAdopted,
-      Instant dateOfBirth, boolean serviceTrained, double weight, double height,
+      Instant dateOfBirth, boolean serviceTrained, float weight, float height,
       List<String> breeds, List<Trick> tricks, Proficiency bathroomTraining,
       List<Vaccine> vaccines, Color aggression) {
     this.id = id;
@@ -165,19 +165,19 @@ public class Animal {
     this.serviceTrained = serviceTrained;
   }
 
-  public double getWeight() {
+  public float getWeight() {
     return weight;
   }
 
-  public void setWeight(double weight) {
+  public void setWeight(float weight) {
     this.weight = weight;
   }
 
-  public double getHeight() {
+  public float getHeight() {
     return height;
   }
 
-  public void setHeight(double height) {
+  public void setHeight(float height) {
     this.height = height;
   }
 
