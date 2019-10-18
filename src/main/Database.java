@@ -140,8 +140,7 @@ public class Database {
       statement.setString(2, animal.getSpecies());
       statement.setString(3, animal.getDescription());
       statement.setString(4, String.valueOf(animal.getGender()));
-      //Changed this animal.getColors().toString() - Ramzy
-      statement.setString(5, animal.getColors().toString());
+      statement.setString(5, animal.getColorString());
       statement.setBoolean(6,animal.isAdopted());
       statement.setTimestamp(7, Timestamp.from(animal.getDateArrived()));
       statement.setTimestamp(8, Timestamp.from(animal.getDateAdopted()));
@@ -149,8 +148,7 @@ public class Database {
       statement.setBoolean(10, animal.isServiceTrained());
       statement.setFloat(11, animal.getWeight());
       statement.setFloat(12, animal.getHeight());
-      //Changed this to animal.getBreeds().toString() - Ramzy
-      statement.setString(13, animal.getBreeds().toString());
+      statement.setString(13, animal.getBreedString());
       statement.setString(14, animal.getBathroomTraining().toString());
       statement.setString(15, animal.getAggression().toString());
 
@@ -194,7 +192,7 @@ public class Database {
       // Gender
       ps.setString(4, String.valueOf(animal.getGender()));
       // Color
-      ps.setString(5, animal.getColors().toString());
+      ps.setString(5, animal.getColorString());
       // If the animal was adopted
       ps.setBoolean(6, animal.isAdopted());
       // Date Arrived
@@ -210,7 +208,7 @@ public class Database {
       // Height
       ps.setFloat(12, animal.getHeight());
       // Breed
-      ps.setString(13,animal.getBreeds().toString());
+      ps.setString(13,animal.getBreedString());
       // If animal is bathroom trained
       ps.setBoolean(14,animal.isServiceTrained());
       // Aggression level
