@@ -229,4 +229,22 @@ public class Animal {
     this.aggression = aggression;
   }
 
+  public String getColorString(){
+    String theColors = "";
+    //loop through colors, add their name, a separator and add it into string
+    for(Color color : colors){
+      theColors += color.toString();
+      theColors += "|";
+    }
+    return theColors;
+  }
+  public String getBreedString(){
+    String theBreeds = "";
+    //loop through colors, add their name, a separator and add it into string
+    for(String breed : breeds){
+      theBreeds += breed.toString();
+      theBreeds += "|";
+    }
+    return theBreeds;
+  }
 }
