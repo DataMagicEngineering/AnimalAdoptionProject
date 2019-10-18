@@ -178,7 +178,7 @@ public class Database {
    * @author Ramzy El-Taher
    * @return void
    */
-  public void editAnimalInfo(Animal animal) {
+  public void editAnimal(Animal animal) {
     String SQL = "UPDATE Animal SET name = ?, species = ?, description = ?,"
         + "gender = ?, colors = ?, adopted = ?, dateArrived = ?, dateAdopted = ?,"
         + "dateOfBirth = ?, serviceTrained = ?, weight = ?, height = ?, breeds = ?,"
