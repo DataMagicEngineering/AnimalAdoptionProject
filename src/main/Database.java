@@ -140,7 +140,8 @@ public class Database {
       statement.setString(2, animal.getSpecies());
       statement.setString(3, animal.getDescription());
       statement.setString(4, String.valueOf(animal.getGender()));
-      statement.setString(5, animal.getColorString());
+      //Changed this animal.getColors().toString() - Ramzy
+      statement.setString(5, animal.getColors().toString());
       statement.setBoolean(6,animal.isAdopted());
       statement.setTimestamp(7, Timestamp.from(animal.getDateArrived()));
       statement.setTimestamp(8, Timestamp.from(animal.getDateAdopted()));
@@ -148,7 +149,8 @@ public class Database {
       statement.setBoolean(10, animal.isServiceTrained());
       statement.setFloat(11, animal.getWeight());
       statement.setFloat(12, animal.getHeight());
-      statement.setString(13, animal.getBreedString());
+      //Changed this to animal.getBreeds().toString() - Ramzy
+      statement.setString(13, animal.getBreeds().toString());
       statement.setString(14, animal.getBathroomTraining().toString());
       statement.setString(15, animal.getAggression().toString());
 
@@ -158,6 +160,12 @@ public class Database {
     }
 }
 
+  /**
+   * Method to check Employee Status.
+   * @author Ramzy El-Taher
+   * @param emp
+   * @return
+   */
   public boolean checkEmployee(Employee emp) {
     if (AuthorizationLevel.ADMINISTRATION==emp.getPrivileges()) {
       return true;
@@ -165,5 +173,53 @@ public class Database {
     return false;
   }
 
+  /**
+   * Method which allows employees to edit an animal's information in the database.
+   * @author Ramzy El-Taher
+   * @return void
+   */
+  public void editAnimalInfo(Animal animal) {
+    String SQL = "UPDATE Animal SET name = ?, species = ?, description = ?,"
+        + "gender = ?, colors = ?, adopted = ?, dateArrived = ?, dateAdopted = ?,"
+        + "dateOfBirth = ?, serviceTrained = ?, weight = ?, height = ?, breeds = ?,"
+        + "bathroomTraining = ?, aggression = ?";
+    try {
+      PreparedStatement ps = conn.prepareStatement(SQL);
+      // Name
+      ps.setString(1, animal.getName());
+      // Species
+      ps.setString(2, animal.getSpecies());
+      // Description
+      ps.setString(3, animal.getDescription());
+      // Gender
+      ps.setString(4, String.valueOf(animal.getGender()));
+      // Color
+      ps.setString(5, animal.getColors().toString());
+      // If the animal was adopted
+      ps.setBoolean(6, animal.isAdopted());
+      // Date Arrived
+      ps.setTimestamp(7, Timestamp.from(animal.getDateArrived()));
+      // Date Adopted
+      ps.setTimestamp(8, Timestamp.from(animal.getDateArrived()));
+      // Date of Birth
+      ps.setTimestamp(9, Timestamp.from(animal.getDateOfBirth()));
+      // If animal is serviced trained
+      ps.setBoolean(10, animal.isServiceTrained());
+      // Weight
+      ps.setFloat(11, animal.getWeight());
+      // Height
+      ps.setFloat(12, animal.getHeight());
+      // Breed
+      ps.setString(13,animal.getBreeds().toString());
+      // If animal is bathroom trained
+      ps.setBoolean(14,animal.isServiceTrained());
+      // Aggression level
+      ps.setString(15,animal.getAggression().toString());
+      //Execute Query
+      ps.executeUpdate();
+    } catch (SQLException ex) {
+      ex.printStackTrace();
+    }
+  }
 
 }
