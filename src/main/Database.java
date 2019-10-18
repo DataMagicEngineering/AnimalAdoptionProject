@@ -156,7 +156,14 @@ public class Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+}
 
+  public boolean checkEmployee(Employee emp) {
+    if (AuthorizationLevel.ADMINISTRATION==emp.getPrivileges()) {
+      return true;
+    }
+    return false;
   }
+
 
 }
