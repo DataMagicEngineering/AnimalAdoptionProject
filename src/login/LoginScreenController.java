@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import main.Database;
+import models.user.User;
 
 public class LoginScreenController {
 
@@ -40,7 +41,8 @@ public class LoginScreenController {
   @FXML
   void pressedLogin(ActionEvent event) throws Exception {
     Database database = Database.get();
-    if (database.loginUser(usernameText.getText(), passwordText.getText()) == null) {
+    User user = database.loginUser(usernameText.getText(), passwordText.getText());
+    if (user == null) {
       errorLabel.setVisible(true);
     } else {
       errorLabel.setVisible(false);

@@ -1,5 +1,7 @@
 package animalProfile;
 
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,10 +9,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import main.Database;
+import models.animal.Animal;
+import models.animal.Vaccine;
+import models.user.AuthorizationLevel;
 
 public class AnimalProfileController {
 
@@ -72,6 +77,20 @@ public class AnimalProfileController {
   private Button adoptBtn;
 
   @FXML
+  private ListView<Vaccine> animVaccListView;
+
+  private void profileEditable() {
+    if (Database.getCurrentUser().getPrivileges() != AuthorizationLevel.ADMINISTRATION) {
+      editAnimalBtn.setVisible(false);
+      editAnimalBtn.setDisable(true);
+    }
+  }
+
+  private void setAnimalVaccine (ObservableList<Vaccine> vaccines) {
+    animVaccListView.setItems(vaccines);
+  }
+
+  @FXML
   void goToAdoptionPage(ActionEvent event) {
 
   }
@@ -97,4 +116,9 @@ public class AnimalProfileController {
     primaryStage.show();
   }
 
+  public void initialize() {
+
+    profileEditable();
+
+  }
 }
