@@ -130,7 +130,7 @@ public class Animal {
 
   /**
    * Mutator for id
-   * @param id the int variable that the id field will be assigned to.
+   * @param id the int variable that the id field is assigned to.
    */
   public void setId(int id) {
     this.id = id;
@@ -146,7 +146,7 @@ public class Animal {
 
   /**
    * Mutator for name
-   * @param name the String variable that the name field will be assigned to.
+   * @param name the String variable that the name field is assigned to.
    */
   public void setName(String name) {
     this.name = name;
@@ -162,7 +162,7 @@ public class Animal {
 
   /**
    * Mutator for species
-   * @param species the String variable that the species field will be assigned to.
+   * @param species the String variable that the species field is assigned to.
    */
   public void setSpecies(String species) {
     this.species = species;
@@ -178,7 +178,7 @@ public class Animal {
 
   /**
    * Mutator for
-   * @param description The String variable that the description field will be assigned to.
+   * @param description The String variable that the description field is assigned to.
    */
   public void setDescription(String description) {
     this.description = description;
@@ -194,7 +194,7 @@ public class Animal {
 
   /**
    * Mutator for gender
-   * @param gender The char variable that the gender field will be assigned to.
+   * @param gender The char variable that the gender field is assigned to.
    */
   public void setGender(char gender) {
     this.gender = gender;
@@ -210,7 +210,7 @@ public class Animal {
 
   /**
    * Mutator for colors
-   * @param colors The List of type Color variable that the colors field will be assigned to.
+   * @param colors The List of type Color variable that the colors field is assigned to.
    */
   public void setColors(List<Color> colors) {
     this.colors = colors;
@@ -226,7 +226,7 @@ public class Animal {
 
   /**
    * Mutator for adopted
-   * @param adopted The boolean variable that the adopted field will be assigned to.
+   * @param adopted The boolean variable that the adopted field is assigned to.
    */
   public void setAdopted(boolean adopted) {
     this.adopted = adopted;
@@ -242,7 +242,7 @@ public class Animal {
 
   /**
    * Mutator for dateArrived
-   * @param dateArrived The Instant variable that the dateArrived field will be assigned to.
+   * @param dateArrived The Instant variable that the dateArrived field is assigned to.
    */
   public void setDateArrived(Instant dateArrived) {
     this.dateArrived = dateArrived;
@@ -258,7 +258,7 @@ public class Animal {
 
   /**
    * Mutator for dateAdopted
-   * @param dateAdopted The Instant variable that the dateAdopted field will be assigned to.
+   * @param dateAdopted The Instant variable that the dateAdopted field is assigned to.
    */
   public void setDateAdopted(Instant dateAdopted) {
     this.dateAdopted = dateAdopted;
@@ -274,7 +274,7 @@ public class Animal {
 
   /**
    * Mutator for serviceTrained
-   * @param serviceTrained The boolean variable that the serviceTrained field will be assigned to.
+   * @param serviceTrained The boolean variable that the serviceTrained field is assigned to.
    */
   public void setServiceTrained(boolean serviceTrained) {
     this.serviceTrained = serviceTrained;
@@ -290,7 +290,7 @@ public class Animal {
 
   /**
    * Mutator for weight
-   * @param weight The float variable that the weight field will be assigned to.
+   * @param weight The float variable that the weight field is assigned to.
    */
   public void setWeight(float weight) {
     this.weight = weight;
@@ -306,7 +306,7 @@ public class Animal {
 
   /**
    * Mutator for height
-   * @param height The float variable that the height field will be assigned to.
+   * @param height The float variable that the height field is assigned to.
    */
   public void setHeight(float height) {
     this.height = height;
@@ -322,7 +322,7 @@ public class Animal {
 
   /**
    * Mutator for dateOfBirth
-   * @param dateOfBirth The Instant variable that the dateOfBirth field will be assigned to.
+   * @param dateOfBirth The Instant variable that the dateOfBirth field is assigned to.
    */
   public void setDateOfBirth(Instant dateOfBirth) {
     this.dateOfBirth = dateOfBirth;
@@ -338,7 +338,7 @@ public class Animal {
 
   /**
    * Mutator for breeds
-   * @param breeds The List of type String variable that the breeds field will be assigned to.
+   * @param breeds The List of type String variable that the breeds field is assigned to.
    */
   public void setBreeds(List<String> breeds) {
     this.breeds = breeds;
@@ -354,7 +354,7 @@ public class Animal {
 
   /**
    * Mutator for tricks
-   * @param tricks The List of class type Trick variable that the ? field will be assigned to.
+   * @param tricks The List of class type Trick variable that the tricks field is assigned to.
    */
   public void setTricks(List<Trick> tricks) {
     this.tricks = tricks;
@@ -370,7 +370,7 @@ public class Animal {
 
   /**
    * Mutator for bathroomTraining
-   * @param bathroomTraining The enum Proficiency variable that the bathroomTraining field will be assigned to.
+   * @param bathroomTraining The enum Proficiency variable that the bathroomTraining field is assigned to.
    */
   public void setBathroomTraining(Proficiency bathroomTraining) {
     this.bathroomTraining = bathroomTraining;
@@ -386,7 +386,7 @@ public class Animal {
 
   /**
    * Mutator for vaccines
-   * @param vaccines The List of class type Vaccine variable that the vaccines field will be assigned to.
+   * @param vaccines The List of class type Vaccine variable that the vaccines field is assigned to.
    */
   public void setVaccines(List<Vaccine> vaccines) {
     this.vaccines = vaccines;
@@ -402,7 +402,7 @@ public class Animal {
 
   /**
    * Mutator for aggression
-   * @param aggression The enum type Color variable that the aggression field will be assigned to.
+   * @param aggression The enum type Color variable that the aggression field is assigned to.
    */
   public void setAggression(Color aggression) {
     this.aggression = aggression;
@@ -410,7 +410,7 @@ public class Animal {
 
   /**
    * Accessor to obtain the Color enums in the form of a String
-   * @return theColors, which is the String variable that the color enums will be assigned to.
+   * @return theColors, which is the String variable that the color enums is assigned to.
    */
   public String getColorString(){
     String theColors = "";
@@ -424,7 +424,7 @@ public class Animal {
 
   /**
    * Accessor to obtain the Breeds List in the form of a String
-   * @return theBreeds, which is the String variable that the list will be assigned to.
+   * @return theBreeds, which is the String variable that the list is assigned to.
    */
   public String getBreedString(){
     String theBreeds = "";
