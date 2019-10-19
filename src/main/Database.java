@@ -1,14 +1,15 @@
 package main;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.Instant;
+import models.adoption.AdoptionRequest;
 import models.animal.Animal;
+import models.questions.Question;
 import models.user.AuthorizationLevel;
 import models.user.Customer;
 import models.user.Employee;
@@ -218,6 +219,112 @@ public class Database {
     } catch (SQLException ex) {
       ex.printStackTrace();
     }
+  }
+
+  /**
+   * Submits a question to the database.
+   * @author Travis Gayle
+   * @param question The question the user has asked
+   * @return True if the question was successfully stored, else false.
+   */
+  public boolean askQuestion(Question question) {
+    String query = "INSERT INTO Question (userId, answered, question) VALUES (?, ?, ?)";
+    try (PreparedStatement ps = conn.prepareStatement(query)) {
+      ps.setInt(1, question.getUserId());
+      ps.setBoolean(2, false);
+      ps.setString(3, question.getQuestion());
+      ps.executeUpdate();
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace()
+;
+    }
+    return false;
+  }
+
+  /**
+   * Allows an employee to answer a question from a user.
+   *
+   * @author Travis Gayle
+   * @param answerer The employee who asked the question
+   * @param question The question being answered
+   * @return True if this question was successfully answered, else false.
+   */
+  public boolean answerQuestion(User answerer, Question question) {
+    if (answerer.getPrivileges() != AuthorizationLevel.ADMINISTRATION) {
+      return false;
+    }
+
+    String query =
+        "UPDATE Question "
+        + "SET (employeeId, answered, answer) = (?, ?, ?)"
+        + "WHERE Question.id=?";
+
+    try (PreparedStatement ps = conn.prepareStatement(query)) {
+      ps.setInt(1, answerer.getId());
+      ps.setBoolean(2, true);
+      ps.setString(3, question.getAnswer());
+      ps.setInt(4, question.getId());
+      ps.executeUpdate();
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return false;
+  }
+
+  /**
+   * Submits an adoption request to be processed by the shelter.
+   * @author Travis Gayle
+   * @param request The adoption request to be processed
+   * @return True of the request was successfully submitted, else false.
+   */
+  public boolean submitAdoptionRequest(AdoptionRequest request) {
+    String query = "INSERT INTO AdoptionRequest "
+        + "(customerId, animalId, approved, dateRequested) "
+        + "VALUES (?, ?, ?, ?)";
+    try (PreparedStatement ps = conn.prepareStatement(query)) {
+      ps.setInt(1, request.getCustomerId());
+      ps.setInt(2, request.getAnimalId());
+
+      // A request that has just been submitted can't have been answered yet.
+      ps.setBoolean(3, false);
+      ps.setTimestamp(4, Timestamp.from(Instant.now()));
+      ps.executeUpdate();
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return false;
+  }
+
+  /**
+   * Allows an employee to process an adoption request and approve or reject it.
+   * @author Travis Gayle
+   * @param user The user attempting to process this request.
+   * @param request The request being processed
+   * @return True if the processing was successful, else false.
+   */
+  public boolean processAdoptionRequest(User user, AdoptionRequest request) {
+    // Make sure this user has permission to do this.
+    if (user.getPrivileges() != AuthorizationLevel.ADMINISTRATION) {
+      return false;
+    }
+
+    String query = "UPDATE AdoptionRequest "
+        + "SET (approved, dateApproved) = (?, ?)"
+        + "WHERE AdoptionRequest.id = ?";
+
+    try (PreparedStatement ps = conn.prepareStatement(query)) {
+      ps.setBoolean(1, request.isApproved());
+      ps.setTimestamp(2, Timestamp.from(request.getDateApproved()));
+      ps.setInt(3, request.getId());
+      ps.executeUpdate();
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return false;
   }
 
 }

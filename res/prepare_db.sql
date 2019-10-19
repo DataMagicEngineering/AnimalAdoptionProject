@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS `User`(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    username TEXT NOT NULL,
+    username TEXT NOT NULL UNIQUE,
     password TEXT NOT NULL,
     firstName TEXT NOT NULL,
     lastName TEXT NOT NULL,
@@ -16,7 +16,9 @@ CREATE TABLE IF NOT EXISTS `Trick`(
 CREATE TABLE IF NOT EXISTS `AnimalTrick`(
     animalId INTEGER NOT NULL,
     trickId INTEGER NOT NULL,
-    proficiency INTEGER NOT NULL
+    proficiency INTEGER NOT NULL,
+    FOREIGN KEY (animalId) REFERENCES Animal(id),
+    FOREIGN KEY (trickId) REFERENCES Trick(id)
 );
 
 CREATE TABLE IF NOT EXISTS `Vaccine`(
@@ -27,7 +29,9 @@ CREATE TABLE IF NOT EXISTS `Vaccine`(
 CREATE TABLE IF NOT EXISTS `AnimalVaccine`(
     animalId INTEGER NOT NULL,
     vaccineId INTEGER NOT NULL,
-    dateReceived TIMESTAMP
+    dateReceived TIMESTAMP,
+    FOREIGN KEY(animalId) REFERENCES Animal(id),
+    FOREIGN KEY(vaccineId) REFERENCES Vaccine(id)
 );
 
 CREATE TABLE IF NOT EXISTS `Animal`(
@@ -55,22 +59,25 @@ CREATE TABLE IF NOT EXISTS `Animal`(
 
 CREATE TABLE IF NOT EXISTS `UserAnimalFavorite`(
     userId INTEGER,
-    animalId INTEGER
+    animalId INTEGER,
+    FOREIGN KEY(userId) REFERENCES User(id)
 );
 
 CREATE TABLE IF NOT EXISTS `EmployeeHour`(
     userId INTEGER,
     dayWorked TIMESTAMP,
-    hoursWorked REAL
+    hoursWorked REAL,
+    FOREIGN KEY(userId) REFERENCES User(id)
 );
 
 CREATE TABLE IF NOT EXISTS `VolunteerHour`(
     userId INTEGER,
-    hoursEarned REAL
+    hoursEarned REAL,
+    FOREIGN KEY(userId) REFERENCES User(id)
 );
 
-CREATE TABLE IF NOT EXISTS  `Event`(
-    id INTEGER,
+CREATE TABLE IF NOT EXISTS `Event`(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT,
 
     -- The scheduled date for the event.
@@ -83,4 +90,26 @@ CREATE TABLE IF NOT EXISTS  `Event`(
     -- For instance, an event might only be available for employees to see, but an event for normal
     -- users is visible by everyone.
     targetAudience INTEGER
+);
+
+CREATE TABLE IF NOT EXISTS `Question`(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    userId INTEGER,
+    answered INTEGER,
+    employeeId INTEGER,
+    question TEXT,
+    answer TEXT,
+    FOREIGN KEY(userId) REFERENCES User(id),
+    FOREIGN KEY(employeeId) REFERENCES User(id)
+);
+
+CREATE TABLE IF NOT EXISTS `AdoptionRequest`(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    customerId INTEGER,
+    animalId INTEGER,
+    approved INTEGER,
+    dateRequested TIMESTAMP,
+    dateApproved TIMESTAMP,
+    FOREIGN KEY (customerId) REFERENCES User(id),
+    FOREIGN KEY (animalId) REFERENCES Animal(id)
 )
