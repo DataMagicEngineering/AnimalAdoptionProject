@@ -5,43 +5,57 @@ The Animal Shelter Management System is a program designed for Animal Shelters/H
 
 ## Demonstration
 
+<gif of program running goes here>
 
 ## Documentation
 
+<link to a generated JavaDoc URL goes here>
 
 ## Diagrams
 
+<link to a class diagram goes here>
 
 ## Getting Started
 
+<instruction for someone to get a copy of the project up and running goes here>
 
 ## Built With
 
+IntelliJ IDEA 2019
+
+<Brief description of IDE/Development skills knowledge goes here>
 
 ## Contributing
 
+<Description of how someone can contribute to this project goes here>
 
 ## Author
 
-Travis Gayle;
+#### The Data Magic Engineering Team: 
 
-Emily Schwarz;
+##### Travis Gayle
 
-Ramzy El Taher;
+##### Emily Schwarz
 
-Zachary Maroney;
+##### Ramzy El Taher
 
-Luis Hernandez
+##### Zachary Maroney
+
+##### Luis Hernandez
 
 
 ## License
 
+<Liscense and link to the Liscense page goes here>
 
 ## Acknowledgments
 
+<Websites, professors, classmates, and TAs who helped goes here>
 
 ## History
 
+<History of the development of the program goes here>
 
 ## Key Programming Concepts Utilized
 
+<Brief description of concepts that we utilized goes here>
