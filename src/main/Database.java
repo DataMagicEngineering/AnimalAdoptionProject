@@ -22,7 +22,7 @@ import models.user.Volunteer;
  */
 public class Database {
   private static Database thisDb;
-
+  private static User currentUser;
   private Connection conn;
 
   private Database() {
@@ -67,7 +67,8 @@ public class Database {
   }
 
   /**
-   * Attempts to login a user given a username and password.
+   * Attempts to login a user given a username and password. The result of this request also stores
+   * the current user in the currentUser static variable for access anywhere.
    * @param username The username to check against the database.
    * @param password The password to check against the database.
    * @return The user that corresponds to this username and password, otherwise null if the
@@ -114,14 +115,17 @@ public class Database {
         user.setLastName(lastName);
         user.setDateOfBirth(dateOfBirth);
 
+        currentUser = user;
         return user;
       }
 
     } catch (SQLException e) {
       e.printStackTrace();
+      currentUser = null;
       return null;
     }
     // Return null if we didn't find a user to return above.
+    currentUser = null;
     return null;
   }
 
@@ -327,4 +331,12 @@ public class Database {
     return false;
   }
 
+  /**
+   * Returns the current user logged in.
+   * @author Travis Gayle
+   * @return The current user or null if the user doesn't exist in the database.
+   */
+  public static User getCurrentUser() {
+    return currentUser;
+  }
 }
