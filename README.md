@@ -17,7 +17,7 @@ The Animal Shelter Management System is a program designed for Animal Shelters/H
 
 ## Getting Started
 
-(instruction for someone to get a copy of the project up and running goes here)
+Detailed guide on forking the project provided here: https://guides.github.com/activities/forking/
 
 ## Built With
 
