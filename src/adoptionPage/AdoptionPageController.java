@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import main.Database;
 
 public class AdoptionPageController {
 
@@ -55,5 +56,10 @@ public class AdoptionPageController {
     primaryStage.setTitle("Main Screen");
     primaryStage.setScene(new Scene(root));
     primaryStage.show();
+  }
+
+  public void initialize() {
+    userFirstNameText.setText(Database.getCurrentUser().getFirstName());
+    userLastNameText.setText(Database.getCurrentUser().getLastName());
   }
 }

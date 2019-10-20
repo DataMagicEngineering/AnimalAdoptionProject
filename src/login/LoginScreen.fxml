@@ -7,13 +7,21 @@
 <?import javafx.scene.layout.Pane?>
 
 <?import javafx.scene.control.PasswordField?>
-<AnchorPane id="AnchorPane" fx:id="backPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@LoginStyle.css" xmlns="http://javafx.com/javafx/8.0.191" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.LoginScreenController">
+<AnchorPane id="AnchorPane" fx:id="backPane" maxHeight="-Infinity" maxWidth="-Infinity"
+  minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+  stylesheets="@LoginStyle.css" xmlns="http://javafx.com/javafx/8.0.191"
+  xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.LoginScreenController">
   <children>
-    <TextField fx:id="usernameText" layoutX="33.0" layoutY="52.0" prefHeight="35.0" prefWidth="212.0" promptText="Username" />
-    <PasswordField fx:id="passwordText" layoutX="33.0" layoutY="107.0" prefHeight="35.0" prefWidth="212.0" promptText="Password" />
-    <Button fx:id="loginButton" layoutX="97.0" layoutY="175.0" mnemonicParsing="false" onAction="#pressedLogin" prefHeight="35.0" prefWidth="85.0" text="Login" />
-    <Label fx:id="errorLabel" layoutX="31.0" layoutY="231.0" text="ERROR! Incorrect Username or Password!" textFill="RED" visible="false" />
-      <Label fx:id="logginLabel" layoutX="99.0" layoutY="231.0" text="User Logged In!" textFill="GREEN" visible="false" />
-      <Pane id="Pane" layoutX="276.0" prefHeight="400.0" prefWidth="324.0" />
+    <TextField fx:id="usernameText" layoutX="33.0" layoutY="52.0" prefHeight="35.0"
+      prefWidth="212.0" promptText="Username"/>
+    <PasswordField fx:id="passwordText" layoutX="33.0" layoutY="107.0" prefHeight="35.0"
+      prefWidth="212.0" promptText="Password"/>
+    <Button fx:id="loginButton" layoutX="97.0" layoutY="175.0" mnemonicParsing="false"
+      onAction="#pressedLogin" prefHeight="35.0" prefWidth="85.0" text="Login"/>
+    <Label fx:id="errorLabel" layoutX="31.0" layoutY="231.0"
+      text="ERROR! Incorrect Username or Password!" textFill="RED" visible="false"/>
+    <Label fx:id="logginLabel" layoutX="99.0" layoutY="231.0" text="User Logged In!"
+      textFill="GREEN" visible="false"/>
+    <Pane id="Pane" layoutX="276.0" prefHeight="400.0" prefWidth="324.0"/>
   </children>
 </AnchorPane>
