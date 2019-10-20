@@ -58,6 +58,9 @@ public class AdoptionPageController {
     primaryStage.show();
   }
 
+  /**
+   * Method to test whether the First/Last name text fields match the users listed in the database.
+   */
   public void initialize() {
     userFirstNameText.setText(Database.getCurrentUser().getFirstName());
     userLastNameText.setText(Database.getCurrentUser().getLastName());
