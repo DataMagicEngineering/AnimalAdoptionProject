@@ -396,7 +396,7 @@ public class Database {
         int p = rs.getInt("aggression");
 
         // breeds is a list<string> so we must convert from String to list<String>
-        List<String> forBreeds = null;
+        List<String> forBreeds = new ArrayList<>();
         forBreeds.add(n);
 
         //Enum numbers start at 0, so if you use Color.Blue.ordinal() or something like that, you
