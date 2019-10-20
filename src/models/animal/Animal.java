@@ -410,6 +410,7 @@ public class Animal {
 
   /**
    * Accessor to obtain the Color enums in the form of a String
+   * @author Luis Hernandez
    * @return theColors, which is the String variable that the color enums is assigned to.
    */
   public String getColorString(){
@@ -424,6 +425,7 @@ public class Animal {
 
   /**
    * Accessor to obtain the Breeds List in the form of a String
+   * @author Luis Hernandez
    * @return theBreeds, which is the String variable that the list is assigned to.
    */
   public String getBreedString(){
