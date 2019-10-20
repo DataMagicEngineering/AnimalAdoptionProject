@@ -27,7 +27,7 @@ IntelliJ IDEA 2019
 
 ## Contributing
 
-If you would like to make any contributions to this project, then fork the project, clone it into your IDE, make whatever changes you feel is necessary, commit and push it into your forked version of the project, and create a pull request. If we feel that the change is good, then we will accept the pull request.
+If you would like to make any contributions to this project, then fork the project, clone it into your IDE, make whatever changes you feel is necessary, commit and push it into your forked version of the project, and create a pull request. If we feel that the change is beneficial for the program, then we will accept the pull request.
 
 ## Authors
 
