@@ -397,7 +397,10 @@ public class Database {
 
         // breeds is a list<string> so we must convert from String to list<String>
         List<String> forBreeds = new ArrayList<>();
-        forBreeds.add(n);
+        String[] myBreeds = n.split("\\|");
+        for(int y = 0; y < myBreeds.length; y++){
+          forBreeds.add(y,myBreeds[y]);
+        }
 
         //Enum numbers start at 0, so if you use Color.Blue.ordinal() or something like that, you
         // need to start at 0 to get everything
@@ -465,8 +468,7 @@ public class Database {
         }
         // create List<Color> thru logic to add into animal myPet
         List<Color> petColors = new ArrayList<>();
-        String[] theColor = null;
-        theColor = f.split("|");
+        String[] theColor = f.split("\\|");
 
         // go through loop once checking individual values in array for color enum
         for(int z = 0; z < theColor.length; z++){
