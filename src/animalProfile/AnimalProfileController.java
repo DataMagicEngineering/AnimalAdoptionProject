@@ -91,8 +91,13 @@ public class AnimalProfileController {
   }
 
   @FXML
-  void goToAdoptionPage(ActionEvent event) {
-
+  void goToAdoptionPage(ActionEvent event) throws Exception{
+    Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    Parent root = FXMLLoader
+        .load(getClass().getResource("../adoptionPage/AdoptionPage.fxml"));
+    primaryStage.setTitle("Adoption Page");
+    primaryStage.setScene(new Scene(root));
+    primaryStage.show();
   }
 
   @FXML

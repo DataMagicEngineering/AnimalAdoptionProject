@@ -30,8 +30,8 @@ public class AnimalListController {
   void goToAnimalAdoption(ActionEvent event) throws Exception{
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../adoptionPage/AdoptionPage.fxml"));
-    primaryStage.setTitle("Adoption Page");
+        .load(getClass().getResource("../animalProfile/AnimalProfile.fxml"));
+    primaryStage.setTitle("Animal Profile");
     primaryStage.setScene(new Scene(root));
     primaryStage.show();
   }
