@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.net.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+  prefHeight="450.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE"
+  xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8"
+  fx:controller="employeedashboard.EmployeeDashboardController">
+  <tabs>
+    <Tab text="Main">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+          <children>
+            <SplitPane dividerPositions="0.12200956937799043" layoutY="1.0"
+              maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+              minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="420.0"
+              prefWidth="600.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="598.0">
+                  <children>
+                    <Label fx:id="dashLoginLbl" layoutX="58.0" layoutY="16.0"
+                      stylesheets="@../login/LoginStyle.css" text="Welcome!"/>
+                    <Label fx:id="userStatusLbl" layoutX="387.0" layoutY="16.0"
+                      stylesheets="@../login/LoginStyle.css" text="Status">
+                      <font>
+                        <Font name="System Bold" size="12.0"/>
+                      </font>
+                    </Label>
+                  </children>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0"/>
+              </items>
+            </SplitPane>
+          </children>
+        </AnchorPane>
+      </content>
+    </Tab>
+    <Tab text="Questions">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+      </content>
+    </Tab>
+    <Tab text="Adoption Applications">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+      </content>
+    </Tab>
+    <Tab text="Volunteer Applications">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+      </content>
+    </Tab>
+    <Tab text="Logs">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+      </content>
+    </Tab>
+  </tabs>
+</TabPane>

@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javax.xml.crypto.Data;
 import main.Database;
 
 public class AdoptionPageController {
@@ -64,5 +65,6 @@ public class AdoptionPageController {
   public void initialize() {
     userFirstNameText.setText(Database.getCurrentUser().getFirstName());
     userLastNameText.setText(Database.getCurrentUser().getLastName());
+    userDOBText.setText((Database.getCurrentUser().getDateOfBirth().toString()));
   }
 }

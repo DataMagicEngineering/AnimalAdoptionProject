@@ -25,6 +25,7 @@ import models.animal.Color;
 import models.animal.Proficiency;
 import models.animal.Trick;
 import models.animal.Vaccine;
+import models.user.AuthorizationLevel;
 import models.user.User;
 
 public class LoginScreenController {
@@ -58,22 +59,25 @@ public class LoginScreenController {
       errorLabel.setVisible(true);
     } else {
       errorLabel.setVisible(false);
-      Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-      Parent root = FXMLLoader
-          .load(getClass().getResource("../mainScreen/AnimalAdoptMainScreen.fxml"));
-      primaryStage.setTitle("Main Screen");
-      primaryStage.setScene(new Scene(root));
-      primaryStage.show();
+      if (user.getPrivileges() == AuthorizationLevel.VOLUNTEER || user.getPrivileges() == AuthorizationLevel.ADMINISTRATION) {
+        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader
+            .load(getClass().getResource("../employeedashboard/EmployeeDashboard.fxml"));
+        primaryStage.setTitle("Dashboard");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
+      }
+      else {
+        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader
+            .load(getClass().getResource("../mainScreen/AnimalAdoptMainScreen.fxml"));
+        primaryStage.setTitle("Main Screen");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
+      }
     }
   }
   public void initialize() {
-    /*Database database = Database.get();
-    List<String> breed = new ArrayList<>(); breed.add("Doverman");
-    List<Color> color = new ArrayList<>(); color.add(Black);
-    List<Trick> trick = new ArrayList();
-    List<Vaccine> vaccines = new ArrayList<>();
-    Animal animal = new Animal("Max", "Dog", "Loves belly rubs.", 'M', color, false, Instant.now(), Instant.now(), Instant.now(), true,
-        1.2f, 1, breed, trick, Proficiency.Excellent, vaccines, Green);
-    database.addAnimal(animal);*/
+
   }
 }
