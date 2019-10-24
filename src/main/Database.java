@@ -1,9 +1,22 @@
 package main;
 
-import static javax.swing.UIManager.getString;
-import static models.animal.Color.*;
-import static models.animal.Proficiency.*;
-import java.sql.Array;
+import static models.animal.Color.Black;
+import static models.animal.Color.Blue;
+import static models.animal.Color.Brown;
+import static models.animal.Color.Gray;
+import static models.animal.Color.Green;
+import static models.animal.Color.Orange;
+import static models.animal.Color.Red;
+import static models.animal.Color.White;
+import static models.animal.Color.Yellow;
+import static models.animal.Proficiency.Awful;
+import static models.animal.Proficiency.Bad;
+import static models.animal.Proficiency.Excellent;
+import static models.animal.Proficiency.Good;
+import static models.animal.Proficiency.Great;
+import static models.animal.Proficiency.Neutral;
+import static models.animal.Proficiency.None;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,7 +26,6 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import models.adoption.AdoptionRequest;
 import models.animal.Animal;
@@ -348,6 +360,34 @@ public class Database {
       e.printStackTrace();
     }
     return false;
+  }
+
+  /**
+   * @see #removeAnimal(int)
+   * @param animal The animal that should be removed
+   */
+  public boolean removeAnimal(Animal animal) {
+    return removeAnimal(animal.getId());
+  }
+
+  /**
+   * Removes an animal from the database if the current user has the authority to do so.
+   * @param animalId The id of the animal to be removed.
+   * @return true if the removal was successful, else false.
+   */
+  public boolean removeAnimal(int animalId) {
+    if (currentUser.getPrivileges() != AuthorizationLevel.ADMINISTRATION) return false;
+
+    String query = "DELETE FROM Animal WHERE Animal.id=?";
+
+    try (PreparedStatement statement = conn.prepareStatement(query)) {
+      statement.setInt(1, animalId);
+      statement.executeUpdate();
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
+    }
   }
 
   /**
