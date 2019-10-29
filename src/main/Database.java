@@ -290,7 +290,7 @@ public class Database {
 
     String query =
         "UPDATE Question "
-            + "SET (employeeId, answered, answer) = (?, ?, ?)"
+            + "SET  (employeeId, answered, answer) = (?, ?, ?)"
             + "WHERE Question.id=?";
 
     try (PreparedStatement ps = conn.prepareStatement(query)) {
