@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="Customer Dashboard" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+         <children>
+            <Label layoutX="21.0" layoutY="14.0" prefHeight="29.0" prefWidth="113.0" text="Welcome, user! " />
+            <Button fx:id="customerViewAnimalsBtn" layoutX="233.0" layoutY="70.0" mnemonicParsing="false" text="View Animals" />
+            <Button fx:id="customerViewEventsBtn" layoutX="238.0" layoutY="132.0" mnemonicParsing="false" text="View Events" />
+            <Button fx:id="askQuestionBtn" layoutX="227.0" layoutY="193.0" mnemonicParsing="false" text="Ask a Question" />
+            <Button fx:id="customerLogOutBtn" layoutX="505.0" layoutY="13.0" mnemonicParsing="false" text="Log out" />
+            <Button fx:id="applyToVolunteerBtn" layoutX="196.0" layoutY="254.0" mnemonicParsing="false" text="Apply to be a Volunteer!" />
+         </children></AnchorPane>
+  </content>
+</TitledPane>
