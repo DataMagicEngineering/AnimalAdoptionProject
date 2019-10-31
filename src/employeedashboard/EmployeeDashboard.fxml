@@ -33,12 +33,12 @@
                                     <Font size="20.0" />
                                  </font>
                               </Button>
-                              <Button layoutX="187.0" layoutY="158.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="225.0" text="View Events">
+                              <Button fx:id="viewEventsBtn" layoutX="187.0" layoutY="158.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="225.0" text="View Events">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </Button>
-                              <Button layoutX="187.0" layoutY="249.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="225.0" text="Record Hours">
+                              <Button fx:id="recordHoursBtn" layoutX="187.0" layoutY="249.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="225.0" text="Record Hours">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -50,21 +50,45 @@
         </AnchorPane>
       </content>
     </Tab>
-    <Tab text="Questions">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+      <Tab text="Questions">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <ListView layoutX="16.0" layoutY="37.0" prefHeight="274.0" prefWidth="569.0" />
-                  <TextField fx:id="answerQuestionTxtBtn" alignment="TOP_LEFT" layoutX="16.0" layoutY="339.0" prefHeight="58.0" prefWidth="408.0" promptText="Answer questions here" />
-                  <Button fx:id="answerBtn" layoutX="466.0" layoutY="349.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="61.0" text="Answer" />
-                  <Label layoutX="209.0" layoutY="10.0" text="Unasnwered Questions">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-               </children></AnchorPane>
-      </content>
-    </Tab>
+                  <TabPane prefHeight="422.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab text="Unanswered Questions">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <ListView fx:id="unanwQuestionList" layoutX="16.0" layoutY="37.0" prefHeight="274.0" prefWidth="569.0" />
+                                    <TextField fx:id="answerQuestionTxtBtn" alignment="TOP_LEFT" layoutX="16.0" layoutY="323.0" prefHeight="58.0" prefWidth="408.0" promptText="Answer questions here" />
+                                    <Button fx:id="answerBtn" layoutX="469.0" layoutY="334.0" mnemonicParsing="false" onAction="#answerQuestion" prefHeight="37.0" prefWidth="61.0" text="Answer" />
+                                    <Label layoutX="197.0" layoutY="5.0" text="Unasnwered Questions">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                      <Tab fx:id="anwQuestionsList" text="Answered Questions">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <ListView fx:id="ans" layoutX="12.0" layoutY="14.0" prefHeight="284.0" prefWidth="576.0" />
+                                    <Text fx:id="answereTxt" layoutX="13.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Answer" visible="false" wrappingWidth="574.13671875" />
+                                    <Text fx:id="answerAuthorTxt" layoutX="14.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Author" visible="false" wrappingWidth="571.13671875" />
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                    </tabs>
+                  </TabPane>
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
     <Tab text="Adoption Applications">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
