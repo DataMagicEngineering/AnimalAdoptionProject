@@ -28,6 +28,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import models.adoption.AdoptionRequest;
+import models.adoption.AdoptionWithAnimal;
 import models.animal.Animal;
 import models.animal.Color;
 import models.animal.Proficiency;
@@ -113,33 +114,7 @@ public class Database {
       // If there is at least one row in this result set, then we know that this username and
       // password goes with a user.
       if (resultSet.next()) {
-        int userId = resultSet.getInt(1);
-        String thisUserName = resultSet.getString(2);
-        String thisPassword = resultSet.getString(3);
-        String firstName = resultSet.getString(4);
-        String lastName = resultSet.getString(5);
-        Instant dateOfBirth = resultSet.getTimestamp(6).toInstant();
-
-        int authorizationLevelOrdinal = resultSet.getInt(7);
-
-        // Declare our user first so that we can assign it to the right type of user later.
-        User user;
-
-        if (authorizationLevelOrdinal == AuthorizationLevel.ADMINISTRATION.ordinal()) {
-          user = new Employee();
-        } else if (authorizationLevelOrdinal == AuthorizationLevel.VOLUNTEER.ordinal()) {
-          user = new Volunteer();
-        } else {
-          user = new Customer();
-        }
-
-        user.setId(userId);
-        user.setUsername(thisUserName);
-        user.setPassword(thisPassword);
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
-        user.setDateOfBirth(dateOfBirth);
-
+        User user = parseUserInRow(resultSet);
         currentUser = user;
         return user;
       }
@@ -197,10 +172,7 @@ public class Database {
    * @author Ramzy El-Taher
    */
   public boolean checkEmployee(Employee emp) {
-    if (AuthorizationLevel.ADMINISTRATION == emp.getPrivileges()) {
-      return true;
-    }
-    return false;
+    return AuthorizationLevel.ADMINISTRATION == emp.getPrivileges();
   }
 
   /**
@@ -411,154 +383,12 @@ public class Database {
     String animalList = "SELECT * FROM Animal";
 
     try {
-
-      Animal myPet = new Animal();
-
       Statement stmt = conn.createStatement();
       ResultSet rs = stmt.executeQuery(animalList);
 
       while (rs.next()) {
-        int a = rs.getInt("id");
-        String b = rs.getString("name");
-        String c = rs.getString("species");
-        String d = rs.getString("description");
-        char e = rs.getString("gender").charAt(0);
-        String f = rs.getString("colors"); // colors is a List of enum color
-        boolean g = rs.getBoolean("adopted");
-        Instant h = rs.getTimestamp("dateArrived").toInstant();
-        Instant i = rs.getTimestamp("dateAdopted").toInstant();
-        Instant j = rs.getTimestamp("dateOfBirth").toInstant();
-        boolean k = rs.getBoolean("serviceTrained");
-        float l = rs.getFloat("weight");
-        float m = rs.getFloat("height");
-        String n = rs.getString("breeds");
-        int o = rs.getInt("bathroomTraining");
-        int p = rs.getInt("aggression");
-
-        // breeds is a list<string> so we must convert from String to list<String>
-        List<String> forBreeds = new ArrayList<>();
-        String[] myBreeds = n.split("\\|");
-        for(int y = 0; y < myBreeds.length; y++){
-          forBreeds.add(y,myBreeds[y]);
-        }
-
-        //Enum numbers start at 0, so if you use Color.Blue.ordinal() or something like that, you
-        // need to start at 0 to get everything
-        // change int to enum Proficiency for animal object list
-        Proficiency aniProf = null;
-        switch (o) {
-          case 0:
-            aniProf = None;
-            break;
-          case 1:
-            aniProf = Awful;
-            break;
-          case 2:
-            aniProf = Bad;
-            break;
-          case 3:
-            aniProf = Neutral;
-            break;
-          case 4:
-            aniProf = Good;
-            break;
-          case 5:
-            aniProf = Great;
-            break;
-          case 6:
-            aniProf = Excellent;
-            break;
-          default:
-            System.out.println("invalid number inputted! [ 0 - 6 accepted]");
-            break;
-        }
-        // switch case similar to above but for aggression
-        Color petAnger = null;
-        switch(p){
-          case 0:
-            petAnger = Red;
-            break;
-          case 1:
-            petAnger = Orange;
-            break;
-          case 2:
-            petAnger = Yellow;
-            break;
-          case 3:
-            petAnger = Green;
-            break;
-          case 4:
-            petAnger = Blue;
-            break;
-          case 5:
-            petAnger = Brown;
-            break;
-          case 6:
-            petAnger = White;
-            break;
-          case 7:
-            petAnger = Black;
-            break;
-          case 8:
-            petAnger = Gray;
-            break;
-          default:
-            System.out.println("invalid number inputted. [ 0 - 8 accepted]");
-            break;
-        }
-        // create List<Color> thru logic to add into animal myPet
-        List<Color> petColors = new ArrayList<>();
-        String[] theColor = f.split("\\|");
-
-        // go through loop once checking individual values in array for color enum
-        for(int z = 0; z < theColor.length; z++){
-          if(theColor[z].equals("Red")){
-            petColors.add(z, Red);
-          }
-          else if(theColor[z].equals("Orange")){
-            petColors.add(z, Orange);
-          }
-          else if(theColor[z].equals("Yellow")){
-            petColors.add(z, Yellow);
-          }
-          else if(theColor[z].equals("Green")){
-            petColors.add(z, Green);
-          }
-          else if(theColor[z].equals("Blue")){
-            petColors.add(z, Blue);
-          }
-          else if(theColor[z].equals("Brown")){
-            petColors.add(z, Brown);
-          }
-          else if(theColor[z].equals("White")){
-            petColors.add(z, White);
-          }
-          else if(theColor[z].equals("Black")){
-            petColors.add(z, Black);
-          }
-          else if(theColor[z].equals("Gray")){
-            petColors.add(z, Gray);
-          }
-        }
-
-        myPet.setId(a);
-        myPet.setName(b);
-        myPet.setSpecies(c);
-        myPet.setDescription(d);
-        myPet.setGender(e);
-        myPet.setColors(petColors);
-        myPet.setAdopted(g);
-        myPet.setDateArrived(h);
-        myPet.setDateAdopted(i);
-        myPet.setDateOfBirth(j);
-        myPet.setServiceTrained(k);
-        myPet.setWeight(l);
-        myPet.setHeight(m);
-        myPet.setBreeds(forBreeds);
-        myPet.setBathroomTraining(aniProf);
-        myPet.setAggression(petAnger);
-
-        animals.add(myPet);
+        Animal thisAnimal = parseAnimalInResultSetRow(rs);
+        animals.add(thisAnimal);
       }
 
 
@@ -569,33 +399,121 @@ public class Database {
     return animals;
   }
 
+  /**
+   * Gets a current user by their id.
+   *
+   * @param userId The id of the user desired
+   * @return The user if the given id corresponds to a user, else null.
+   */
+  public User getUserById(int userId) {
+    String sql = "SELECT * FROM User WHERE id=? LIMIT 1";
+
+    try (PreparedStatement statement = conn.prepareStatement(sql)) {
+      statement.setInt(1, userId);
+      ResultSet set = statement.executeQuery();
+
+      if (set.next()) {
+        return parseUserInRow(set);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
+    return null;
+  }
+
+  /**
+   * Gets a single Animal with the given id.
+   *
+   * @param animalId The id of the animal
+   * @return null if there is no animal with this id, otherwise the animal.
+   */
+  public Animal getAnimal(int animalId) {
+    String query = "SELECT * FROM Animal WHERE id=?";
+
+    try (PreparedStatement statement = conn.prepareStatement(query)) {
+      statement.setInt(1, animalId);
+      ResultSet set = statement.executeQuery();
+
+      // Move to first item.
+      if (set.next()) {
+        return parseAnimalInResultSetRow(set);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
+    return null; // If we reach this point then we know there is no animal.
+  }
+
+  /**
+   * Returns a list of all questions.
+   *
+   * @return A list of questions.
+   */
   public List<Question> getQuestions() {
     String sql = "SELECT * FROM Question";
-    return parseQuestionsFromResultSet(sql);
+    return doQuestionQuery(sql);
   }
 
+  /**
+   * Returns a list of all questions that haven't been answered yet.
+   * @return A list of unanswered questions.
+   */
   public List<Question> getUnansweredQuestions() {
     String sql = "SELECT * FROM Question WHERE answered = 0";
-    return parseQuestionsFromResultSet(sql);
+    return doQuestionQuery(sql);
   }
 
+  /**
+   * Returns a list of questiosn that have been answered already.
+   * @return A list of answered questions.
+   */
   public List<Question> getAnsweredQuestions() {
-    return parseQuestionsFromResultSet("SELECT * FROM Question WHERE answered = 1");
+    return doQuestionQuery("SELECT * FROM Question WHERE answered = 1");
   }
 
-  private List<Question> parseQuestionsFromResultSet(String sql) {
+  /**
+   * Returns a list of all AdoptionRequests
+   *
+   * @return A list of all adoption requests
+   */
+  public List<AdoptionWithAnimal> getAdoptionRequests() {
+    return doAdoptionQuery("SELECT * FROM AdoptionRequest");
+  }
+
+  /**
+   * Returns a list of AdoptionRequests that haven't been processed by an employee yet.
+   *
+   * @return A list of all unprocessed adoption requests.
+   */
+  public List<AdoptionWithAnimal> getUnprocessedAdoptionRequests() {
+    return doAdoptionQuery("SELECT * FROM AdoptionRequest WHERE dateApproved IS NULL");
+  }
+
+  /**
+   * Returns a list of AdoptionRequests that have been processed by an employee.
+   *
+   * @return A list of processed AdoptionRequests
+   */
+  public List<AdoptionWithAnimal> getProcessedAdoptionRequests() {
+    return doAdoptionQuery("SELECT * FROM AdoptionRequest WHERE dateApproved IS NOT NULL");
+  }
+
+  /**
+   * Executes a query for Questions to the database and returns the response. Queries should use the
+   * `*` in order to get all columns of the Question table
+   *
+   * @param sql The query to be executed.
+   * @return A list of Questions and the result of the given SQL qurey
+   */
+  private List<Question> doQuestionQuery(String sql) {
     List<Question> questions = new ArrayList<>();
 
     try (ResultSet results = conn.createStatement().executeQuery(sql)) {
       while (results.next()) {
-        int questionId = results.getInt(1);
-        int userId = results.getInt(2);
-        boolean isAnswered = results.getBoolean(3);
-        int employeeId = results.getInt(4);
-        String question = results.getString(5);
-        String answer = results.getString(6);
-
-        questions.add(new Question(questionId, userId, isAnswered, employeeId, question, answer));
+        Question question = parseQuestionFromResultSetRow(results);
+        questions.add(question);
       }
     } catch (SQLException e) {
       e.printStackTrace();
@@ -603,5 +521,232 @@ public class Database {
 
     return questions;
   }
+
+  /**
+   * Executes a query for Adoptions to the database and returns the response. Queries should use the
+   * `*` in order to get all columns of the AdoptionRequest table
+   *
+   * @param sql The query to be executed.
+   * @return A list of AdoptionRequests and the animal the request is for.
+   */
+  private List<AdoptionWithAnimal> doAdoptionQuery(String sql) {
+    List<AdoptionWithAnimal> requests = new ArrayList<>();
+
+    try (ResultSet results = conn.createStatement().executeQuery(sql)) {
+      while (results.next()) {
+        int id = results.getInt(1);
+        int customerId = results.getInt(2);
+        int animalId = results.getInt(3);
+        boolean adoptionApproved = results.getBoolean(4);
+        Instant dateRequested = results.getTimestamp(5).toInstant();
+        Instant dateApproved = results.getTimestamp(6).toInstant();
+
+        Animal animal = getAnimal(animalId);
+        AdoptionRequest request = new AdoptionRequest(id, customerId, animalId, adoptionApproved,
+            dateRequested, dateApproved);
+        requests.add(new AdoptionWithAnimal(request, animal));
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
+    return requests;
+  }
+
+
+  /**
+   * Reads all columns of the current row of a result set to create a Question
+   *
+   * @param resultSet The result set that values should be read from
+   * @return The question from the values of the current row of the ResultSet
+   * @throws SQLException if there is an issue reading values from the database
+   */
+  private Question parseQuestionFromResultSetRow(ResultSet resultSet) throws SQLException {
+    int questionId = resultSet.getInt(1);
+    int userId = resultSet.getInt(2);
+    boolean isAnswered = resultSet.getBoolean(3);
+    int employeeId = resultSet.getInt(4);
+    String question = resultSet.getString(5);
+    String answer = resultSet.getString(6);
+
+    return new Question(questionId, userId, isAnswered, employeeId, question, answer);
+  }
+
+  /**
+   * Reads all columns of the current row of a result set to create an Animal
+   *
+   * @param rs The result set that values should be read from
+   * @return The Animal from the values of the current row of the ResultSet
+   * @throws SQLException if there is an issue reading values from the database
+   */
+  private Animal parseAnimalInResultSetRow(ResultSet rs) throws SQLException {
+    Animal myPet = new Animal();
+
+    int a = rs.getInt("id");
+    String b = rs.getString("name");
+    String c = rs.getString("species");
+    String d = rs.getString("description");
+    char e = rs.getString("gender").charAt(0);
+    String f = rs.getString("colors"); // colors is a List of enum color
+    boolean g = rs.getBoolean("adopted");
+    Instant h = rs.getTimestamp("dateArrived").toInstant();
+    Instant i = rs.getTimestamp("dateAdopted").toInstant();
+    Instant j = rs.getTimestamp("dateOfBirth").toInstant();
+    boolean k = rs.getBoolean("serviceTrained");
+    float l = rs.getFloat("weight");
+    float m = rs.getFloat("height");
+    String n = rs.getString("breeds");
+    int o = rs.getInt("bathroomTraining");
+    int p = rs.getInt("aggression");
+
+    // breeds is a list<string> so we must convert from String to list<String>
+    List<String> forBreeds = new ArrayList<>();
+    String[] myBreeds = n.split("\\|");
+    for (int y = 0; y < myBreeds.length; y++) {
+      forBreeds.add(y, myBreeds[y]);
+    }
+
+    //Enum numbers start at 0, so if you use Color.Blue.ordinal() or something like that, you
+    // need to start at 0 to get everything
+    // change int to enum Proficiency for animal object list
+    Proficiency aniProf = null;
+    switch (o) {
+      case 0:
+        aniProf = None;
+        break;
+      case 1:
+        aniProf = Awful;
+        break;
+      case 2:
+        aniProf = Bad;
+        break;
+      case 3:
+        aniProf = Neutral;
+        break;
+      case 4:
+        aniProf = Good;
+        break;
+      case 5:
+        aniProf = Great;
+        break;
+      case 6:
+        aniProf = Excellent;
+        break;
+      default:
+        System.out.println("invalid number inputted! [ 0 - 6 accepted]");
+        break;
+    }
+    // switch case similar to above but for aggression
+    Color petAnger = null;
+    switch (p) {
+      case 0:
+        petAnger = Red;
+        break;
+      case 1:
+        petAnger = Orange;
+        break;
+      case 2:
+        petAnger = Yellow;
+        break;
+      case 3:
+        petAnger = Green;
+        break;
+      case 4:
+        petAnger = Blue;
+        break;
+      case 5:
+        petAnger = Brown;
+        break;
+      case 6:
+        petAnger = White;
+        break;
+      case 7:
+        petAnger = Black;
+        break;
+      case 8:
+        petAnger = Gray;
+        break;
+      default:
+        System.out.println("invalid number inputted. [ 0 - 8 accepted]");
+        break;
+    }
+    // create List<Color> thru logic to add into animal myPet
+    List<Color> petColors = new ArrayList<>();
+    String[] theColor = f.split("\\|");
+
+    // go through loop once checking individual values in array for color enum
+    for (int z = 0; z < theColor.length; z++) {
+      if (theColor[z].equals("Red")) {
+        petColors.add(z, Red);
+      } else if (theColor[z].equals("Orange")) {
+        petColors.add(z, Orange);
+      } else if (theColor[z].equals("Yellow")) {
+        petColors.add(z, Yellow);
+      } else if (theColor[z].equals("Green")) {
+        petColors.add(z, Green);
+      } else if (theColor[z].equals("Blue")) {
+        petColors.add(z, Blue);
+      } else if (theColor[z].equals("Brown")) {
+        petColors.add(z, Brown);
+      } else if (theColor[z].equals("White")) {
+        petColors.add(z, White);
+      } else if (theColor[z].equals("Black")) {
+        petColors.add(z, Black);
+      } else if (theColor[z].equals("Gray")) {
+        petColors.add(z, Gray);
+      }
+    }
+
+    myPet.setId(a);
+    myPet.setName(b);
+    myPet.setSpecies(c);
+    myPet.setDescription(d);
+    myPet.setGender(e);
+    myPet.setColors(petColors);
+    myPet.setAdopted(g);
+    myPet.setDateArrived(h);
+    myPet.setDateAdopted(i);
+    myPet.setDateOfBirth(j);
+    myPet.setServiceTrained(k);
+    myPet.setWeight(l);
+    myPet.setHeight(m);
+    myPet.setBreeds(forBreeds);
+    myPet.setBathroomTraining(aniProf);
+    myPet.setAggression(petAnger);
+
+    return myPet;
+  }
+
+  private User parseUserInRow(ResultSet resultSet) throws SQLException {
+    int userId = resultSet.getInt(1);
+    String thisUserName = resultSet.getString(2);
+    String thisPassword = resultSet.getString(3);
+    String firstName = resultSet.getString(4);
+    String lastName = resultSet.getString(5);
+    Instant dateOfBirth = resultSet.getTimestamp(6).toInstant();
+
+    int authorizationLevelOrdinal = resultSet.getInt(7);
+
+    // Declare our user first so that we can assign it to the right type of user later.
+    User user;
+
+    if (authorizationLevelOrdinal == AuthorizationLevel.ADMINISTRATION.ordinal()) {
+      user = new Employee();
+    } else if (authorizationLevelOrdinal == AuthorizationLevel.VOLUNTEER.ordinal()) {
+      user = new Volunteer();
+    } else {
+      user = new Customer();
+    }
+
+    user.setId(userId);
+    user.setUsername(thisUserName);
+    user.setPassword(thisPassword);
+    user.setFirstName(firstName);
+    user.setLastName(lastName);
+    user.setDateOfBirth(dateOfBirth);
+
+    return user;
+  }
+
 }
 
