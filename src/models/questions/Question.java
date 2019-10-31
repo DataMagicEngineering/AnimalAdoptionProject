@@ -131,4 +131,13 @@ public class Question {
   public void setAnswer(String answer) {
     this.answer = answer;
   }
+
+  /**
+   * toString override for Question
+   * @return question, the string varaible in the questions class.
+   */
+  @Override
+  public String toString() {
+    return getQuestion();
+  }
 }
