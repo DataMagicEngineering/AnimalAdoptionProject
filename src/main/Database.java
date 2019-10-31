@@ -406,7 +406,7 @@ public class Database {
    */
   public List<Animal> getAnimalList() {
 
-    List<Animal> animals = null;
+    List<Animal> animals = new ArrayList<>();
 
     String animalList = "SELECT * FROM Animal";
 
@@ -568,4 +568,40 @@ public class Database {
 
     return animals;
   }
+
+  public List<Question> getQuestions() {
+    String sql = "SELECT * FROM Question";
+    return parseQuestionsFromResultSet(sql);
+  }
+
+  public List<Question> getUnansweredQuestions() {
+    String sql = "SELECT * FROM Question WHERE answered = 0";
+    return parseQuestionsFromResultSet(sql);
+  }
+
+  public List<Question> getAnsweredQuestions() {
+    return parseQuestionsFromResultSet("SELECT * FROM Question WHERE answered = 1");
+  }
+
+  private List<Question> parseQuestionsFromResultSet(String sql) {
+    List<Question> questions = new ArrayList<>();
+
+    try (ResultSet results = conn.createStatement().executeQuery(sql)) {
+      while (results.next()) {
+        int questionId = results.getInt(1);
+        int userId = results.getInt(2);
+        boolean isAnswered = results.getBoolean(3);
+        int employeeId = results.getInt(4);
+        String question = results.getString(5);
+        String answer = results.getString(6);
+
+        questions.add(new Question(questionId, userId, isAnswered, employeeId, question, answer));
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
+    return questions;
+  }
 }
+
