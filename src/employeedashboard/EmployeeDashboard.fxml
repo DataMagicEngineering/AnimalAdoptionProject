@@ -61,9 +61,9 @@
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
                                     <ListView fx:id="unanwQuestionList" layoutX="16.0" layoutY="37.0" prefHeight="274.0" prefWidth="569.0" />
-                                    <TextField fx:id="answerQuestionTxtBtn" alignment="TOP_LEFT" layoutX="16.0" layoutY="323.0" prefHeight="58.0" prefWidth="408.0" promptText="Answer questions here" />
+                                    <TextField fx:id="answerQuestionTxtBox" alignment="TOP_LEFT" layoutX="16.0" layoutY="323.0" prefHeight="58.0" prefWidth="408.0" promptText="Answer questions here" />
                                     <Button fx:id="answerBtn" layoutX="469.0" layoutY="334.0" mnemonicParsing="false" onAction="#answerQuestion" prefHeight="37.0" prefWidth="61.0" text="Answer" />
-                                    <Label layoutX="197.0" layoutY="5.0" text="Unasnwered Questions">
+                                    <Label layoutX="197.0" layoutY="5.0" text="Unanswered Questions">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -77,8 +77,8 @@
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
                                     <ListView fx:id="ans" layoutX="12.0" layoutY="14.0" prefHeight="284.0" prefWidth="576.0" />
-                                    <Text fx:id="answereTxt" layoutX="13.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Answer" visible="false" wrappingWidth="574.13671875" />
-                                    <Text fx:id="answerAuthorTxt" layoutX="14.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Author" visible="false" wrappingWidth="571.13671875" />
+                                    <Text fx:id="answerTxt" layoutX="65.0" layoutY="347.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Answer here." wrappingWidth="470.0" />
+                                    <Text fx:id="answerAuthorTxt" layoutX="65.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Author here." wrappingWidth="470.0" />
                                  </children>
                               </AnchorPane>
                         </content>
