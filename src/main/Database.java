@@ -467,7 +467,7 @@ public class Database {
   }
 
   /**
-   * Returns a list of questiosn that have been answered already.
+   * Returns a list of questions that have been answered already.
    * @return A list of answered questions.
    */
   public List<Question> getAnsweredQuestions() {
@@ -501,6 +501,12 @@ public class Database {
     return doAdoptionQuery("SELECT * FROM AdoptionRequest WHERE dateApproved IS NOT NULL");
   }
 
+  /**
+   * Inserts an event into the database.
+   *
+   * @param event The event that should be added.
+   * @return true if the operation was successful, otherwise false.
+   */
   public boolean addEvent(Event event) {
     // Only Volunteers and Employees can create events.
     if (currentUser.getPrivileges().ordinal() < AuthorizationLevel.VOLUNTEER.ordinal()) {
@@ -527,6 +533,11 @@ public class Database {
     }
   }
 
+  /**
+   * Updates a preexisting event.
+   * @param event The event that should be updated
+   * @return True if the update was successful.
+   */
   public boolean updateEvent(Event event) {
     // Only Volunteers and Employees can create events.
     if (currentUser.getPrivileges().ordinal() < AuthorizationLevel.VOLUNTEER.ordinal()) {
@@ -553,6 +564,10 @@ public class Database {
     }
   }
 
+  /**
+   * Returns a list of all events for all audiences.
+   * @return A list with all saved events.
+   */
   public List<Event> getEvents() {
     String query = "SELECT * FROM Event";
     List<Event> events = new ArrayList<>();
