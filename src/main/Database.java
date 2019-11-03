@@ -32,6 +32,7 @@ import models.adoption.AdoptionWithAnimal;
 import models.animal.Animal;
 import models.animal.Color;
 import models.animal.Proficiency;
+import models.event.Event;
 import models.questions.Question;
 import models.user.AuthorizationLevel;
 import models.user.Customer;
@@ -498,6 +499,81 @@ public class Database {
    */
   public List<AdoptionWithAnimal> getProcessedAdoptionRequests() {
     return doAdoptionQuery("SELECT * FROM AdoptionRequest WHERE dateApproved IS NOT NULL");
+  }
+
+  public boolean addEvent(Event event) {
+    // Only Volunteers and Employees can create events.
+    if (currentUser.getPrivileges().ordinal() < AuthorizationLevel.VOLUNTEER.ordinal()) {
+      return false;
+    }
+
+    String query = "INSERT INTO Event "
+        + "(creatorId, name, date, published, targetAudience, description) "
+        + "VALUES (?, ?, ?, ?, ?, ?)";
+
+    try (PreparedStatement statement = conn.prepareStatement(query)) {
+      statement.setInt(1, event.getEventCreatorId());
+      statement.setString(2, event.getName());
+      statement.setTimestamp(3, Timestamp.from(event.getDate()));
+      statement.setBoolean(4, event.isPublished());
+      statement.setInt(5, event.getTargetAudience().ordinal());
+      statement.setString(6, event.getDescription());
+
+      statement.executeUpdate();
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
+    }
+  }
+
+  public boolean updateEvent(Event event) {
+    // Only Volunteers and Employees can create events.
+    if (currentUser.getPrivileges().ordinal() < AuthorizationLevel.VOLUNTEER.ordinal()) {
+      return false;
+    }
+
+    String query = "UPDATE Event "
+        + "SET (name, date, published, targetAudience, description)=(?, ?, ?, ?, ?, ?) "
+        + "WHERE id=?";
+
+    try (PreparedStatement statement = conn.prepareStatement(query)) {
+      statement.setString(2, event.getName());
+      statement.setTimestamp(3, Timestamp.from(event.getDate()));
+      statement.setBoolean(4, event.isPublished());
+      statement.setInt(5, event.getTargetAudience().ordinal());
+      statement.setString(6, event.getDescription());
+      statement.setInt(7, event.getId());
+
+      statement.executeUpdate();
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
+    }
+  }
+
+  public List<Event> getEvents() {
+    String query = "SELECT * FROM Event";
+    List<Event> events = new ArrayList<>();
+    try (ResultSet results = conn.createStatement().executeQuery(query)) {
+      while (results.next()) {
+        Event thisEvent = new Event();
+        thisEvent.setId(results.getInt(1));
+        thisEvent.setEventCreatorId(results.getInt(2));
+        thisEvent.setName(results.getString(3));
+        thisEvent.setDate(results.getTimestamp(4).toInstant());
+        thisEvent.setPublished(results.getBoolean(5));
+        thisEvent.setTargetAudience(AuthorizationLevel.values()[results.getInt(6)]);
+        thisEvent.setDescription(results.getString(7));
+
+        events.add(thisEvent);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
+    return events;
   }
 
   /**

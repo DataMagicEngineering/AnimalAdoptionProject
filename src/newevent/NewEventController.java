@@ -4,8 +4,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -124,9 +122,11 @@ public class NewEventController {
     newEvent.setDescription(eventDescriptionInput.getText());
     newEvent.setPublished(publishEventToggle.isSelected());
 
-    System.out.println(
-        DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).format(newEvent.getDateTime()));
-    // TODO: Save to database.
+    if (database.addEvent(newEvent)) {
+      System.out.println("Event successfully saved!");
+    } else {
+      System.out.println("Error saving event.");
+    }
   }
 
   private void showError(String message) {
