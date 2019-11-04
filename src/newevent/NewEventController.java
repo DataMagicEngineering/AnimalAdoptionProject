@@ -1,10 +1,16 @@
 package newevent;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
@@ -13,6 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import main.Database;
 import models.event.Event;
 import models.user.AuthorizationLevel;
@@ -178,4 +185,12 @@ public class NewEventController {
 
   }
 
+  public void goBackToScreen(ActionEvent actionEvent) throws IOException {
+    Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+    Parent root = FXMLLoader
+        .load(getClass().getResource("../employeedashboard/EmployeeDashboard.fxml"));
+    primaryStage.setTitle("Dashboard");
+    primaryStage.setScene(new Scene(root));
+    primaryStage.show();
+  }
 }

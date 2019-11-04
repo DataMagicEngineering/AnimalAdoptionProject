@@ -116,7 +116,8 @@
             </Text>
           </children>
         </HBox>
-        <Button id="backBtn" fx:id="backBtn" mnemonicParsing="false" text="Back">
+        <Button id="backBtn" fx:id="backBtn" mnemonicParsing="false" onAction="#goBackToScreen"
+          text="Back">
           <HBox.margin>
             <Insets right="4.0"/>
           </HBox.margin>

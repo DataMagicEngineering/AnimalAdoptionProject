@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+  prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171"
+  xmlns:fx="http://javafx.com/fxml/1"
+  fx:controller="volunteerApplicationPage.volunteerAppController">
+  <children>
+    <TextArea fx:id="txtFappSuccess" layoutX="131.0" layoutY="129.0" prefHeight="143.0"
+      prefWidth="338.0"
+      text="Thank you for submitting an application to volunteer at this Adoption Center.
+      We appreciate your desire to help all the animals at our center! We will respond to your
+       application soon and reach out to you as soon as we can. Thank you!"
+      wrapText="true"/>
+    <Button fx:id="btnReturnFromVolApp" layoutX="219.0" layoutY="318.0" mnemonicParsing="false"
+      onAction="#goBackToCustomerScreen"
+      text="Return to Main Menu"/>
+  </children>
+</AnchorPane>

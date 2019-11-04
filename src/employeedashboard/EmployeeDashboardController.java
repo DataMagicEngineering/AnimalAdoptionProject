@@ -1,10 +1,15 @@
 package employeedashboard;
 
+import java.io.IOException;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -12,6 +17,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import main.Database;
 import models.application.VolunteerApplicationWithUser;
 import models.questions.Question;
@@ -20,7 +26,7 @@ import models.user.User;
 
 public class EmployeeDashboardController {
 
-  private Database database = Database.get();
+  Database database = Database.get();
 
   @FXML
   private Button viewEventsBtn;
@@ -68,6 +74,7 @@ public class EmployeeDashboardController {
 
   @FXML
   private void answerQuestion(ActionEvent event) {
+
     // sets the answer to the Question
     unanwQuestionList.getSelectionModel().getSelectedItem()
         .setAnswer(answerQuestionTxtBox.getText());
@@ -91,6 +98,9 @@ public class EmployeeDashboardController {
   }
 
   private void setUpUnansweredList() {
+
+    Database database = Database.get();
+
     ObservableList<Question> unansweredQuestions = FXCollections
         .observableArrayList(database.getUnansweredQuestions());
 
@@ -132,5 +142,28 @@ public class EmployeeDashboardController {
         .setItems(FXCollections.observableArrayList(unprocessedApplications));
     processedVolunteerApplicationsList
         .setItems(FXCollections.observableArrayList(processedApplications));
+  }
+
+  /**
+   * @param actionEvent
+   * @throws IOException
+   * @author Luis Hernandez
+   */
+  public void goToRecordLog(ActionEvent actionEvent) throws IOException {
+    Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+    Parent root = FXMLLoader
+        .load(getClass().getResource("../recordLog/recordLogPage.fxml"));
+    primaryStage.setTitle("Record Logs");
+    primaryStage.setScene(new Scene(root));
+    primaryStage.show();
+  }
+
+  public void goToEventScreen(ActionEvent actionEvent) throws IOException {
+    Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+    Parent root = FXMLLoader
+        .load(getClass().getResource("../newevent/NewEvent.fxml"));
+    primaryStage.setTitle("Events");
+    primaryStage.setScene(new Scene(root));
+    primaryStage.show();
   }
 }
