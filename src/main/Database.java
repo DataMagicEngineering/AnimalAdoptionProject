@@ -32,6 +32,8 @@ import models.adoption.AdoptionWithAnimal;
 import models.animal.Animal;
 import models.animal.Color;
 import models.animal.Proficiency;
+import models.application.VolunteerApplication;
+import models.application.VolunteerApplicationWithUser;
 import models.event.Event;
 import models.questions.Question;
 import models.user.AuthorizationLevel;
@@ -592,11 +594,71 @@ public class Database {
   }
 
   /**
+   * Returns a list of all volunteer applications.
+   * @return A list with all submitted volunteer applications.
+   */
+  public List<VolunteerApplicationWithUser> getVolunteerApplications() {
+    return doVolunteerApplicationQuery("SELECT * FROM VolunteerApplication");
+  }
+
+  /**
+   * Returns a list of all volunteer applications that haven't been processed by an employee
+   * @return A list with all unprocessed volunteer applications.
+   */
+  public List<VolunteerApplicationWithUser> getUnprocessedVolunteerApplications() {
+    return doVolunteerApplicationQuery("SELECT * FROM VolunteerApplication WHERE dateApproved IS NULL");
+  }
+
+  /**
+   * Returns a list of all volunteer applications that have been processed by an employee
+   * @return A list with all processed volunteer applications.
+   */
+  public List<VolunteerApplicationWithUser> getProcessedVolunteerApplications() {
+    return doVolunteerApplicationQuery("SELECT * FROM VolunteerApplication WHERE dateApproved IS NOT NULL");
+  }
+
+  /**
+   * Executes a query for VolunteerApplications to the database and returns the response. Queries should use the
+   * `*` in order to get all columns of the VolunteerApplication table
+   *
+   * @param sql The query to be executed.
+   * @return A list of VolunterApplications and the result of the given SQL query
+   */
+  private List<VolunteerApplicationWithUser> doVolunteerApplicationQuery(String sql) {
+    List<VolunteerApplicationWithUser> applications = new ArrayList<>();
+    try (ResultSet results = conn.createStatement().executeQuery(sql)) {
+      while (results.next()) {
+        VolunteerApplication thisApplication = new VolunteerApplication();
+        thisApplication.setId(results.getInt(1));
+        thisApplication.setApplicantId(results.getInt(2));
+        thisApplication.setApproved(results.getBoolean(3));
+
+        Timestamp dateRequested = results.getTimestamp(4);
+        Timestamp dateApproved = results.getTimestamp(5);
+
+        if (dateRequested != null) {
+          thisApplication.setDateRequested(dateRequested.toInstant());
+        }
+
+        if (dateApproved != null) {
+          thisApplication.setDateApproved(dateApproved.toInstant());
+        }
+
+        User requestingUser = getUserById(thisApplication.getApplicantId());
+        applications.add(new VolunteerApplicationWithUser(requestingUser,thisApplication));
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return applications;
+  }
+
+  /**
    * Executes a query for Questions to the database and returns the response. Queries should use the
    * `*` in order to get all columns of the Question table
    *
    * @param sql The query to be executed.
-   * @return A list of Questions and the result of the given SQL qurey
+   * @return A list of Questions and the result of the given SQL query
    */
   private List<Question> doQuestionQuery(String sql) {
     List<Question> questions = new ArrayList<>();

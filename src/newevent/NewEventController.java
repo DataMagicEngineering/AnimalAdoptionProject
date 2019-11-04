@@ -105,7 +105,6 @@ public class NewEventController {
 
     // If the user wants the event to be in the afternoon, add 12 hours to the given time.
     if (hour == 12 && !inAfternoon) {
-      System.out.println("added");
       hour = 0;
     } else if (hour < 12 && inAfternoon) {
       hour += 12;

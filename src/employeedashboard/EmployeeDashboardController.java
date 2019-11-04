@@ -1,5 +1,6 @@
 package employeedashboard;
 
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,13 +12,15 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import javax.xml.crypto.Data;
 import main.Database;
+import models.application.VolunteerApplicationWithUser;
 import models.questions.Question;
 import models.user.AuthorizationLevel;
+import models.user.User;
 
 public class EmployeeDashboardController {
 
+  private Database database = Database.get();
 
   @FXML
   private Button viewEventsBtn;
@@ -59,9 +62,12 @@ public class EmployeeDashboardController {
   private Text answerTxt;
 
   @FXML
-  private void answerQuestion(ActionEvent event) {
-    Database database = Database.get();
+  private ListView<VolunteerApplicationWithUser> unprocessedVolunteerApplicationsList;
+  @FXML
+  private ListView<VolunteerApplicationWithUser> processedVolunteerApplicationsList;
 
+  @FXML
+  private void answerQuestion(ActionEvent event) {
     // sets the answer to the Question
     unanwQuestionList.getSelectionModel().getSelectedItem()
         .setAnswer(answerQuestionTxtBox.getText());
@@ -85,9 +91,6 @@ public class EmployeeDashboardController {
   }
 
   private void setUpUnansweredList() {
-
-    Database database = Database.get();
-
     ObservableList<Question> unansweredQuestions = FXCollections
         .observableArrayList(database.getUnansweredQuestions());
 
@@ -106,8 +109,28 @@ public class EmployeeDashboardController {
     }
     setUpUnansweredList();
     setUpAnsweredList();
-    answerAuthorTxt
-        .setText(String.valueOf(ans.getSelectionModel().getSelectedItem().getEmployeeId()));
-    answerTxt.setText(ans.getSelectionModel().getSelectedItem().getAnswer());
+
+    ans.getSelectionModel()
+        .selectedItemProperty().addListener((observable, oldQuestion, newQuestion) -> {
+          if (newQuestion != null) {
+            User answerer = database.getUserById(newQuestion.getEmployeeId());
+            answerAuthorTxt.setText("Answered by " + answerer.getFirstName() + " " + answerer.getLastName());
+            answerTxt.setText(newQuestion.getAnswer());
+          }
+        }
+    );
+
+    setupVolunteerApplicationsPage();
+  }
+
+  private void setupVolunteerApplicationsPage() {
+    List<VolunteerApplicationWithUser> processedApplications = database
+        .getProcessedVolunteerApplications();
+    List<VolunteerApplicationWithUser> unprocessedApplications = database
+        .getUnprocessedVolunteerApplications();
+    unprocessedVolunteerApplicationsList
+        .setItems(FXCollections.observableArrayList(unprocessedApplications));
+    processedVolunteerApplicationsList
+        .setItems(FXCollections.observableArrayList(processedApplications));
   }
 }

@@ -77,22 +77,22 @@ CREATE TABLE IF NOT EXISTS `VolunteerHour`(
 );
 
 CREATE TABLE IF NOT EXISTS `Event`(
-                                      id             INTEGER PRIMARY KEY AUTOINCREMENT,
-                                      creatorId      INTEGER,
-                                      name           TEXT,
+    id             INTEGER PRIMARY KEY AUTOINCREMENT,
+    creatorId      INTEGER,
+    name           TEXT,
 
     -- The scheduled date for the event.
-                                      date           TIMESTAMP,
+    date           TIMESTAMP,
 
     -- If the event is published and visible yet.
-                                      published      INTEGER,
+    published      INTEGER,
 
     -- Target audience is the level of authorization required for people to view this event.
     -- For instance, an event might only be available for employees to see, but an event for normal
     -- users is visible by everyone.
-                                      targetAudience INTEGER,
-                                      description    TEXT,
-                                      FOREIGN KEY (creatorId) REFERENCES User (id)
+    targetAudience INTEGER,
+    description    TEXT,
+    FOREIGN KEY (creatorId) REFERENCES User (id)
 );
 
 CREATE TABLE IF NOT EXISTS `Question`(
@@ -115,4 +115,13 @@ CREATE TABLE IF NOT EXISTS `AdoptionRequest`(
     dateApproved TIMESTAMP,
     FOREIGN KEY (customerId) REFERENCES User(id),
     FOREIGN KEY (animalId) REFERENCES Animal(id)
-)
+);
+
+CREATE TABLE IF NOT EXISTS `VolunteerApplication`(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    applicantId INTEGER,
+    approved INTEGER,
+    dateRequested TIMESTAMP,
+    dateApproved TIMESTAMP,
+    FOREIGN KEY (applicantId) REFERENCES USER(id)
+);
