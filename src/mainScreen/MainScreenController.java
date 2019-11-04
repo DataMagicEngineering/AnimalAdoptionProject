@@ -8,6 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import main.Database;
+import main.Main;
 
 public class MainScreenController {
 
@@ -22,6 +24,16 @@ public class MainScreenController {
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
         .load(getClass().getResource("../animalList/AnimalList.fxml"));
+    primaryStage.setTitle("Search Animals");
+    primaryStage.setScene(new Scene(root));
+    primaryStage.show();
+  }
+  @FXML
+  void goToApplyForVolunteer(ActionEvent event) throws Exception {
+    Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    Parent root = FXMLLoader
+        .load(getClass().getResource("../volunteerApplicationPage/volunteerApplication.fxml")
+        );
     primaryStage.setTitle("Search Animals");
     primaryStage.setScene(new Scene(root));
     primaryStage.show();
