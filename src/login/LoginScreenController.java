@@ -63,7 +63,7 @@ public class LoginScreenController {
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent root = FXMLLoader
             .load(getClass().getResource("../employeedashboard/EmployeeDashboard.fxml"));
-        primaryStage.setTitle("Dashboard");
+        primaryStage.setTitle("Main Screen");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
       }

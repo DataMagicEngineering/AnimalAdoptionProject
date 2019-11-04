@@ -1,32 +1,24 @@
 package employeedashboard;
 
-import java.io.IOException;
-import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
+import javax.xml.crypto.Data;
 import main.Database;
-import models.application.VolunteerApplicationWithUser;
 import models.questions.Question;
 import models.user.AuthorizationLevel;
-import models.user.User;
 
 public class EmployeeDashboardController {
 
-  Database database = Database.get();
 
   @FXML
   private Button viewEventsBtn;
@@ -68,12 +60,8 @@ public class EmployeeDashboardController {
   private Text answerTxt;
 
   @FXML
-  private ListView<VolunteerApplicationWithUser> unprocessedVolunteerApplicationsList;
-  @FXML
-  private ListView<VolunteerApplicationWithUser> processedVolunteerApplicationsList;
-
-  @FXML
   private void answerQuestion(ActionEvent event) {
+    Database database = Database.get();
 
     // sets the answer to the Question
     unanwQuestionList.getSelectionModel().getSelectedItem()
@@ -108,6 +96,16 @@ public class EmployeeDashboardController {
   }
 
 
+  @FXML
+  void requestAnswer(MouseEvent event) {
+
+    answerAuthorTxt
+        .setText(String.valueOf(ans.getSelectionModel().getSelectedItem().getEmployeeId()));
+
+    answerTxt.setText(ans.getSelectionModel().getSelectedItem().getAnswer());
+  }
+
+
   public void initialize() {
     dashLoginLbl.setText(
         "Welcome " + Database.getCurrentUser().getLastName() + ", " + Database.getCurrentUser()
@@ -119,51 +117,5 @@ public class EmployeeDashboardController {
     }
     setUpUnansweredList();
     setUpAnsweredList();
-
-    ans.getSelectionModel()
-        .selectedItemProperty().addListener((observable, oldQuestion, newQuestion) -> {
-          if (newQuestion != null) {
-            User answerer = database.getUserById(newQuestion.getEmployeeId());
-            answerAuthorTxt.setText("Answered by " + answerer.getFirstName() + " " + answerer.getLastName());
-            answerTxt.setText(newQuestion.getAnswer());
-          }
-        }
-    );
-
-    setupVolunteerApplicationsPage();
-  }
-
-  private void setupVolunteerApplicationsPage() {
-    List<VolunteerApplicationWithUser> processedApplications = database
-        .getProcessedVolunteerApplications();
-    List<VolunteerApplicationWithUser> unprocessedApplications = database
-        .getUnprocessedVolunteerApplications();
-    unprocessedVolunteerApplicationsList
-        .setItems(FXCollections.observableArrayList(unprocessedApplications));
-    processedVolunteerApplicationsList
-        .setItems(FXCollections.observableArrayList(processedApplications));
-  }
-
-  /**
-   * @param actionEvent
-   * @throws IOException
-   * @author Luis Hernandez
-   */
-  public void goToRecordLog(ActionEvent actionEvent) throws IOException {
-    Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-    Parent root = FXMLLoader
-        .load(getClass().getResource("../recordLog/recordLogPage.fxml"));
-    primaryStage.setTitle("Record Logs");
-    primaryStage.setScene(new Scene(root));
-    primaryStage.show();
-  }
-
-  public void goToEventScreen(ActionEvent actionEvent) throws IOException {
-    Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-    Parent root = FXMLLoader
-        .load(getClass().getResource("../newevent/NewEvent.fxml"));
-    primaryStage.setTitle("Events");
-    primaryStage.setScene(new Scene(root));
-    primaryStage.show();
   }
 }
