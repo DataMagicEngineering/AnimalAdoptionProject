@@ -70,7 +70,7 @@ public class LoginScreenController {
       else {
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent root = FXMLLoader
-            .load(getClass().getResource("../mainScreen/AnimalAdoptMainScreen.fxml"));
+            .load(getClass().getResource("../customerdashboard/CustomerDashBoard.fxml"));
         primaryStage.setTitle("Main Screen");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

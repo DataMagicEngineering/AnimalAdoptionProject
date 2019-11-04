@@ -1,9 +1,14 @@
 package employeedashboard;
 
+import java.io.IOException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -12,6 +17,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javax.xml.crypto.Data;
 import main.Database;
 import models.questions.Question;
@@ -117,5 +123,23 @@ public class EmployeeDashboardController {
     }
     setUpUnansweredList();
     setUpAnsweredList();
+  }
+
+  public void goToEventsPage(ActionEvent actionEvent) throws IOException {
+    Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+    Parent root = FXMLLoader
+        .load(getClass().getResource("../newevent/NewEvent.fxml"));
+    primaryStage.setTitle("Events");
+    primaryStage.setScene(new Scene(root));
+    primaryStage.show();
+  }
+
+  public void goToRecordLog(ActionEvent actionEvent) throws IOException {
+    Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+    Parent root = FXMLLoader
+        .load(getClass().getResource("../recordLog/recordLogPage.fxml"));
+    primaryStage.setTitle("Record Log");
+    primaryStage.setScene(new Scene(root));
+    primaryStage.show();
   }
 }

@@ -181,10 +181,6 @@ public class NewEventController {
     return true;
   }
 
-  public void goBack() {
-
-  }
-
   public void goBackToScreen(ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     Parent root = FXMLLoader

@@ -14,6 +14,7 @@
       text="Thank you for submitting an application to volunteer at this Adoption Center.
       We appreciate your desire to help all the animals at our center! We will respond to your
        application soon and reach out to you as soon as we can. Thank you!"
+      editable="false"
       wrapText="true"/>
     <Button fx:id="btnReturnFromVolApp" layoutX="219.0" layoutY="318.0" mnemonicParsing="false"
       onAction="#goBackToCustomerScreen"
