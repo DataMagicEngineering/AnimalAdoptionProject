@@ -1,6 +1,7 @@
 package employeedashboard;
 
 import java.io.IOException;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,13 +19,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javax.xml.crypto.Data;
 import main.Database;
-import models.questions.Question;
+import models.application.VolunteerApplicationWithUser;
+import models.questions.QuestionWithUser;
 import models.user.AuthorizationLevel;
 
 public class EmployeeDashboardController {
 
+  private static Database database = Database.get();
 
   @FXML
   private Button viewEventsBtn;
@@ -36,7 +38,7 @@ public class EmployeeDashboardController {
   private Tab anwQuestionsList;
 
   @FXML
-  private ListView<Question> ans;
+  private ListView<QuestionWithUser> ans;
 
   @FXML
   private TextField answerQuestionTxtBox;
@@ -54,7 +56,7 @@ public class EmployeeDashboardController {
   private Text answerAuthorTxt;
 
   @FXML
-  private ListView<Question> unanwQuestionList;
+  private ListView<QuestionWithUser> unanwQuestionList;
 
   @FXML
   private TextArea logList;
@@ -66,36 +68,40 @@ public class EmployeeDashboardController {
   private Text answerTxt;
 
   @FXML
-  private void answerQuestion(ActionEvent event) {
-    Database database = Database.get();
+  private ListView<VolunteerApplicationWithUser> unprocessedVolunteerApplicationsList;
 
+  @FXML
+  private ListView<VolunteerApplicationWithUser> processedVolunteerApplicationsList;
+
+  @FXML
+  private Button volunteerUnprocessedRejectBtn;
+
+  @FXML
+  private Button volunteerUnprocessedApproveBtn;
+
+  @FXML
+  private void answerQuestion(ActionEvent event) {
     // sets the answer to the Question
-    unanwQuestionList.getSelectionModel().getSelectedItem()
+    unanwQuestionList.getSelectionModel().getSelectedItem().getQuestion()
         .setAnswer(answerQuestionTxtBox.getText());
 
     // sets the answer boolean to true
-    unanwQuestionList.getSelectionModel().getSelectedItem().setAnswered(true);
+    unanwQuestionList.getSelectionModel().getSelectedItem().getQuestion().setAnswered(true);
 
     // adds the data to the database
     database.answerQuestion(Database.getCurrentUser(),
-        unanwQuestionList.getSelectionModel().getSelectedItem());
+        unanwQuestionList.getSelectionModel().getSelectedItem().getQuestion());
   }
 
   private void setUpAnsweredList() {
-
-    Database database = Database.get();
-
-    ObservableList<Question> answeredQustions = FXCollections
+    ObservableList<QuestionWithUser> answeredQustions = FXCollections
         .observableArrayList(database.getAnsweredQuestions());
 
     ans.setItems(answeredQustions);
   }
 
   private void setUpUnansweredList() {
-
-    Database database = Database.get();
-
-    ObservableList<Question> unansweredQuestions = FXCollections
+    ObservableList<QuestionWithUser> unansweredQuestions = FXCollections
         .observableArrayList(database.getUnansweredQuestions());
 
     unanwQuestionList.setItems(unansweredQuestions);
@@ -104,11 +110,16 @@ public class EmployeeDashboardController {
 
   @FXML
   void requestAnswer(MouseEvent event) {
+    QuestionWithUser selectedQuestion = ans.getSelectionModel().getSelectedItem();
+    if (selectedQuestion != null) {
+      String employeeName =
+          "Answered by " + selectedQuestion.getAnswerer().getFirstName() + " " + selectedQuestion
+              .getAnswerer().getLastName();
 
-    answerAuthorTxt
-        .setText(String.valueOf(ans.getSelectionModel().getSelectedItem().getEmployeeId()));
+      answerAuthorTxt.setText(employeeName);
 
-    answerTxt.setText(ans.getSelectionModel().getSelectedItem().getAnswer());
+      answerTxt.setText(selectedQuestion.getQuestion().getAnswer());
+    }
   }
 
 
@@ -123,6 +134,31 @@ public class EmployeeDashboardController {
     }
     setUpUnansweredList();
     setUpAnsweredList();
+    setupVolunteerApplicationsPage();
+  }
+
+  private void setupVolunteerApplicationsPage() {
+    unprocessedVolunteerApplicationsList.selectionModelProperty().addListener(
+        (observableValue, oldValue, newValue) -> {
+          boolean disabled;
+          disabled = newValue.getSelectedItems().size() <= 0;
+
+          volunteerUnprocessedApproveBtn.setDisable(disabled);
+          volunteerUnprocessedRejectBtn.setDisable(disabled);
+        });
+
+    updateVolunteerApplicationsPage();
+  }
+
+  private void updateVolunteerApplicationsPage() {
+    List<VolunteerApplicationWithUser> processedApplications = database
+        .getProcessedVolunteerApplications();
+    List<VolunteerApplicationWithUser> unprocessedApplications = database
+        .getUnprocessedVolunteerApplications();
+    unprocessedVolunteerApplicationsList
+        .setItems(FXCollections.observableArrayList(unprocessedApplications));
+    processedVolunteerApplicationsList
+        .setItems(FXCollections.observableArrayList(processedApplications));
   }
 
   public void goToEventsPage(ActionEvent actionEvent) throws IOException {
@@ -141,5 +177,23 @@ public class EmployeeDashboardController {
     primaryStage.setTitle("Record Log");
     primaryStage.setScene(new Scene(root));
     primaryStage.show();
+  }
+
+  public void approveVolunteerRequest() {
+    for (VolunteerApplicationWithUser selectedRequests : unprocessedVolunteerApplicationsList
+        .getSelectionModel().getSelectedItems()) {
+      database.processVolunteerApplication(selectedRequests.getApplication(), true);
+    }
+
+    updateVolunteerApplicationsPage();
+  }
+
+  public void rejectVolunteerRequest() {
+    for (VolunteerApplicationWithUser selectedRequests : unprocessedVolunteerApplicationsList
+        .getSelectionModel().getSelectedItems()) {
+      database.processVolunteerApplication(selectedRequests.getApplication(), false);
+    }
+
+    updateVolunteerApplicationsPage();
   }
 }

@@ -36,6 +36,7 @@ import models.application.VolunteerApplication;
 import models.application.VolunteerApplicationWithUser;
 import models.event.Event;
 import models.questions.Question;
+import models.questions.QuestionWithUser;
 import models.user.AuthorizationLevel;
 import models.user.Customer;
 import models.user.Employee;
@@ -454,7 +455,7 @@ public class Database {
    *
    * @return A list of questions.
    */
-  public List<Question> getQuestions() {
+  public List<QuestionWithUser> getQuestions() {
     String sql = "SELECT * FROM Question";
     return doQuestionQuery(sql);
   }
@@ -463,7 +464,7 @@ public class Database {
    * Returns a list of all questions that haven't been answered yet.
    * @return A list of unanswered questions.
    */
-  public List<Question> getUnansweredQuestions() {
+  public List<QuestionWithUser> getUnansweredQuestions() {
     String sql = "SELECT * FROM Question WHERE answered = 0";
     return doQuestionQuery(sql);
   }
@@ -472,7 +473,7 @@ public class Database {
    * Returns a list of questions that have been answered already.
    * @return A list of answered questions.
    */
-  public List<Question> getAnsweredQuestions() {
+  public List<QuestionWithUser> getAnsweredQuestions() {
     return doQuestionQuery("SELECT * FROM Question WHERE answered = 1");
   }
 
@@ -527,6 +528,63 @@ public class Database {
       statement.setInt(5, event.getTargetAudience().ordinal());
       statement.setString(6, event.getDescription());
 
+      statement.executeUpdate();
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
+    }
+  }
+
+  /**
+   * Marks an unprocessed volunteer application as processed, along with denoting if this
+   * application approved or rejected.
+   *
+   * @param application The application that should be processed
+   * @param approved Whether the this application is approved and the user should become a
+   * volunteer.
+   * @return True if this update was successful, else false.
+   */
+  public boolean processVolunteerApplication(VolunteerApplication application, boolean approved) {
+    String query = "UPDATE VolunteerApplication SET (dateApproved, approved) = (?, ?) WHERE id=?";
+
+    try (PreparedStatement statement = conn.prepareStatement(query)) {
+      application.setDateApproved(Instant.now());
+      application.setApproved(approved);
+
+      statement.setTimestamp(1, Timestamp.from(application.getDateApproved()));
+      statement.setBoolean(2, application.isApproved());
+      statement.setInt(3, application.getId());
+      statement.executeUpdate();
+
+      if (approved) {
+        if (makeUserVolunteer(application.getApplicantId())) {
+          return true;
+        } else {
+          System.err.println("There was an issue making the given user a volunteer.");
+          return false;
+        }
+      }
+
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
+    }
+  }
+
+  /**
+   * Gives the user with the given id volunteer privileges.
+   *
+   * @param userId The id of the user to be updated.
+   * @return True if this update was successful, else false.
+   */
+  private boolean makeUserVolunteer(int userId) {
+    String query = "UPDATE User SET (privilege) = (?) WHERE id=?";
+
+    try (PreparedStatement statement = conn.prepareStatement(query)) {
+      statement.setInt(1, AuthorizationLevel.VOLUNTEER.ordinal());
+      statement.setInt(2, userId);
       statement.executeUpdate();
       return true;
     } catch (SQLException e) {
@@ -660,13 +718,15 @@ public class Database {
    * @param sql The query to be executed.
    * @return A list of Questions and the result of the given SQL query
    */
-  private List<Question> doQuestionQuery(String sql) {
-    List<Question> questions = new ArrayList<>();
+  private List<QuestionWithUser> doQuestionQuery(String sql) {
+    List<QuestionWithUser> questions = new ArrayList<>();
 
     try (ResultSet results = conn.createStatement().executeQuery(sql)) {
       while (results.next()) {
         Question question = parseQuestionFromResultSetRow(results);
-        questions.add(question);
+        User asker = getUserById(question.getUserId());
+        User answerer = getUserById(question.getEmployeeId());
+        questions.add(new QuestionWithUser(question, asker, answerer));
       }
     } catch (SQLException e) {
       e.printStackTrace();
