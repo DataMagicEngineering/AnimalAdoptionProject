@@ -12,20 +12,6 @@ import javafx.stage.Stage;
 
 public class CustomerDashboardController {
 
-  @FXML
-  private Button customerViewAnimalsBtn;
-
-  @FXML
-  private Button customerViewEventsBtn;
-
-  @FXML
-  private Button askQuestionBtn;
-
-  @FXML
-  private Button customerLogOutBtn;
-
-  @FXML
-  private Button applyToVolunteerBtn;
 
   public void goToAnimalScreen(ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
