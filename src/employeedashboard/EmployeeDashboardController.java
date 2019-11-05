@@ -35,7 +35,7 @@ public class EmployeeDashboardController {
   private Button viewAnimalBtn;
 
   @FXML
-  private Tab anwQuestionsList;
+  private Tab adoptionApplicationTab;
 
   @FXML
   private ListView<QuestionWithUser> ans;
@@ -54,6 +54,9 @@ public class EmployeeDashboardController {
 
   @FXML
   private Text answerAuthorTxt;
+
+  @FXML
+  private Tab questionsTab;
 
   @FXML
   private ListView<QuestionWithUser> unanwQuestionList;
@@ -77,7 +80,13 @@ public class EmployeeDashboardController {
   private Button volunteerUnprocessedRejectBtn;
 
   @FXML
+  private Tab volunteerApplicationTab;
+
+  @FXML
   private Button volunteerUnprocessedApproveBtn;
+
+  @FXML
+  private Tab unansweredQuestionsTab;
 
   @FXML
   private void answerQuestion(ActionEvent event) {
@@ -135,6 +144,12 @@ public class EmployeeDashboardController {
     setUpUnansweredList();
     setUpAnsweredList();
     setupVolunteerApplicationsPage();
+    if (Database.getCurrentUser().getPrivileges() == AuthorizationLevel.VOLUNTEER) {
+      volunteerApplicationTab.setDisable(true);
+      adoptionApplicationTab.setDisable(true);
+      answerQuestionTxtBox.setDisable(true);
+      answerBtn.setDisable(true);
+    }
   }
 
   private void setupVolunteerApplicationsPage() {

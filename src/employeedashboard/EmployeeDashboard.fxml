@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -14,6 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import javafx.geometry.Insets?>
+
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" stylesheets="@../mainCSS.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="employeedashboard.EmployeeDashboardController">
   <tabs>
     <Tab text="Main">
@@ -39,15 +45,12 @@
                         <Font size="20.0" />
                       </font>
                     </Button>
-                    <Button fx:id="viewEventsBtn" layoutX="187.0" layoutY="158.0"
-                      mnemonicParsing="false" onAction="#goToEventsPage" prefHeight="48.0"
-                      prefWidth="225.0" text="View Events">
+                    <Button fx:id="viewEventsBtn" layoutX="187.0" layoutY="158.0" mnemonicParsing="false" onAction="#goToEventsPage" prefHeight="48.0" prefWidth="225.0" text="View Events">
                       <font>
                         <Font size="20.0" />
                       </font>
                     </Button>
-                    <Button fx:id="recordHoursBtn" layoutX="187.0" layoutY="249.0" mnemonicParsing="false" onAction="#goToRecordLog" prefHeight="48.0"
-                      prefWidth="225.0" text="Record Hours">
+                    <Button fx:id="recordHoursBtn" layoutX="187.0" layoutY="249.0" mnemonicParsing="false" onAction="#goToRecordLog" prefHeight="48.0" prefWidth="225.0" text="Record Hours">
                       <font>
                         <Font size="20.0" />
                       </font>
@@ -66,7 +69,7 @@
           <children>
             <TabPane prefHeight="422.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab text="Unanswered Questions">
+                <Tab fx:id="unansweredQuestionsTab" text="Unanswered Questions">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                       <children>
@@ -82,7 +85,7 @@
                     </AnchorPane>
                   </content>
                 </Tab>
-                <Tab fx:id="anwQuestionsList" text="Answered Questions">
+                <Tab fx:id="answeredQuestionTab" text="Answered Questions">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                       <children>
@@ -99,7 +102,7 @@
         </AnchorPane>
       </content>
     </Tab>
-    <Tab text="Adoption Applications">
+    <Tab fx:id="adoptionApplicationTab" text="Adoption Applications">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
           <children>
@@ -121,7 +124,7 @@
         </AnchorPane>
       </content>
     </Tab>
-    <Tab text="Volunteer Applications">
+    <Tab fx:id="volunteerApplicationTab" text="Volunteer Applications">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
           <children>
@@ -133,29 +136,27 @@
                       <children>
                         <ListView fx:id="unprocessedVolunteerApplicationsList" prefWidth="200.0">
                           <VBox.margin>
-                            <Insets/>
+                            <Insets />
                           </VBox.margin>
                         </ListView>
                         <HBox alignment="CENTER_RIGHT" prefWidth="200.0">
                           <children>
-                            <Button fx:id="volunteerUnprocessedRejectBtn" mnemonicParsing="false"
-                              text="Reject" onAction="#rejectVolunteerRequest">
+                            <Button fx:id="volunteerUnprocessedRejectBtn" mnemonicParsing="false" onAction="#rejectVolunteerRequest" text="Reject">
                               <HBox.margin>
-                                <Insets right="8.0"/>
+                                <Insets right="8.0" />
                               </HBox.margin>
                             </Button>
-                            <Button fx:id="volunteerUnprocessedApproveBtn" mnemonicParsing="false"
-                              text="Approve" onAction="#approveVolunteerRequest">
+                            <Button fx:id="volunteerUnprocessedApproveBtn" mnemonicParsing="false" onAction="#approveVolunteerRequest" text="Approve">
                               <HBox.margin>
-                                <Insets/>
+                                <Insets />
                               </HBox.margin>
                             </Button>
                           </children>
                           <VBox.margin>
-                            <Insets/>
+                            <Insets />
                           </VBox.margin>
                           <padding>
-                            <Insets bottom="16.0" right="8.0" top="8.0"/>
+                            <Insets bottom="16.0" right="8.0" top="8.0" />
                           </padding>
                         </HBox>
                       </children>
@@ -166,7 +167,7 @@
                   <content>
                     <VBox prefHeight="200.0" prefWidth="100.0">
                       <children>
-                        <ListView fx:id="processedVolunteerApplicationsList" prefWidth="200.0"/>
+                        <ListView fx:id="processedVolunteerApplicationsList" prefWidth="200.0" />
                       </children>
                     </VBox>
                   </content>
