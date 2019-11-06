@@ -23,6 +23,7 @@ import javafx.stage.Stage;
 import main.Database;
 import models.event.Event;
 import models.user.AuthorizationLevel;
+import models.user.User;
 
 public class NewEventController {
 
@@ -182,11 +183,12 @@ public class NewEventController {
   }
 
   public void goBackToScreen(ActionEvent actionEvent) throws IOException {
-    Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-    Parent root = FXMLLoader
-        .load(getClass().getResource("../employeedashboard/EmployeeDashboard.fxml"));
-    primaryStage.setTitle("Dashboard");
-    primaryStage.setScene(new Scene(root));
-    primaryStage.show();
+      Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+      Parent root = FXMLLoader
+          .load(getClass().getResource("../employeedashboard/EmployeeDashboard.fxml"));
+      primaryStage.setTitle("Dashboard");
+      primaryStage.setScene(new Scene(root));
+      primaryStage.show();
+
   }
 }

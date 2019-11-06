@@ -45,7 +45,7 @@ public class AnimalListController {
   void goToMainMenu(ActionEvent event) throws Exception {
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../mainScreen/AnimalAdoptMainScreen.fxml"));
+        .load(getClass().getResource("../customerdashboard/CustomerDashboard.fxml"));
     primaryStage.setTitle("Main Screen");
     primaryStage.setScene(new Scene(root));
     primaryStage.show();

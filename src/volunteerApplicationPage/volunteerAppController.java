@@ -31,7 +31,7 @@ public class volunteerAppController {
   public void goBackToCustomerScreen(ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../mainScreen/AnimalAdoptMainScreen.fxml"));
+        .load(getClass().getResource("../customerdashboard/CustomerDashboard.fxml"));
     primaryStage.setTitle("Main Screen");
     primaryStage.setScene(new Scene(root));
     primaryStage.show();
