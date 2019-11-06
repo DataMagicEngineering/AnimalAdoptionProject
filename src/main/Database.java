@@ -51,6 +51,7 @@ public class Database {
 
   private static Database thisDb;
   private static User currentUser;
+  private static Animal currentAnimal;
   private Connection conn;
 
   private Database() {
@@ -574,6 +575,30 @@ public class Database {
   }
 
   /**
+   * Returns whether or not the given username exists within the database.
+   *
+   * @param username The username that should be searched for within the database.
+   * @return True if the username does already exist or if there's an issue retrieving the user,
+   * otherwise false.
+   */
+  public boolean doesUsernameExist(String username) {
+    String query = "SELECT username from User WHERE username=?";
+    try (PreparedStatement statement = conn.prepareStatement(query)) {
+      statement.setString(1, username);
+      ResultSet results = statement.executeQuery();
+
+      // If the user does exist in the database, this function will return true;
+      return results.next();
+    } catch (SQLException e) {
+      e.printStackTrace();
+
+      // Return true if we can't tell if the user exists to prevent accidentally creating 2 users
+      // the same name.
+      return true;
+    }
+  }
+
+  /**
    * Gives the user with the given id volunteer privileges.
    *
    * @param userId The id of the user to be updated.
@@ -591,6 +616,14 @@ public class Database {
       e.printStackTrace();
       return false;
     }
+  }
+
+  public static void setCurrentAnimal(Animal currentAnimal) {
+    Database.currentAnimal = currentAnimal;
+  }
+
+  public static Animal getCurrentAnimal() {
+    return currentAnimal;
   }
 
   /**
