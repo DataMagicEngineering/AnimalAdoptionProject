@@ -43,10 +43,17 @@ public class LoginScreenController {
   private Button loginButton;
 
   @FXML
+  private Button registerHereButton;
+
+  @FXML
   private Label errorLabel;
 
   @FXML
   private Label logginLabel;
+
+  public void initialize() {
+
+  }
 
   /**
    * @param event pressing the login button
@@ -77,7 +84,14 @@ public class LoginScreenController {
       }
     }
   }
-  public void initialize() {
 
+  @FXML
+  void goToRegisterScreen(ActionEvent event) throws Exception{
+    Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    Parent root = FXMLLoader
+        .load(getClass().getResource("../registeruser/RegisterUser.fxml"));
+    primaryStage.setTitle("Registration Page");
+    primaryStage.setScene(new Scene(root));
+    primaryStage.show();
   }
 }
