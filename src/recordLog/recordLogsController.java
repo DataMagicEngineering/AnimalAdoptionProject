@@ -35,6 +35,12 @@ public class recordLogsController {
   @FXML
   private Button btnReturntoEmployeeMenu;
 
+  /**
+   *
+   * @param actionEvent
+   * @throws IOException
+   * @author Luis Hernandez
+   */
   public void goToConfirmHours(ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
@@ -44,6 +50,12 @@ public class recordLogsController {
     primaryStage.show();
   }
 
+  /**
+   *
+   * @param actionEvent
+   * @throws IOException
+   * @author Luis Hernandez
+   */
   public void goBackToDashboard(ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     Parent root = FXMLLoader

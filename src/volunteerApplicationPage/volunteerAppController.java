@@ -19,6 +19,12 @@ public class volunteerAppController {
   @FXML
   private Button btnReturnFromVolApp;
 
+  /**
+   *
+   * @param actionEvent
+   * @throws IOException
+   * @author Emily Schwarz and Luis Hernandez
+   */
   public void submitVolApp(javafx.event.ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
@@ -28,6 +34,12 @@ public class volunteerAppController {
     primaryStage.show();
   }
 
+  /**
+   *
+   * @param actionEvent
+   * @throws IOException
+   * @author Emily Schwarz and Luis Hernandez
+   */
   public void goBackToCustomerScreen(ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     Parent root = FXMLLoader

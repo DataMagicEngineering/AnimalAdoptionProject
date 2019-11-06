@@ -31,6 +31,12 @@ public class CustomerDashboardController {
   @FXML
   private Label lblWelcome;
 
+  /**
+   *
+   * @param actionEvent
+   * @throws IOException
+   * @author Emily Schwarz and Luis Hernandez
+   */
   public void goToAnimalScreen(ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
@@ -40,6 +46,12 @@ public class CustomerDashboardController {
     primaryStage.show();
   }
 
+  /**
+   *
+   * @param actionEvent
+   * @throws IOException
+   * @author Emily Schwarz and Luis Hernandez
+   */
   public void goToEventsScreen(ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
@@ -49,6 +61,12 @@ public class CustomerDashboardController {
     primaryStage.show();
   }
 
+  /**
+   *
+   * @param actionEvent
+   * @throws IOException
+   * @author Emily Schwarz and Luis Hernandez
+   */
   public void goToVolunteerApplication(ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     Parent root = FXMLLoader

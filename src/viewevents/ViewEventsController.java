@@ -28,7 +28,12 @@ public class ViewEventsController {
   @FXML
   private ListView<?> listViewEvents;
 
-
+  /**
+   *
+   * @param actionEvent
+   * @throws IOException
+   * @author Emily Schwarz and Luis Hernandez
+   */
   public void goBack(ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
