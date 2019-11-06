@@ -26,4 +26,6 @@ public class AdoptionWithAnimal {
   public User getAdopter() {
     return adopter;
   }
+
+
 }

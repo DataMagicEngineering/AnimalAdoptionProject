@@ -1,7 +1,5 @@
 package registeruser;
 
-import java.time.Instant;
-import java.time.ZoneId;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +15,6 @@ import main.Database;
 import models.event.Event;
 import models.user.AuthorizationLevel;
 import models.user.Customer;
-import models.user.User;
 
 public class RegisterUserController {
 
