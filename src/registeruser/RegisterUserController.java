@@ -1,11 +1,22 @@
 package registeruser;
 
+import java.time.Instant;
+import java.time.ZoneId;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import main.Database;
+import models.event.Event;
+import models.user.Customer;
+import models.user.User;
 
 public class RegisterUserController {
 
@@ -22,7 +33,7 @@ public class RegisterUserController {
   private TextField newUserPasswordTextFld;
 
   @FXML
-  private TextField newUserUserNameTextFld;
+  private TextField newUserUsernameTextFld;
 
   @FXML
   private Button newUserCancelButton;
@@ -38,12 +49,26 @@ public class RegisterUserController {
 
   @FXML
   void registerUser(ActionEvent event) {
-
+    if (newUserPasswordTextFld.getText().equals(newUserRePasswordTextFld.getText())) {
+      Database database = Database.get();
+      Customer user = new Customer();
+      user.setFirstName(newUserFirstNameTextFld.getText());
+      user.setLastName(newUserLastNameTextFld.getText());
+      user.setPassword(newUserPasswordTextFld.getText());
+      user.setUsername(newUserUsernameTextFld.getText());
+      user.setDateOfBirth(newUserDOBTextFld.getValue().atStartOfDay(Event.EST).toInstant());
+      database.signUpUser(user);
+    }
   }
 
   @FXML
-  void returnToLoginScreen(ActionEvent event) {
-
+  void returnToLoginScreen(ActionEvent event) throws Exception {
+    Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    Parent root = FXMLLoader
+        .load(getClass().getResource("../login/LoginScreen.fxml"));
+    primaryStage.setTitle("Adoption Application");
+    primaryStage.setScene(new Scene(root));
+    primaryStage.show();
   }
 
 }
