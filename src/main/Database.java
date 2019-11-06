@@ -755,9 +755,10 @@ public class Database {
         Instant dateApproved = results.getTimestamp(6).toInstant();
 
         Animal animal = getAnimal(animalId);
+        User customer = getUserById(customerId);
         AdoptionRequest request = new AdoptionRequest(id, customerId, animalId, adoptionApproved,
             dateRequested, dateApproved);
-        requests.add(new AdoptionWithAnimal(request, animal));
+        requests.add(new AdoptionWithAnimal(request, animal, customer));
       }
     } catch (SQLException e) {
       e.printStackTrace();
