@@ -132,7 +132,7 @@ public class AnimalProfileController {
     animBathroomText.setText(animal.getBathroomTraining().toString());
     animBioText.setText(animal.getDescription());
     animBirthdayText
-        .setText(DateTimeFormatter.ofPattern("yyyy-mm-dd").format(animal.getDateOfBirth()));
+        .setText(animal.getDateOfBirth().toString());
     animBreedText.setText(animal.getBreedString());
     animColorText.setText((animal.getColorString()));
     animDateAdoptedText.setText(animal.getDateAdopted().toString());
