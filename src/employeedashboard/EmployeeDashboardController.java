@@ -20,6 +20,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.Database;
+import models.adoption.AdoptionWithAnimal;
 import models.application.VolunteerApplicationWithUser;
 import models.questions.QuestionWithUser;
 import models.user.AuthorizationLevel;
@@ -88,6 +89,12 @@ public class EmployeeDashboardController {
   @FXML
   private Tab unansweredQuestionsTab;
 
+  @FXML
+  private ListView<AdoptionWithAnimal> unprocessedAdoptionsList;
+
+  @FXML
+  private ListView<AdoptionWithAnimal> processedAdoptionsList;
+
 
   public void initialize() {
     dashLoginLbl.setText(
@@ -97,16 +104,16 @@ public class EmployeeDashboardController {
       userStatusLbl.setText("Employee");
     } else {
       userStatusLbl.setText("Volunteer");
-    }
-    setUpUnansweredList();
-    setUpAnsweredList();
-    setupVolunteerApplicationsPage();
-    if (Database.getCurrentUser().getPrivileges() == AuthorizationLevel.VOLUNTEER) {
       volunteerApplicationTab.setDisable(true);
       adoptionApplicationTab.setDisable(true);
       answerQuestionTxtBox.setDisable(true);
       answerBtn.setDisable(true);
     }
+
+    setUpUnansweredList();
+    setUpAnsweredList();
+    setupVolunteerApplicationsPage();
+    updateAdoptionsPage();
   }
 
   @FXML
@@ -218,5 +225,37 @@ public class EmployeeDashboardController {
     }
 
     updateVolunteerApplicationsPage();
+  }
+
+  private void updateAdoptionsPage() {
+    List<AdoptionWithAnimal> unprocessedAdoptionApplications = database
+        .getUnprocessedAdoptionRequests();
+
+    List<AdoptionWithAnimal> processedAdoptionApplications = database
+        .getProcessedAdoptionRequests();
+
+    unprocessedAdoptionsList
+        .setItems(FXCollections.observableList(unprocessedAdoptionApplications));
+    processedAdoptionsList.setItems(FXCollections.observableList(processedAdoptionApplications));
+  }
+
+  public void approveAdoptionRequest() {
+    for (AdoptionWithAnimal request : unprocessedAdoptionsList.getSelectionModel()
+        .getSelectedItems()) {
+      request.getRequest().setApproved(true);
+      database.processAdoptionRequest(request.getAdopter(), request.getRequest());
+    }
+
+    updateAdoptionsPage();
+  }
+
+  public void rejectAdoptionRequest() {
+    for (AdoptionWithAnimal request : unprocessedAdoptionsList.getSelectionModel()
+        .getSelectedItems()) {
+      request.getRequest().setApproved(false);
+      database.processAdoptionRequest(request.getAdopter(), request.getRequest());
+    }
+
+    updateAdoptionsPage();
   }
 }
