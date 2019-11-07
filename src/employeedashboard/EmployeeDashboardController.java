@@ -208,7 +208,7 @@ public class EmployeeDashboardController {
   public void goToEventsPage(ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../newevent/NewEvent.fxml"));
+        .load(getClass().getResource("../viewevents/ViewEvents.fxml"));
     primaryStage.setTitle("Events");
     primaryStage.setScene(new Scene(root));
     primaryStage.show();

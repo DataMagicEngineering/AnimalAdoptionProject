@@ -13,6 +13,10 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TitledPane;
 import javafx.stage.Stage;
+import javax.xml.crypto.Data;
+import main.Database;
+import models.user.AuthorizationLevel;
+import models.user.User;
 
 public class ViewEventsController {
 
@@ -29,17 +33,28 @@ public class ViewEventsController {
   private ListView<?> listViewEvents;
 
   /**
-   *
    * @param actionEvent
    * @throws IOException
    * @author Emily Schwarz and Luis Hernandez
    */
   public void goBack(ActionEvent actionEvent) throws IOException {
-    Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-    Parent root = FXMLLoader
-        .load(getClass().getResource("../customerdashboard/CustomerDashboard.fxml"));
-    primaryStage.setTitle("Events");
-    primaryStage.setScene(new Scene(root));
-    primaryStage.show();
+    User user = Database.getCurrentUser();
+
+    if (user.getPrivileges() == AuthorizationLevel.VOLUNTEER
+        || user.getPrivileges() == AuthorizationLevel.ADMINISTRATION) {
+      Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+      Parent root = FXMLLoader
+          .load(getClass().getResource("../employeedashboard/EmployeeDashboard.fxml"));
+      primaryStage.setTitle("Main Screen");
+      primaryStage.setScene(new Scene(root));
+      primaryStage.show();
+    } else {
+      Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+      Parent root = FXMLLoader
+          .load(getClass().getResource("../customerdashboard/CustomerDashBoard.fxml"));
+      primaryStage.setTitle("Main Screen");
+      primaryStage.setScene(new Scene(root));
+      primaryStage.show();
+    }
   }
 }
