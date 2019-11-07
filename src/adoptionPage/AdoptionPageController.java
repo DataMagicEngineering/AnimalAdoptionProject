@@ -1,5 +1,8 @@
 package adoptionPage;
 
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -63,8 +66,12 @@ public class AdoptionPageController {
    * Method to test whether the First/Last name text fields match the users listed in the database.
    */
   public void initialize() {
+    DateTimeFormatter formatDOB = DateTimeFormatter.ofPattern("MM/dd/yyyy").withZone(
+        ZoneId.systemDefault());
+    Instant userDOB = Database.getCurrentUser().getDateOfBirth();
+    String formatUserDOB = formatDOB.format(userDOB);
     userFirstNameText.setText(Database.getCurrentUser().getFirstName());
     userLastNameText.setText(Database.getCurrentUser().getLastName());
-    userDOBText.setText((Database.getCurrentUser().getDateOfBirth().toString()));
+    userDOBText.setText(formatUserDOB);
   }
 }

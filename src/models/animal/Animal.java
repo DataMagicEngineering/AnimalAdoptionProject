@@ -317,6 +317,7 @@ public class Animal {
    * @return dateOfBirth, the Instant field in the Animal class.
    */
   public Instant getDateOfBirth() {
+
     return dateOfBirth;
   }
 
