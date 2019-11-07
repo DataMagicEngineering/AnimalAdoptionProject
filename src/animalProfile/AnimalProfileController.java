@@ -1,5 +1,6 @@
 package animalProfile;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -112,18 +113,36 @@ public class AnimalProfileController {
    * @throws Exception when the scene is not located at the same file location as stated
    */
   @FXML
-  void returnToMenu(ActionEvent event) throws Exception {
+  void goBack(ActionEvent event) throws Exception {
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../mainScreen/AnimalAdoptMainScreen.fxml"));
-    primaryStage.setTitle("Main Screen");
+        .load(getClass().getResource("../animalList/AnimalList.fxml"));
+    primaryStage.setTitle("Animal List");
     primaryStage.setScene(new Scene(root));
     primaryStage.show();
   }
 
   public void initialize() {
-
     profileEditable();
-
+    Animal animal = Database.getCurrentAnimal();
+    /*if (!animal.getVaccines().isEmpty()) {
+      ObservableList<Vaccine> vaccines = FXCollections.observableArrayList(animal.getVaccines());
+      setAnimalVaccine(vaccines);
+    }*/
+    animNameText.setText(animal.getName());
+    animSpeciesText.setText((animal.getSpecies()));
+    animAggressText.setText(animal.getAggression().toString());
+    animBathroomText.setText(animal.getBathroomTraining().toString());
+    animBioText.setText(animal.getDescription());
+    animBirthdayText.setText(animal.getDateOfBirth().toString());
+    animBreedText.setText(animal.getBreedString());
+    animColorText.setText((animal.getColorString()));
+    animDateAdoptedText.setText(animal.getDateAdopted().toString());
+    animDateArrivedText.setText((animal.getDateArrived().toString()));
+    animGenderText.setText(String.valueOf(animal.getGender()));
+    animHeightText.setText(String.valueOf(animal.getHeight()));
+    animIDText.setText(String.valueOf(animal.getId()));
+    animServiceText.setText(String.valueOf(animal.isServiceTrained()));
+    animWeightText.setText(String.valueOf(animal.getWeight()));
   }
 }

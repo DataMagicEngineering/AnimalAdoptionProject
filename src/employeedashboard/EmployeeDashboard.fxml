@@ -40,7 +40,7 @@
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                   <children>
-                    <Button fx:id="viewAnimalBtn" layoutX="187.0" layoutY="70.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="225.0" text="View Animals">
+                    <Button fx:id="viewAnimalBtn" layoutX="187.0" layoutY="70.0" mnemonicParsing="false" onAction="#goToAnimalScreen" prefHeight="48.0" prefWidth="225.0" text="View Animals">
                       <font>
                         <Font size="20.0" />
                       </font>

@@ -280,9 +280,9 @@
     </GridPane>
       <ButtonBar buttonMinWidth="0.0" layoutX="125.0" layoutY="553.0" prefHeight="40.0" prefWidth="450.0" style="-fx-background-color: lightgrey;">
         <buttons>
-            <Button fx:id="editAnimalBtn" mnemonicParsing="false" onAction="#goToEdit" snapToPixel="false" text="Edit Profile" translateX="-100.0" />
-            <Button fx:id="returnBtn" mnemonicParsing="false" onAction="#returnToMenu" text="Return to Menu" translateX="-65.0" />
-          <Button fx:id="adoptBtn" mnemonicParsing="false" onAction="#goToAdoptionPage" text="Adopt!" translateX="-30.0" />
+            <Button fx:id="editAnimalBtn" mnemonicParsing="false" onAction="#goToEdit" snapToPixel="false" text="Edit Profile" translateX="-160.0" />
+            <Button fx:id="returnBtn" mnemonicParsing="false" onAction="#goBack" text="Back" translateX="-105.0" />
+          <Button fx:id="adoptBtn" mnemonicParsing="false" onAction="#goToAdoptionPage" text="Adopt!" translateX="-45.0" />
         </buttons>
       </ButtonBar>
   </children>

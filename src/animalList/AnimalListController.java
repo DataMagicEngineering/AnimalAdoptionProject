@@ -13,9 +13,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import main.Database;
 import models.animal.Animal;
+import models.user.AuthorizationLevel;
 
 /**
  * AnimalListController class which contains two methods that switch the scenes between the adoption
@@ -39,11 +41,16 @@ public class AnimalListController {
   private Button returnToMain;
 
   @FXML
+  private Button selectedAnimalButton;
+
+  @FXML
+  private Button editAnimalButton;
+
+  @FXML
   private TableColumn<?, ?> speciesColumn;
 
   @FXML
   private TableView<Animal> animalsTableView;
-
 
   public void initialize() {
     nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -52,20 +59,9 @@ public class AnimalListController {
     animalsTableView.setItems(Animals);
   }
 
-  /**
-   * Method which sets the scene to the Adoption Page.
-   *
-   * @param event an ActionEvent that gets the source, scene, and window of the program.
-   * @throws Exception is thrown since this method has the potential to contain an Exception.
-   */
   @FXML
-  void goToAnimalAdoption(ActionEvent event) throws Exception {
-    Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    Parent root = FXMLLoader
-        .load(getClass().getResource("../animalProfile/AnimalProfile.fxml"));
-    primaryStage.setTitle("Animal Profile");
-    primaryStage.setScene(new Scene(root));
-    primaryStage.show();
+  void selectAnimal(MouseEvent event) {
+    Database.setCurrentAnimal(animalsTableView.getSelectionModel().getSelectedItem());
   }
 
   /**
@@ -76,11 +72,42 @@ public class AnimalListController {
    */
   @FXML
   void goToMainMenu(ActionEvent event) throws Exception {
+    if (Database.getCurrentUser().getPrivileges() == AuthorizationLevel.BASIC) {
+      Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      Parent root = FXMLLoader
+          .load(getClass().getResource("../customerdashboard/CustomerDashboard.fxml"));
+      primaryStage.setTitle("Main Screen");
+      primaryStage.setScene(new Scene(root));
+      primaryStage.show();
+    }
+    else {
+      Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      Parent root = FXMLLoader
+          .load(getClass().getResource("../employeedashboard/EmployeeDashboard.fxml"));
+      primaryStage.setTitle("Dashboard");
+      primaryStage.setScene(new Scene(root));
+      primaryStage.show();
+    }
+  }
+
+  /**
+   * Method which sets the scene to the Adoption Page.
+   *
+   * @param event an ActionEvent that gets the source, scene, and window of the program.
+   * @throws Exception is thrown since this method has the potential to contain an Exception.
+   */
+  @FXML
+  void goToAnimalProfile(ActionEvent event) throws Exception {
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../customerdashboard/CustomerDashboard.fxml"));
-    primaryStage.setTitle("Main Screen");
+        .load(getClass().getResource("../animalProfile/AnimalProfile.fxml"));
+    primaryStage.setTitle("Animal Profile");
     primaryStage.setScene(new Scene(root));
     primaryStage.show();
+  }
+
+  @FXML
+  void createAnimal(ActionEvent event) {
+
   }
 }

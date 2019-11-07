@@ -88,6 +88,27 @@ public class EmployeeDashboardController {
   @FXML
   private Tab unansweredQuestionsTab;
 
+
+  public void initialize() {
+    dashLoginLbl.setText(
+        "Welcome " + Database.getCurrentUser().getLastName() + ", " + Database.getCurrentUser()
+            .getFirstName() + "!");
+    if (Database.getCurrentUser().getPrivileges() == AuthorizationLevel.ADMINISTRATION) {
+      userStatusLbl.setText("Employee");
+    } else {
+      userStatusLbl.setText("Volunteer");
+    }
+    setUpUnansweredList();
+    setUpAnsweredList();
+    setupVolunteerApplicationsPage();
+    if (Database.getCurrentUser().getPrivileges() == AuthorizationLevel.VOLUNTEER) {
+      volunteerApplicationTab.setDisable(true);
+      adoptionApplicationTab.setDisable(true);
+      answerQuestionTxtBox.setDisable(true);
+      answerBtn.setDisable(true);
+    }
+  }
+
   @FXML
   private void answerQuestion(ActionEvent event) {
     // sets the answer to the Question
@@ -116,7 +137,6 @@ public class EmployeeDashboardController {
     unanwQuestionList.setItems(unansweredQuestions);
   }
 
-
   @FXML
   void requestAnswer(MouseEvent event) {
     QuestionWithUser selectedQuestion = ans.getSelectionModel().getSelectedItem();
@@ -131,25 +151,13 @@ public class EmployeeDashboardController {
     }
   }
 
-
-  public void initialize() {
-    dashLoginLbl.setText(
-        "Welcome " + Database.getCurrentUser().getLastName() + ", " + Database.getCurrentUser()
-            .getFirstName() + "!");
-    if (Database.getCurrentUser().getPrivileges() == AuthorizationLevel.ADMINISTRATION) {
-      userStatusLbl.setText("Employee");
-    } else {
-      userStatusLbl.setText("Volunteer");
-    }
-    setUpUnansweredList();
-    setUpAnsweredList();
-    setupVolunteerApplicationsPage();
-    if (Database.getCurrentUser().getPrivileges() == AuthorizationLevel.VOLUNTEER) {
-      volunteerApplicationTab.setDisable(true);
-      adoptionApplicationTab.setDisable(true);
-      answerQuestionTxtBox.setDisable(true);
-      answerBtn.setDisable(true);
-    }
+  public void goToAnimalScreen(ActionEvent actionEvent) throws IOException {
+    Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+    Parent root = FXMLLoader
+        .load(getClass().getResource("../animalList/AnimalList.fxml"));
+    primaryStage.setTitle("Animal Screen");
+    primaryStage.setScene(new Scene(root));
+    primaryStage.show();
   }
 
   private void setupVolunteerApplicationsPage() {
