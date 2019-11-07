@@ -40,7 +40,7 @@ public class CustomerDashboardController {
   public void goToAnimalScreen(ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../animalList/AnimalList.fxml"));
+        .load(getClass().getResource("../customerlist/CustomerList.fxml"));
     primaryStage.setTitle("Animal Screen");
     primaryStage.setScene(new Scene(root));
     primaryStage.show();
