@@ -1,5 +1,6 @@
 package animalList;
 
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,7 +30,7 @@ public class AnimalListController {
       .observableArrayList(database.getAnimalList());
 
   @FXML
-  private TableColumn<?, ?> breedColumn;
+  private TableColumn<List<String>, String> breedColumn;
 
   @FXML
   private TableColumn<?, ?> nameColumn;
@@ -47,7 +48,7 @@ public class AnimalListController {
   public void initialize() {
     nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
     speciesColumn.setCellValueFactory(new PropertyValueFactory<>("species"));
-    //breedColumn.setCellValueFactory(new PropertyValueFactory<>("breeds"));
+    breedColumn.setCellValueFactory(new PropertyValueFactory<>("breeds"));
     animalsTableView.setItems(Animals);
   }
 
