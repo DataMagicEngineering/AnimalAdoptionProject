@@ -1,5 +1,6 @@
 package animalProfile;
 
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;
@@ -125,22 +126,23 @@ public class AnimalProfileController {
 
   public void initialize() {
     profileEditable();
+    DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("MM/dd/yyyy").withZone(
+        ZoneId.systemDefault());
     Animal animal = Database.getCurrentAnimal();
     animNameText.setText(animal.getName());
     animSpeciesText.setText((animal.getSpecies()));
     animAggressText.setText(animal.getAggression().toString());
     animBathroomText.setText(animal.getBathroomTraining().toString());
     animBioText.setText(animal.getDescription());
-    animBirthdayText
-        .setText(animal.getDateOfBirth().toString());
+    animBirthdayText.setText(formatDate.format(animal.getDateOfBirth()));
     animBreedText.setText(animal.getBreedString());
     animColorText.setText((animal.getColorString()));
-    animDateAdoptedText.setText(animal.getDateAdopted().toString());
-    animDateArrivedText.setText((animal.getDateArrived().toString()));
+    animDateAdoptedText.setText(formatDate.format(animal.getDateAdopted()));
+    animDateArrivedText.setText(formatDate.format(animal.getDateArrived()));
     animGenderText.setText(String.valueOf(animal.getGender()));
-    animHeightText.setText(String.valueOf(animal.getHeight()));
+    animHeightText.setText(animal.getHeight()+" m");
     animIDText.setText(String.valueOf(animal.getId()));
     animServiceText.setText(String.valueOf(animal.isServiceTrained()));
-    animWeightText.setText(String.valueOf(animal.getWeight()));
+    animWeightText.setText(animal.getWeight()+" kg");
   }
 }

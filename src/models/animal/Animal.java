@@ -15,8 +15,8 @@ public class Animal {
   private Instant dateAdopted;
   private Instant dateOfBirth;
   private boolean serviceTrained;
-  private float weight; //in kg
-  private float height;
+  private float weight; // in kg
+  private float height; // in m
   private List<String> breeds;
   private List<Trick> tricks;
   private Proficiency bathroomTraining;
