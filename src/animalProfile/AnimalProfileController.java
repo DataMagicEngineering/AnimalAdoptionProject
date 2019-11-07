@@ -1,5 +1,6 @@
 package animalProfile;
 
+import java.time.format.DateTimeFormatter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
@@ -87,12 +88,12 @@ public class AnimalProfileController {
     }
   }
 
-  private void setAnimalVaccine (ObservableList<Vaccine> vaccines) {
+  private void setAnimalVaccine(ObservableList<Vaccine> vaccines) {
     animVaccListView.setItems(vaccines);
   }
 
   @FXML
-  void goToAdoptionPage(ActionEvent event) throws Exception{
+  void goToAdoptionPage(ActionEvent event) throws Exception {
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
         .load(getClass().getResource("../adoptionPage/AdoptionPage.fxml"));
@@ -125,16 +126,13 @@ public class AnimalProfileController {
   public void initialize() {
     profileEditable();
     Animal animal = Database.getCurrentAnimal();
-    /*if (!animal.getVaccines().isEmpty()) {
-      ObservableList<Vaccine> vaccines = FXCollections.observableArrayList(animal.getVaccines());
-      setAnimalVaccine(vaccines);
-    }*/
     animNameText.setText(animal.getName());
     animSpeciesText.setText((animal.getSpecies()));
     animAggressText.setText(animal.getAggression().toString());
     animBathroomText.setText(animal.getBathroomTraining().toString());
     animBioText.setText(animal.getDescription());
-    animBirthdayText.setText(animal.getDateOfBirth().toString());
+    animBirthdayText
+        .setText(DateTimeFormatter.ofPattern("yyyy-mm-dd").format(animal.getDateOfBirth()));
     animBreedText.setText(animal.getBreedString());
     animColorText.setText((animal.getColorString()));
     animDateAdoptedText.setText(animal.getDateAdopted().toString());

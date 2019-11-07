@@ -72,19 +72,19 @@ public class AnimalListController {
    */
   @FXML
   void goToMainMenu(ActionEvent event) throws Exception {
-    if (Database.getCurrentUser().getPrivileges() == AuthorizationLevel.BASIC) {
-      Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-      Parent root = FXMLLoader
-          .load(getClass().getResource("../customerdashboard/CustomerDashboard.fxml"));
-      primaryStage.setTitle("Main Screen");
-      primaryStage.setScene(new Scene(root));
-      primaryStage.show();
-    }
-    else {
+    if (Database.getCurrentUser().getPrivileges() == AuthorizationLevel.ADMINISTRATION
+        || Database.getCurrentUser().getPrivileges() == AuthorizationLevel.VOLUNTEER) {
       Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
       Parent root = FXMLLoader
           .load(getClass().getResource("../employeedashboard/EmployeeDashboard.fxml"));
       primaryStage.setTitle("Dashboard");
+      primaryStage.setScene(new Scene(root));
+      primaryStage.show();
+    } else {
+      Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      Parent root = FXMLLoader
+          .load(getClass().getResource("../customerdashboard/CustomerDashboard.fxml"));
+      primaryStage.setTitle("Main Screen");
       primaryStage.setScene(new Scene(root));
       primaryStage.show();
     }
