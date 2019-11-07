@@ -64,7 +64,7 @@
             </Text>
          </children>
       </GridPane>
-      <Text layoutX="38.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adoption your new friend!" textAlignment="CENTER" wrappingWidth="250.13671875">
+      <Text layoutX="38.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adopt your new friend!" textAlignment="CENTER" wrappingWidth="250.13671875">
          <font>
             <Font name="Times New Roman Bold" size="20.0" />
          </font>
