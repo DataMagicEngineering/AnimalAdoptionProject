@@ -4,13 +4,20 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="customerdashboard.CustomerDashboardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+  prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171"
+  xmlns:fx="http://javafx.com/fxml/1" fx:controller="customerdashboard.CustomerDashboardController">
   <children>
-    <Button fx:id="btnViewAnimals" layoutX="115.0" layoutY="77.0" mnemonicParsing="false" onAction="#goToAnimalScreen" text="View Animals" />
-    <Button fx:id="btnViewEvents" layoutX="115.0" layoutY="130.0" mnemonicParsing="false" onAction="#goToEventsScreen" text="View Events" />
-    <Button fx:id="btnAskQuestions" layoutX="115.0" layoutY="187.0" mnemonicParsing="false" text="Ask a Question" />
-    <Button fx:id="btnLogOff" layoutX="115.0" layoutY="242.0" mnemonicParsing="false" onAction="#logOut" text="Log Off" />
-    <Button fx:id="btnApplyVolunteer" layoutX="115.0" layoutY="296.0" mnemonicParsing="false" onAction="#goToVolunteerApplication" text="Apply to Volunteer" />
-    <Label fx:id="lblWelcome" layoutX="14.0" layoutY="14.0" text="Welcome User!" />
+    <Button fx:id="btnViewAnimals" layoutX="246.0" layoutY="92.0" mnemonicParsing="false"
+      onAction="#goToAnimalScreen" text="View Animals"/>
+    <Button fx:id="btnViewEvents" layoutX="251.0" layoutY="153.0" mnemonicParsing="false"
+      onAction="#goToEventsScreen" text="View Events"/>
+    <Button fx:id="btnAskQuestions" layoutX="240.0" layoutY="213.0" mnemonicParsing="false"
+      text="Ask a Question"/>
+    <Button fx:id="btnLogOff" layoutX="497.0" layoutY="20.0" mnemonicParsing="false"
+      onAction="#logOut" text="Log Off"/>
+    <Button fx:id="btnApplyVolunteer" layoutX="211.0" layoutY="272.0" mnemonicParsing="false"
+      onAction="#goToVolunteerApplication" text="Apply to be a Volunteer"/>
+    <Label fx:id="lblWelcome" layoutX="14.0" layoutY="25.0" text="Welcome User!"/>
   </children>
 </AnchorPane>
