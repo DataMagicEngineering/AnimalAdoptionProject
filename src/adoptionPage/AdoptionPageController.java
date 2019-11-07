@@ -56,7 +56,7 @@ public class AdoptionPageController {
   void returnToMenu(ActionEvent event) throws Exception {
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../mainScreen/AnimalAdoptMainScreen.fxml"));
+        .load(getClass().getResource("../animalList/AnimalList.fxml"));
     primaryStage.setTitle("Main Screen");
     primaryStage.setScene(new Scene(root));
     primaryStage.show();
