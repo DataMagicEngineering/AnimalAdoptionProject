@@ -15,6 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javax.xml.crypto.Data;
 import main.Database;
 import models.animal.Animal;
 import models.user.AuthorizationLevel;
@@ -57,6 +58,11 @@ public class AnimalListController {
     speciesColumn.setCellValueFactory(new PropertyValueFactory<>("species"));
     breedColumn.setCellValueFactory(new PropertyValueFactory<>("breeds"));
     animalsTableView.setItems(Animals);
+
+    if (Database.getCurrentUser().getPrivileges() != AuthorizationLevel.ADMINISTRATION) {
+      editAnimalButton.setDisable(true);
+      editAnimalButton.setVisible(false);
+    }
   }
 
   @FXML
