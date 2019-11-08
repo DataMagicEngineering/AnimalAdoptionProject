@@ -70,6 +70,9 @@ public class AdoptionPageController {
         ZoneId.systemDefault());
     Instant userDOB = Database.getCurrentUser().getDateOfBirth();
     String formatUserDOB = formatDOB.format(userDOB);
+    animNameText.setText(Database.getCurrentAnimal().getName());
+    animBreedText.setText(Database.getCurrentAnimal().getBreedString());
+    animSpeciesText.setText(Database.getCurrentAnimal().getSpecies());
     userFirstNameText.setText(Database.getCurrentUser().getFirstName());
     userLastNameText.setText(Database.getCurrentUser().getLastName());
     userDOBText.setText(formatUserDOB);

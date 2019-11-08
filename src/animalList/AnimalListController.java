@@ -33,7 +33,7 @@ public class AnimalListController {
       .observableArrayList(database.getAnimalList());
 
   @FXML
-  private TableColumn<List<String>, String> breedColumn;
+  private TableColumn<?, ?> breedColumn;
 
   @FXML
   private TableColumn<?, ?> nameColumn;
@@ -56,7 +56,7 @@ public class AnimalListController {
   public void initialize() {
     nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
     speciesColumn.setCellValueFactory(new PropertyValueFactory<>("species"));
-    breedColumn.setCellValueFactory(new PropertyValueFactory<>("breeds"));
+    breedColumn.setCellValueFactory(new PropertyValueFactory<>("breedString"));
     animalsTableView.setItems(Animals);
 
     if (Database.getCurrentUser().getPrivileges() != AuthorizationLevel.ADMINISTRATION) {

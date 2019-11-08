@@ -22,6 +22,7 @@ public class Animal {
   private Proficiency bathroomTraining;
   private List<Vaccine> vaccines;
   private Color aggression;
+  private String breedString;
 
   /**
    * Default constructor for filling in an animal's properties at another time.
@@ -430,12 +431,16 @@ public class Animal {
    * @return theBreeds, which is the String variable that the list is assigned to.
    */
   public String getBreedString(){
-    String theBreeds = "";
+    StringBuilder theBreeds = new StringBuilder();
+    int count = 1;
     //loop through colors, add their name, a separator and add it into string
     for(String breed : breeds){
-      theBreeds += breed.toString();
-      theBreeds += "|";
+      theBreeds.append(breed.toString());
+      while(breeds.size() > count) {
+        theBreeds.append(" | ");
+        count++;
+      }
     }
-    return theBreeds;
+    return theBreeds.toString();
   }
 }
