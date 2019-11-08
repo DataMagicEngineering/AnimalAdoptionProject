@@ -21,8 +21,9 @@ import models.animal.Animal;
 import models.user.AuthorizationLevel;
 
 /**
- * AnimalListController class which contains two methods that switch the scenes between the adoption
- * page and the main menu.
+ * Animal List Controller, which displays a list of animals available for adoption, and contains
+ * functions which allows users to either view the animal profile or return back to main menu.
+ * Employees have the ability to edit the animal's profile within this Scene.
  *
  * @author The Data Magic Engineering Team
  */
@@ -53,6 +54,12 @@ public class AnimalListController {
   @FXML
   private TableView<Animal> animalsTableView;
 
+  /**
+   * The Initialize method in the Animal List Controller sets the Cell Value Factories for the Table
+   * View in this Scene. It also populates the Table View with data from the Animal table in the
+   * database. It also disables the "Edit Animal Button" visibility to any user who is not an
+   * employee.
+   */
   public void initialize() {
     nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
     speciesColumn.setCellValueFactory(new PropertyValueFactory<>("species"));
@@ -65,6 +72,12 @@ public class AnimalListController {
     }
   }
 
+  /**
+   * Method that sets the current animal in the program to the animal that the user selects in the
+   * Table View.
+   *
+   * @param event a MouseEvent field.
+   */
   @FXML
   void selectAnimal(MouseEvent event) {
     Database.setCurrentAnimal(animalsTableView.getSelectionModel().getSelectedItem());
@@ -112,6 +125,11 @@ public class AnimalListController {
     primaryStage.show();
   }
 
+  /**
+   * Method which gives employees the ability to create animals.
+   *
+   * @param event
+   */
   @FXML
   void createAnimal(ActionEvent event) {
 

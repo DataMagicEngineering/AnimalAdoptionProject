@@ -18,6 +18,7 @@ import main.Database;
 /**
  * Adoption Page Controller, which displays information about the animal being adopted and the user
  * that is requesting to adopt the animal.
+ *
  * @author The Data Magic Engineering Team
  */
 public class AdoptionPageController {
