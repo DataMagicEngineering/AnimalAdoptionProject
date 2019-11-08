@@ -24,6 +24,7 @@ import models.user.AuthorizationLevel;
  * Animal Profile Controller, which displays information about the animal. The Scene has two
  * buttons: one that goes back to Animal List, and one that submits an Adoption request for the
  * animal.
+ *
  * @author The Data Magic Engineering Team
  */
 public class AnimalProfileController {
@@ -92,7 +93,6 @@ public class AnimalProfileController {
    * Method which prevents any users who aren't employees to edit the animal's profiles. This method
    * disables the "Edit Animal Profile" button from being viewed to users who do not have the right
    * privileges.
-
    */
   private void profileEditable() {
     if (Database.getCurrentUser().getPrivileges() != AuthorizationLevel.ADMINISTRATION) {
@@ -103,6 +103,7 @@ public class AnimalProfileController {
 
   /**
    * Method which populates the List of animal vaccines.
+   *
    * @param vaccines The ObservableList that is being populated with the list of vaccines.
    */
   private void setAnimalVaccine(ObservableList<Vaccine> vaccines) {
@@ -111,6 +112,7 @@ public class AnimalProfileController {
 
   /**
    * Method which sets the Scene to the Adoption Page.
+   *
    * @param event The ActionEvent that gets the Source, Scene, and Window.
    * @throws Exception since the method has the possibility of containing an Exception.
    */
@@ -126,6 +128,7 @@ public class AnimalProfileController {
 
   /**
    * Method which sets the Scene to the Edit Animal Profile page.
+   *
    * @param event The ActionEvent that gets the Source, Scene, and Window.
    */
   @FXML
@@ -150,8 +153,8 @@ public class AnimalProfileController {
   }
 
   /**
-   * The initialize method in the Animal Profile Controller class sets the animal's information
-   * when the program is started. An animals information is contained within the Animal table in the
+   * The initialize method in the Animal Profile Controller class sets the animal's information when
+   * the program is started. An animals information is contained within the Animal table in the
    * database, and when an animal is selected, that animal's information is loaded onto the screen.
    */
   public void initialize() {
