@@ -1,6 +1,8 @@
 package viewevents;
 
 import java.io.IOException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +17,7 @@ import javafx.scene.control.TitledPane;
 import javafx.stage.Stage;
 import javax.xml.crypto.Data;
 import main.Database;
+import models.event.Event;
 import models.user.AuthorizationLevel;
 import models.user.User;
 
@@ -30,7 +33,14 @@ public class ViewEventsController {
   private Label lblBottom;
 
   @FXML
-  private ListView<?> listViewEvents;
+  private ListView<Event> listViewEvents;
+
+  public void initialize() {
+    Database database = Database.get();
+    ObservableList<Event> events = FXCollections.observableArrayList(database.getEvents());
+
+    listViewEvents.setItems(events);
+  }
 
   /**
    * @param actionEvent
