@@ -81,4 +81,14 @@ public class CustomerDashboardController {
     primaryStage.setScene(new Scene(root));
     primaryStage.show();
   }
+
+  @FXML
+  void askQuestion(ActionEvent actionEvent) throws Exception {
+    Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+    Parent root = FXMLLoader.load(getClass().getResource("../customerquestions/"
+        + "CustomerAskQsScreen.fxml"));
+    primaryStage.setTitle("Ask a Question");
+    primaryStage.setScene(new Scene(root));
+    primaryStage.show();
+  }
 }

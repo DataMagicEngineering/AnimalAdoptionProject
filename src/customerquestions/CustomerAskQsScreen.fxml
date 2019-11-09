@@ -6,15 +6,22 @@
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="Ask a Question" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
-  <content>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-         <children>
-            <Button fx:id="customerQsBackBtn" layoutX="36.0" layoutY="308.0" mnemonicParsing="false" text="Go Back" />
-            <Label layoutX="7.0" layoutY="25.0" text="Do you have any questions regarding animal adoption policies, volunteering, or events? " />
-            <Label layoutX="100.0" layoutY="57.0" prefHeight="21.0" prefWidth="398.0" text="If so, feel free to submit any question you may have below:" />
-            <TextArea fx:id="customerQsTxtArea" layoutX="36.0" layoutY="108.0" prefHeight="178.0" prefWidth="525.0" promptText="Type your question here..." />
-            <Button fx:id="customerSubmitQsBtn" layoutX="428.0" layoutY="308.0" mnemonicParsing="false" text="Submit Question" />
-         </children></AnchorPane>
-  </content>
-</TitledPane>
+
+<AnchorPane
+  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+  minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+  xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171"
+  fx:controller="customerquestions.CustomerAskQsController">
+  <children>
+    <Button fx:id="customerQsBackBtn" layoutX="36.0" layoutY="308.0" mnemonicParsing="false"
+      text="Go Back"/>
+    <Label layoutX="7.0" layoutY="25.0"
+      text="Do you have any questions regarding animal adoption policies, volunteering, or events? "/>
+    <Label layoutX="100.0" layoutY="57.0" prefHeight="21.0" prefWidth="398.0"
+      text="If so, feel free to submit any question you may have below:"/>
+    <TextArea fx:id="customerQsTxtArea" layoutX="36.0" layoutY="108.0" prefHeight="178.0"
+      prefWidth="525.0" promptText="Type your question here..."/>
+    <Button fx:id="customerSubmitQsBtn" layoutX="428.0" layoutY="308.0" mnemonicParsing="false"
+      text="Submit Question"/>
+  </children>
+</AnchorPane>

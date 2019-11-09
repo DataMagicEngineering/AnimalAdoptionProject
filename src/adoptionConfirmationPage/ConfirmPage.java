@@ -13,6 +13,9 @@ import javafx.stage.Stage;
 import main.Database;
 import models.user.AuthorizationLevel;
 
+/**
+ * @author Luis Hernandez and Emily Schwarz
+ */
 public class ConfirmPage {
 
   @FXML
