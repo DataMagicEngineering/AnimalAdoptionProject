@@ -12,10 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.SplitPane;
-import javafx.scene.control.TitledPane;
 import javafx.stage.Stage;
-import javax.xml.crypto.Data;
 import main.Database;
 import models.event.Event;
 import models.user.AuthorizationLevel;
@@ -61,7 +58,7 @@ public class ViewEventsController {
     } else {
       Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
       Parent root = FXMLLoader
-          .load(getClass().getResource("../customerdashboard/CustomerDashBoard.fxml"));
+          .load(getClass().getResource("../customerdashboard/CustomerDashboard.fxml"));
       primaryStage.setTitle("Main Screen");
       primaryStage.setScene(new Scene(root));
       primaryStage.show();

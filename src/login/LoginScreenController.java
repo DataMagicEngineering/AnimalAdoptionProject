@@ -1,11 +1,5 @@
 package login;
 
-import static models.animal.Color.*;
-
-import java.sql.Timestamp;
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,13 +12,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javax.xml.crypto.Data;
 import main.Database;
-import models.animal.Animal;
-import models.animal.Color;
-import models.animal.Proficiency;
-import models.animal.Trick;
-import models.animal.Vaccine;
 import models.user.AuthorizationLevel;
 import models.user.User;
 
@@ -77,7 +65,7 @@ public class LoginScreenController {
       else {
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent root = FXMLLoader
-            .load(getClass().getResource("../customerdashboard/CustomerDashBoard.fxml"));
+            .load(getClass().getResource("../customerdashboard/CustomerDashboard.fxml"));
         primaryStage.setTitle("Main Screen");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
