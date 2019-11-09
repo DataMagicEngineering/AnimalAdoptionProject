@@ -1,5 +1,6 @@
 package adoptionPage;
 
+import java.io.IOException;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -48,8 +49,13 @@ public class AdoptionPageController {
   private Button adoptAnimalBtn;
 
   @FXML
-  void adoptAnimal(ActionEvent event) {
-
+  void adoptAnimal(ActionEvent event) throws IOException {
+    Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    Parent root = FXMLLoader
+        .load(getClass().getResource("../adoptionConfirmationPage/ConfirmPage.fxml"));
+    primaryStage.setTitle("Adoption");
+    primaryStage.setScene(new Scene(root));
+    primaryStage.show();
   }
 
   /**
