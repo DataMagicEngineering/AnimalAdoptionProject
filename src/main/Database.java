@@ -25,7 +25,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.time.Instant;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import models.adoption.AdoptionRequest;
@@ -310,7 +309,7 @@ public class Database {
 
       // A request that has just been submitted can't have been answered yet.
       ps.setBoolean(3, false);
-      ps.setTimestamp(4, Timestamp.from(Instant.now()));
+      ps.setTimestamp(4, Timestamp.from(request.getDateRequested()));
       ps.executeUpdate();
       return true;
     } catch (SQLException e) {
@@ -329,7 +328,7 @@ public class Database {
    */
   public boolean processAdoptionRequest(User user, AdoptionRequest request) {
     // Make sure this user has permission to do this.
-    if (user.getPrivileges() != AuthorizationLevel.ADMINISTRATION) {
+    if (user.getPrivileges() == AuthorizationLevel.BASIC) {
       return false;
     }
 
@@ -345,8 +344,8 @@ public class Database {
       return true;
     } catch (SQLException e) {
       e.printStackTrace();
+      return false;
     }
-    return false;
   }
 
   /**
@@ -795,7 +794,14 @@ public class Database {
         int animalId = results.getInt(3);
         boolean adoptionApproved = results.getBoolean(4);
         Instant dateRequested = results.getTimestamp(5).toInstant();
-        Instant dateApproved = results.getTimestamp(6).toInstant();
+
+        Instant dateApproved = null;
+        Timestamp dateApprovedTS = results.getTimestamp(6);
+
+        if (dateApprovedTS != null) {
+          dateApproved = dateApprovedTS.toInstant();
+        }
+
 
         Animal animal = getAnimal(animalId);
         User customer = getUserById(customerId);
@@ -1010,6 +1016,24 @@ public class Database {
     user.setDateOfBirth(dateOfBirth);
 
     return user;
+  }
+
+  public boolean applyForVolunteer(User user) {
+    // Only allow this user to apply for volunteer if they're not a volunteer or employee.
+    if (user.getPrivileges() != AuthorizationLevel.BASIC) return false;
+
+    String query = "INSERT INTO VolunteerApplication (applicantId, approved, dateRequested) VALUES (?, ?, ?)";
+
+    try (PreparedStatement statement = conn.prepareStatement(query)) {
+      statement.setInt(1,user.getId());
+      statement.setBoolean(2, false);
+      statement.setTimestamp(3, Timestamp.from(Instant.now()));
+      statement.executeUpdate();
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
+    }
   }
 
 }

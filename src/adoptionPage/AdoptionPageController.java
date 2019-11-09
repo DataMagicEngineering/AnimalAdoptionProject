@@ -13,8 +13,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javax.xml.crypto.Data;
 import main.Database;
+import models.adoption.AdoptionRequest;
 
 /**
  * Adoption Page Controller, which displays information about the animal being adopted and the user
@@ -50,6 +50,13 @@ public class AdoptionPageController {
 
   @FXML
   void adoptAnimal(ActionEvent event) throws IOException {
+    AdoptionRequest request = new AdoptionRequest();
+    request.setCustomerId(Database.getCurrentUser().getId());
+    request.setAnimalId(Database.getCurrentAnimal().getId());
+    request.setApproved(false);
+    request.setDateRequested(Instant.now());
+    Database.get().submitAdoptionRequest(request);
+
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
         .load(getClass().getResource("../adoptionConfirmationPage/ConfirmPage.fxml"));

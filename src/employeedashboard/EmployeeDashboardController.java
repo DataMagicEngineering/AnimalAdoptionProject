@@ -1,6 +1,7 @@
 package employeedashboard;
 
 import java.io.IOException;
+import java.time.Instant;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -258,6 +259,7 @@ public class EmployeeDashboardController {
     for (AdoptionWithAnimal request : unprocessedAdoptionsList.getSelectionModel()
         .getSelectedItems()) {
       request.getRequest().setApproved(true);
+      request.getRequest().setDateApproved(Instant.now());
       database.processAdoptionRequest(request.getAdopter(), request.getRequest());
     }
 
