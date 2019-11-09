@@ -4,16 +4,16 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="lblEnterHrs" prefHeight="400.0" prefWidth="600.0"
-  xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
-  fx:controller="recordLog.recordLogsController">
+<AnchorPane fx:id="lblEnterHrs" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="recordLog.recordLogsController">
   <children>
-    <Label layoutX="92.0" layoutY="99.0" text="Enter Hours:"/>
-    <TextField fx:id="txtfHrsWorked" layoutX="207.0" layoutY="94.0"/>
-    <Button fx:id="btnConfirmHrs" layoutX="500.0" layoutY="323.0" mnemonicParsing="false"
-      onAction="#goToConfirmHours" text="Confirm"/>
-    <Button fx:id="btnBack2Dash" layoutX="92.0" layoutY="323.0" mnemonicParsing="false"
-      onAction="#goBackToDashboard" text="Back"/>
+    <Label layoutX="143.0" layoutY="159.0" text="Enter Hours:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Label>
+    <TextField fx:id="txtfHrsWorked" layoutX="266.0" layoutY="154.0" />
+    <Button fx:id="btnConfirmHrs" layoutX="420.0" layoutY="323.0" mnemonicParsing="false" onAction="#goToConfirmHours" text="Confirm Hours" />
+    <Button fx:id="btnBack2Dash" layoutX="69.0" layoutY="323.0" mnemonicParsing="false" onAction="#goBackToDashboard" text="Go Back" />
   </children>
 </AnchorPane>

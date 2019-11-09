@@ -6,9 +6,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171"
-  xmlns:fx="http://javafx.com/fxml/1" fx:controller="recordLog.recordLogsController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="recordLog.recordLogsController">
   <children>
     <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
       <tabs>
@@ -16,10 +14,8 @@
           <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
               <children>
-                <TextArea fx:id="txtaShowHrs" layoutX="14.0" layoutY="14.0" prefHeight="318.0"
-                  prefWidth="275.0"/>
-                <Button fx:id="btnReturntoEmployeeMenu" layoutX="427.0" layoutY="301.0"
-                  mnemonicParsing="false" onAction="#goBackToDashboard" text="Return to Dashboard"/>
+                <TextArea fx:id="txtaShowHrs" layoutX="14.0" layoutY="14.0" prefHeight="318.0" prefWidth="275.0" />
+                <Button fx:id="btnReturntoEmployeeMenu" layoutX="364.0" layoutY="301.0" mnemonicParsing="false" onAction="#goBackToDashboard" text="Return to Dashboard" />
               </children>
             </AnchorPane>
           </content>
