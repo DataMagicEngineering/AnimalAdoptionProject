@@ -5,17 +5,19 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
   prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171"
-  xmlns:fx="http://javafx.com/fxml/1"
-  fx:controller="viewevents.ViewEventsController">
+  xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewevents.ViewEventsController">
   <children>
-    <Button fx:id="btnGoBack" layoutX="79.0" layoutY="185.0" mnemonicParsing="false"
+    <Button fx:id="btnGoBack" layoutX="79.0" layoutY="217.0" mnemonicParsing="false"
       onAction="#goBack" text="Go Back"/>
-    <Label fx:id="lblTop" layoutX="79.0" layoutY="59.0" text="To the right are our"/>
-    <Label fx:id="lblBottom" layoutX="79.0" layoutY="93.0" text="current events!"/>
+    <Label fx:id="lblTop" layoutX="52.0" layoutY="119.0" text="To the right are our"/>
+    <Label fx:id="lblBottom" layoutX="67.0" layoutY="140.0" text="current events!"/>
     <ListView fx:id="listViewEvents" layoutX="256.0" layoutY="21.0" prefHeight="358.0"
       prefWidth="330.0"/>
+    <Button fx:id="addEventBtn" layoutX="23.0" layoutY="290.0" mnemonicParsing="false"
+      text="Add Event"/>
+    <Button fx:id="editEventBtn" layoutX="149.0" layoutY="290.0" mnemonicParsing="false"
+      text="Edit Event"/>
   </children>
 </AnchorPane>

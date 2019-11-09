@@ -32,7 +32,6 @@ public class CustomerDashboardController {
   private Label lblWelcome;
 
   /**
-   *
    * @param actionEvent
    * @throws IOException
    * @author Emily Schwarz and Luis Hernandez
@@ -40,14 +39,13 @@ public class CustomerDashboardController {
   public void goToAnimalScreen(ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../customerlist/CustomerList.fxml"));
-    primaryStage.setTitle("Animal Screen");
+        .load(getClass().getResource("../AnimalList/AnimalList.fxml"));
+    primaryStage.setTitle("Animal List");
     primaryStage.setScene(new Scene(root));
     primaryStage.show();
   }
 
   /**
-   *
    * @param actionEvent
    * @throws IOException
    * @author Emily Schwarz and Luis Hernandez
@@ -62,7 +60,6 @@ public class CustomerDashboardController {
   }
 
   /**
-   *
    * @param actionEvent
    * @throws IOException
    * @author Emily Schwarz and Luis Hernandez
@@ -72,6 +69,15 @@ public class CustomerDashboardController {
     Parent root = FXMLLoader
         .load(getClass().getResource("../volunteerApplicationPage/volunteerApplication.fxml"));
     primaryStage.setTitle("Volunteer Application");
+    primaryStage.setScene(new Scene(root));
+    primaryStage.show();
+  }
+
+  @FXML
+  void logOut(ActionEvent actionEvent) throws Exception {
+    Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+    Parent root = FXMLLoader.load(getClass().getResource("../login/LoginScreen.fxml"));
+    primaryStage.setTitle("Adoption Apps");
     primaryStage.setScene(new Scene(root));
     primaryStage.show();
   }

@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
+import main.Database;
+import models.user.AuthorizationLevel;
 
 public class volunteerAppController {
 

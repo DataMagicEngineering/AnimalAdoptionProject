@@ -4,6 +4,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import models.user.AuthorizationLevel;
 
 public class Event {
@@ -91,5 +92,16 @@ public class Event {
 
   public LocalDateTime getDateTime() {
     return date.atZone(EST).toLocalDateTime();
+  }
+
+  @Override
+  public String toString() {
+    String format =
+        "Event Name: %S\n"
+        + "Date: %s\n"
+        + "Description: %s";
+    DateTimeFormatter formatDate;
+    formatDate = DateTimeFormatter.ofPattern("EEEE, MMM dd, yyyy").withZone(EST);
+    return String.format(format, getName(), formatDate.format(getDate()), getDescription());
   }
 }

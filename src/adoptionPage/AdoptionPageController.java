@@ -1,5 +1,8 @@
 package adoptionPage;
 
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +15,12 @@ import javafx.stage.Stage;
 import javax.xml.crypto.Data;
 import main.Database;
 
+/**
+ * Adoption Page Controller, which displays information about the animal being adopted and the user
+ * that is requesting to adopt the animal.
+ *
+ * @author The Data Magic Engineering Team
+ */
 public class AdoptionPageController {
 
   @FXML
@@ -53,7 +62,7 @@ public class AdoptionPageController {
   void returnToMenu(ActionEvent event) throws Exception {
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../mainScreen/AnimalAdoptMainScreen.fxml"));
+        .load(getClass().getResource("../animalList/AnimalList.fxml"));
     primaryStage.setTitle("Main Screen");
     primaryStage.setScene(new Scene(root));
     primaryStage.show();
@@ -63,8 +72,15 @@ public class AdoptionPageController {
    * Method to test whether the First/Last name text fields match the users listed in the database.
    */
   public void initialize() {
+    DateTimeFormatter formatDOB = DateTimeFormatter.ofPattern("MM/dd/yyyy").withZone(
+        ZoneId.systemDefault());
+    Instant userDOB = Database.getCurrentUser().getDateOfBirth();
+    String formatUserDOB = formatDOB.format(userDOB);
+    animNameText.setText(Database.getCurrentAnimal().getName());
+    animBreedText.setText(Database.getCurrentAnimal().getBreedString());
+    animSpeciesText.setText(Database.getCurrentAnimal().getSpecies());
     userFirstNameText.setText(Database.getCurrentUser().getFirstName());
     userLastNameText.setText(Database.getCurrentUser().getLastName());
-    userDOBText.setText((Database.getCurrentUser().getDateOfBirth().toString()));
+    userDOBText.setText(formatUserDOB);
   }
 }

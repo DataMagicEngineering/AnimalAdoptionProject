@@ -25,6 +25,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import models.adoption.AdoptionRequest;
@@ -80,6 +81,7 @@ public class Database {
     String query = "INSERT INTO User ("
         + "username, password, firstName, lastName, dateOfBirth, privilege) "
         + "VALUES (?, ?, ?, ?, ?, ?)";
+
     try (PreparedStatement statement = conn.prepareStatement(query)) {
       statement.setString(1, user.getUsername());
       statement.setString(2, user.getPassword());

@@ -19,13 +19,14 @@ public class Animal {
   private Instant dateAdopted;
   private Instant dateOfBirth;
   private boolean serviceTrained;
-  private float weight; //in pounds
-  private float height; //in inches
+  private float weight; //in kg
+  private float height; //in m
   private List<String> breeds;
   private List<Trick> tricks;
   private Proficiency bathroomTraining;
   private List<Vaccine> vaccines;
   private Color aggression;
+  private String breedString;
 
   /**
    * Default constructor for filling in an animal's properties at another time.
@@ -433,12 +434,16 @@ public class Animal {
    * @return theBreeds, which is the String variable that the list is assigned to.
    */
   public String getBreedString(){
-    String theBreeds = "";
+    StringBuilder theBreeds = new StringBuilder();
+    int count = 1;
     //loop through colors, add their name, a separator and add it into string
     for(String breed : breeds){
-      theBreeds += breed;
-      theBreeds += "|";
+      theBreeds.append(breed);
+      while(breeds.size() > count) {
+        theBreeds.append(" | ");
+        count++;
+      }
     }
-    return theBreeds;
+    return theBreeds.toString();
   }
 }

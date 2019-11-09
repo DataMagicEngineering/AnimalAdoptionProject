@@ -45,6 +45,9 @@ public class EmployeeDashboardController {
   private TextField answerQuestionTxtBox;
 
   @FXML
+  private Button logOutBtn;
+
+  @FXML
   private Button answerBtn;
 
   @FXML
@@ -117,6 +120,15 @@ public class EmployeeDashboardController {
   }
 
   @FXML
+  void logOut(ActionEvent actionEvent) throws Exception{
+    Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+    Parent root = FXMLLoader.load(getClass().getResource("../login/LoginScreen.fxml"));
+    primaryStage.setTitle("Adoption Apps");
+    primaryStage.setScene(new Scene(root));
+    primaryStage.show();
+  }
+
+  @FXML
   private void answerQuestion(ActionEvent event) {
     // sets the answer to the Question
     unanwQuestionList.getSelectionModel().getSelectedItem().getQuestion()
@@ -158,6 +170,7 @@ public class EmployeeDashboardController {
     }
   }
 
+  @FXML
   public void goToAnimalScreen(ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
@@ -191,15 +204,17 @@ public class EmployeeDashboardController {
         .setItems(FXCollections.observableArrayList(processedApplications));
   }
 
+  @FXML
   public void goToEventsPage(ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../newevent/NewEvent.fxml"));
+        .load(getClass().getResource("../viewevents/ViewEvents.fxml"));
     primaryStage.setTitle("Events");
     primaryStage.setScene(new Scene(root));
     primaryStage.show();
   }
 
+  @FXML
   public void goToRecordLog(ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     Parent root = FXMLLoader

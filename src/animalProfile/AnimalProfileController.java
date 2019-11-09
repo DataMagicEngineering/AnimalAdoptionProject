@@ -1,5 +1,7 @@
 package animalProfile;
 
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +18,13 @@ import models.animal.Animal;
 import models.animal.Vaccine;
 import models.user.AuthorizationLevel;
 
+/**
+ * Animal Profile Controller, which displays information about the animal. The Scene has two
+ * buttons: one that goes back to Animal List, and one that submits an Adoption request for the
+ * animal.
+ *
+ * @author The Data Magic Engineering Team
+ */
 public class AnimalProfileController {
 
   @FXML
@@ -78,6 +87,11 @@ public class AnimalProfileController {
   @FXML
   private ListView<Vaccine> animVaccListView;
 
+  /**
+   * Method which prevents any users who aren't employees to edit the animal's profiles. This method
+   * disables the "Edit Animal Profile" button from being viewed to users who do not have the right
+   * privileges.
+   */
   private void profileEditable() {
     if (Database.getCurrentUser().getPrivileges() != AuthorizationLevel.ADMINISTRATION) {
       editAnimalBtn.setVisible(false);
@@ -85,12 +99,23 @@ public class AnimalProfileController {
     }
   }
 
-  private void setAnimalVaccine (ObservableList<Vaccine> vaccines) {
+  /**
+   * Method which populates the List of animal vaccines.
+   *
+   * @param vaccines The ObservableList that is being populated with the list of vaccines.
+   */
+  private void setAnimalVaccine(ObservableList<Vaccine> vaccines) {
     animVaccListView.setItems(vaccines);
   }
 
+  /**
+   * Method which sets the Scene to the Adoption Page.
+   *
+   * @param event The ActionEvent that gets the Source, Scene, and Window.
+   * @throws Exception since the method has the possibility of containing an Exception.
+   */
   @FXML
-  void goToAdoptionPage(ActionEvent event) throws Exception{
+  void goToAdoptionPage(ActionEvent event) throws Exception {
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
         .load(getClass().getResource("../adoptionPage/AdoptionPage.fxml"));
@@ -99,6 +124,11 @@ public class AnimalProfileController {
     primaryStage.show();
   }
 
+  /**
+   * Method which sets the Scene to the Edit Animal Profile page.
+   *
+   * @param event The ActionEvent that gets the Source, Scene, and Window.
+   */
   @FXML
   void goToEdit(ActionEvent event) {
 
@@ -120,35 +150,39 @@ public class AnimalProfileController {
     primaryStage.show();
   }
 
+  /**
+   * The initialize method in the Animal Profile Controller class sets the animal's information when
+   * the program is started. An animals information is contained within the Animal table in the
+   * database, and when an animal is selected, that animal's information is loaded onto the screen.
+   */
   public void initialize() {
     profileEditable();
+    DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("MM/dd/yyyy").withZone(
+        ZoneId.systemDefault());
     Animal animal = Database.getCurrentAnimal();
-    /*if (!animal.getVaccines().isEmpty()) {
-      ObservableList<Vaccine> vaccines = FXCollections.observableArrayList(animal.getVaccines());
-      setAnimalVaccine(vaccines);
-    }*/
     animNameText.setText(animal.getName());
     animSpeciesText.setText((animal.getSpecies()));
     animAggressText.setText(animal.getAggression().toString());
     animBathroomText.setText(animal.getBathroomTraining().toString());
     animBioText.setText(animal.getDescription());
-    animBirthdayText.setText(animal.getDateOfBirth().toString());
+    animBirthdayText.setText(formatDate.format(animal.getDateOfBirth()));
     animBreedText.setText(animal.getBreedString());
     animColorText.setText((animal.getColorString()));
+
     animAdoptedText.setText(animal.isAdopted() ? "✓" : "X");
 
     String adoptedDate = "N/A";
 
     if (animal.getDateAdopted() != null) {
-      adoptedDate = animal.getDateAdopted().toString();
+      adoptedDate = formatDate.format(animal.getDateAdopted());
     }
 
     animDateAdoptedText.setText(adoptedDate);
-    animDateArrivedText.setText((animal.getDateArrived().toString()));
+    animDateArrivedText.setText(formatDate.format(animal.getDateArrived()));
     animGenderText.setText(String.valueOf(animal.getGender()));
-    animHeightText.setText(String.valueOf(animal.getHeight()));
+    animHeightText.setText(animal.getHeight() + " m");
     animIDText.setText(String.valueOf(animal.getId()));
     animServiceText.setText(String.valueOf(animal.isServiceTrained()));
-    animWeightText.setText(String.valueOf(animal.getWeight()));
+    animWeightText.setText(animal.getWeight() + " kg");
   }
 }

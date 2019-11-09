@@ -9,9 +9,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="429.0" prefWidth="326.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="adoptionPage.AdoptionPageController">
+<AnchorPane prefHeight="429.0" prefWidth="326.0" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="adoptionPage.AdoptionPageController">
    <children>
-      <Button fx:id="returnBtn" layoutX="97.0" layoutY="23.0" mnemonicParsing="false" onAction="#returnToMenu" text="Return To main Menu" />
+      <Button fx:id="returnBtn" layoutX="97.0" layoutY="23.0" mnemonicParsing="false" onAction="#returnToMenu" text="Return To Animal List" />
       <GridPane layoutX="20.0" layoutY="105.0" prefHeight="101.0" prefWidth="286.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.0" minWidth="10.0" prefWidth="111.0" />
@@ -64,7 +64,7 @@
             </Text>
          </children>
       </GridPane>
-      <Text layoutX="38.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adoption your new friend!" textAlignment="CENTER" wrappingWidth="250.13671875">
+      <Text layoutX="38.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adopt your new friend!" textAlignment="CENTER" wrappingWidth="250.13671875">
          <font>
             <Font name="Times New Roman Bold" size="20.0" />
          </font>
