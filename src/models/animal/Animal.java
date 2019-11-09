@@ -1,5 +1,6 @@
 package models.animal;
 
+import com.sun.istack.internal.Nullable;
 import java.time.Instant;
 import java.util.List;
 
@@ -12,11 +13,14 @@ public class Animal {
   private List<Color> colors;
   private boolean adopted;
   private Instant dateArrived;
+
+  //May be null if this animal hasn't been adopted yet.
+  @Nullable
   private Instant dateAdopted;
   private Instant dateOfBirth;
   private boolean serviceTrained;
-  private float weight; //in kg
-  private float height;
+  private float weight; //in pounds
+  private float height; //in inches
   private List<String> breeds;
   private List<Trick> tricks;
   private Proficiency bathroomTraining;
@@ -432,7 +436,7 @@ public class Animal {
     String theBreeds = "";
     //loop through colors, add their name, a separator and add it into string
     for(String breed : breeds){
-      theBreeds += breed.toString();
+      theBreeds += breed;
       theBreeds += "|";
     }
     return theBreeds;

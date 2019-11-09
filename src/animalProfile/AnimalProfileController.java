@@ -1,7 +1,5 @@
 package animalProfile;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -137,7 +135,15 @@ public class AnimalProfileController {
     animBirthdayText.setText(animal.getDateOfBirth().toString());
     animBreedText.setText(animal.getBreedString());
     animColorText.setText((animal.getColorString()));
-    animDateAdoptedText.setText(animal.getDateAdopted().toString());
+    animAdoptedText.setText(animal.isAdopted() ? "✓" : "X");
+
+    String adoptedDate = "N/A";
+
+    if (animal.getDateAdopted() != null) {
+      adoptedDate = animal.getDateAdopted().toString();
+    }
+
+    animDateAdoptedText.setText(adoptedDate);
     animDateArrivedText.setText((animal.getDateArrived().toString()));
     animGenderText.setText(String.valueOf(animal.getGender()));
     animHeightText.setText(String.valueOf(animal.getHeight()));

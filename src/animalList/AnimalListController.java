@@ -107,7 +107,12 @@ public class AnimalListController {
   }
 
   @FXML
-  void createAnimal(ActionEvent event) {
-
+  void createAnimal(ActionEvent event) throws Exception {
+    Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    Parent root = FXMLLoader
+        .load(getClass().getResource("../newanimal/NewAnimal.fxml"));
+    primaryStage.setTitle("New Animal");
+    primaryStage.setScene(new Scene(root));
+    primaryStage.show();
   }
 }

@@ -154,7 +154,14 @@ public class Database {
       statement.setString(5, animal.getColorString());
       statement.setBoolean(6, animal.isAdopted());
       statement.setTimestamp(7, Timestamp.from(animal.getDateArrived()));
-      statement.setTimestamp(8, Timestamp.from(animal.getDateAdopted()));
+
+      Timestamp dateAdopted = null;
+      if (animal.getDateAdopted() != null) {
+        dateAdopted = Timestamp.from(animal.getDateAdopted());
+      }
+
+      statement.setTimestamp(8, dateAdopted);
+
       statement.setTimestamp(9, Timestamp.from(animal.getDateOfBirth()));
       statement.setBoolean(10, animal.isServiceTrained());
       statement.setFloat(11, animal.getWeight());
@@ -190,7 +197,7 @@ public class Database {
     String SQL = "UPDATE Animal SET name = ?, species = ?, description = ?,"
         + "gender = ?, colors = ?, adopted = ?, dateArrived = ?, dateAdopted = ?,"
         + "dateOfBirth = ?, serviceTrained = ?, weight = ?, height = ?, breeds = ?,"
-        + "bathroomTraining = ?, aggression = ?";
+        + "bathroomTraining = ?, aggression = ? WHERE Animal.id=?";
     try {
       PreparedStatement ps = conn.prepareStatement(SQL);
       // Name
@@ -223,6 +230,7 @@ public class Database {
       ps.setBoolean(14, animal.isServiceTrained());
       // Aggression level
       ps.setString(15, animal.getAggression().toString());
+      ps.setInt(16, animal.getId());
       //Execute Query
       ps.executeUpdate();
     } catch (SQLException ex) {
@@ -713,7 +721,7 @@ public class Database {
    * `*` in order to get all columns of the VolunteerApplication table
    *
    * @param sql The query to be executed.
-   * @return A list of VolunterApplications and the result of the given SQL query
+   * @return A list of VolunteerApplications and the result of the given SQL query
    */
   private List<VolunteerApplicationWithUser> doVolunteerApplicationQuery(String sql) {
     List<VolunteerApplicationWithUser> applications = new ArrayList<>();
@@ -837,7 +845,14 @@ public class Database {
     String f = rs.getString("colors"); // colors is a List of enum color
     boolean g = rs.getBoolean("adopted");
     Instant h = rs.getTimestamp("dateArrived").toInstant();
-    Instant i = rs.getTimestamp("dateAdopted").toInstant();
+
+    Timestamp dateAdopted = rs.getTimestamp("dateAdopted");
+    Instant i = null;
+
+    if (dateAdopted != null) {
+      i = rs.getTimestamp("dateAdopted").toInstant();
+    }
+
     Instant j = rs.getTimestamp("dateOfBirth").toInstant();
     boolean k = rs.getBoolean("serviceTrained");
     float l = rs.getFloat("weight");
