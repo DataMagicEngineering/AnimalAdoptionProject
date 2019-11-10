@@ -331,7 +331,7 @@ public class Database {
    */
   public boolean processAdoptionRequest(User user, AdoptionRequest request) {
     // Make sure this user has permission to do this.
-    if (user.getPrivileges() == AuthorizationLevel.BASIC) {
+    if (currentUser.getPrivileges() == AuthorizationLevel.BASIC) {
       return false;
     }
 

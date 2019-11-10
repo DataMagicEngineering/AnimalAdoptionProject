@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 <AnchorPane prefHeight="362.0" prefWidth="463.0" stylesheets="@../mainCSS.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="registeruser.RegisterUserController">
    <children>
       <Line endX="100.0" fill="BLACK" layoutX="231.0" layoutY="82.0" scaleX="2.0" startX="-100.0" strokeMiterLimit="20.0" strokeWidth="3.0" />
@@ -80,16 +85,16 @@
                   <Insets right="5.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="newUserPasswordTextFld" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <PasswordField fx:id="newUserPasswordTextFld" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets right="5.0" />
                </GridPane.margin>
-            </TextField>
-            <TextField fx:id="newUserRePasswordTextFld" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            </PasswordField>
+            <PasswordField fx:id="newUserRePasswordTextFld" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets right="5.0" />
                </GridPane.margin>
-            </TextField>
+            </PasswordField>
          </children>
       </GridPane>
       <Button fx:id="newUserSubmitButton" layoutX="222.0" layoutY="306.0" mnemonicParsing="false" onAction="#registerUser" prefHeight="35.0" prefWidth="104.0" text="Submit">

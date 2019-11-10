@@ -7,7 +7,6 @@ public class Employee extends User {
    * Default Constructor for an Employee object, which sets their privilege level to administration.
    */
   public Employee() {
-
     privileges = AuthorizationLevel.ADMINISTRATION;
   }
 
