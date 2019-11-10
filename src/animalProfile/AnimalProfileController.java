@@ -122,8 +122,6 @@ public class AnimalProfileController {
     primaryStage.setTitle("Adoption Page");
     primaryStage.setScene(new Scene(root));
     primaryStage.show();
-
-    Database.setCurrentAnimal(null);
   }
 
   /**

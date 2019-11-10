@@ -36,6 +36,8 @@ public class ConfirmPage {
     primaryStage.setTitle("Adoption Apps");
     primaryStage.setScene(new Scene(root));
     primaryStage.show();
+
+    Database.setCurrentAnimal(null);
   }
 
   public void goToMain(ActionEvent actionEvent) throws IOException {
@@ -55,6 +57,8 @@ public class ConfirmPage {
       primaryStage.setScene(new Scene(root));
       primaryStage.show();
     }
+
+    Database.setCurrentAnimal(null);
   }
 
   public void goToAnimalList(ActionEvent actionEvent) throws IOException {
@@ -64,5 +68,7 @@ public class ConfirmPage {
     primaryStage.setTitle("Main Screen");
     primaryStage.setScene(new Scene(root));
     primaryStage.show();
+
+    Database.setCurrentAnimal(null);
   }
 }
