@@ -26,6 +26,11 @@ import models.application.VolunteerApplicationWithUser;
 import models.questions.QuestionWithUser;
 import models.user.AuthorizationLevel;
 
+/**
+ * Controller for the Employee Dashboard, which contains all scenes and functionslity that a user
+ * with employee privileges are allowed to do.
+ * @author The Data Magic Engineering Team
+ */
 public class EmployeeDashboardController {
 
   private static Database database = Database.get();
@@ -100,6 +105,11 @@ public class EmployeeDashboardController {
   private ListView<AdoptionWithAnimal> processedAdoptionsList;
 
 
+  /**
+   * The initialize method displays the user's name and status on startup. If the user is not an
+   * employee, the volunteer applications tab and the adoption applications are both disabled.
+   * The answer question text box and button are also disabled.
+   */
   public void initialize() {
     dashLoginLbl.setText(
         "Welcome " + Database.getCurrentUser().getLastName() + ", " + Database.getCurrentUser()
@@ -120,6 +130,12 @@ public class EmployeeDashboardController {
     updateAdoptionsPage();
   }
 
+  /**
+   * Method that logs out the user. When the button is pressed, the scene switched back to the
+   * login screen.
+   * @param actionEvent gets the Source, Scene, and Window of the Login Screen scene.
+   * @throws Exception since the code has a potential to contain any Exception.
+   */
   @FXML
   void logOut(ActionEvent actionEvent) throws Exception{
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -129,6 +145,11 @@ public class EmployeeDashboardController {
     primaryStage.show();
   }
 
+  /**
+   * Method that allows employees to answer questions. An employee can select a question, respond
+   * to the question in the answer question text box, and submit the response.
+   * @param event an ActionEvent.
+   */
   @FXML
   private void answerQuestion(ActionEvent event) {
     // sets the answer to the Question
@@ -143,13 +164,19 @@ public class EmployeeDashboardController {
         unanwQuestionList.getSelectionModel().getSelectedItem().getQuestion());
   }
 
+  /**
+   * Method that populates an ObservableList of type "QuestionWithUser" with answered questions.
+   */
   private void setUpAnsweredList() {
-    ObservableList<QuestionWithUser> answeredQustions = FXCollections
+    ObservableList<QuestionWithUser> answeredQuestions = FXCollections
         .observableArrayList(database.getAnsweredQuestions());
 
-    ans.setItems(answeredQustions);
+    ans.setItems(answeredQuestions);
   }
 
+  /**
+   * Method that populates an ObservableList of type "QuestionWithUser" with unanswered questions.
+   */
   private void setUpUnansweredList() {
     ObservableList<QuestionWithUser> unansweredQuestions = FXCollections
         .observableArrayList(database.getUnansweredQuestions());
@@ -157,6 +184,10 @@ public class EmployeeDashboardController {
     unanwQuestionList.setItems(unansweredQuestions);
   }
 
+  /**
+   * Method that displays processed questions with the replies to the user's questions.
+   * @param event a MouseEvent.
+   */
   @FXML
   void requestAnswer(MouseEvent event) {
     QuestionWithUser selectedQuestion = ans.getSelectionModel().getSelectedItem();
@@ -171,6 +202,11 @@ public class EmployeeDashboardController {
     }
   }
 
+  /**
+   * Method that switches the scene to the Animal List.
+   * @param actionEvent gets the Source, Scene, and Window of the Animal List scene.
+   * @throws IOException since the code has a potential to contain an IOException.
+   */
   @FXML
   public void goToAnimalScreen(ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -181,6 +217,9 @@ public class EmployeeDashboardController {
     primaryStage.show();
   }
 
+  /**
+   *
+   */
   private void setupVolunteerApplicationsPage() {
     unprocessedVolunteerApplicationsList.selectionModelProperty().addListener(
         (observableValue, oldValue, newValue) -> {
@@ -194,6 +233,10 @@ public class EmployeeDashboardController {
     updateVolunteerApplicationsPage();
   }
 
+  /**
+   * Method which populates a List of type "VolunteerApplicationWithUser", which is used to store
+   * both unprocessed and processed volunteer applications.
+   */
   private void updateVolunteerApplicationsPage() {
     List<VolunteerApplicationWithUser> processedApplications = database
         .getProcessedVolunteerApplications();
@@ -205,6 +248,11 @@ public class EmployeeDashboardController {
         .setItems(FXCollections.observableArrayList(processedApplications));
   }
 
+  /**
+   * Method that switches scenes to the "Events" page.
+   * @param actionEvent gets the Source, Scene, and Window of the Events scene.
+   * @throws IOException since the code has a potential to contain any Exception.
+   */
   @FXML
   public void goToEventsPage(ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -215,6 +263,11 @@ public class EmployeeDashboardController {
     primaryStage.show();
   }
 
+  /**
+   * Method which switches scenes to the "Record Logs" page.
+   * @param actionEvent gets the Source, Scene, and Window of the "Record Logs" scene.
+   * @throws IOException since the code has a potential to contain any Exception.
+   */
   @FXML
   public void goToRecordLog(ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -225,6 +278,10 @@ public class EmployeeDashboardController {
     primaryStage.show();
   }
 
+  /**
+   * Method which processes a volunteer application by approving it and moving it to the
+   * "Processed Applications" tab in the Volunteer Applications tab.
+   */
   public void approveVolunteerRequest() {
     for (VolunteerApplicationWithUser selectedRequests : unprocessedVolunteerApplicationsList
         .getSelectionModel().getSelectedItems()) {
@@ -234,6 +291,10 @@ public class EmployeeDashboardController {
     updateVolunteerApplicationsPage();
   }
 
+  /**
+   * Method which processes a volunteer application by rejecting it and moving it to the
+   * "Processed Applications" tab in the Volunteer Applications tab.
+   */
   public void rejectVolunteerRequest() {
     for (VolunteerApplicationWithUser selectedRequests : unprocessedVolunteerApplicationsList
         .getSelectionModel().getSelectedItems()) {
@@ -243,6 +304,10 @@ public class EmployeeDashboardController {
     updateVolunteerApplicationsPage();
   }
 
+  /**
+   * Method which populates a List of type "AdoptionWithAnimal" that contains both processed and
+   * unprocessed applications.
+   */
   private void updateAdoptionsPage() {
     List<AdoptionWithAnimal> unprocessedAdoptionApplications = database
         .getUnprocessedAdoptionRequests();
@@ -255,6 +320,10 @@ public class EmployeeDashboardController {
     processedAdoptionsList.setItems(FXCollections.observableList(processedAdoptionApplications));
   }
 
+  /**
+   * Method which processes an adoption application by approving it and moving it to the
+   * "Processed Applications" tab in the Adoption Application tab.
+   */
   public void approveAdoptionRequest() {
     for (AdoptionWithAnimal request : unprocessedAdoptionsList.getSelectionModel()
         .getSelectedItems()) {
@@ -266,6 +335,10 @@ public class EmployeeDashboardController {
     updateAdoptionsPage();
   }
 
+  /**
+   * Method which processes an adoption application by rejecting it and moving it to the
+   * "Processed Applications" tab in the Adoption Application tab.
+   */
   public void rejectAdoptionRequest() {
     for (AdoptionWithAnimal request : unprocessedAdoptionsList.getSelectionModel()
         .getSelectedItems()) {
