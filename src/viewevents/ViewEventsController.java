@@ -32,11 +32,48 @@ public class ViewEventsController {
   @FXML
   private ListView<Event> listViewEvents;
 
+  @FXML
+  private Button addEventBtn;
+
+  @FXML
+  private Button editEventBtn;
+
   public void initialize() {
     Database database = Database.get();
     ObservableList<Event> events = FXCollections.observableArrayList(database.getEvents());
 
+    User user = Database.getCurrentUser();
+
     listViewEvents.setItems(events);
+
+    if (user.getPrivileges() == AuthorizationLevel.BASIC) {
+      addEventBtn.setDisable(true);
+      addEventBtn.setVisible(false);
+      editEventBtn.setVisible(false);
+      editEventBtn.setDisable(true);
+    }
+  }
+
+  @FXML
+  void addEvent(ActionEvent event) throws Exception {
+    Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    Parent root = FXMLLoader
+        .load(getClass().getResource("../newevent/NewEvent.fxml"));
+    primaryStage.setTitle("Creat an Event");
+    primaryStage.setScene(new Scene(root));
+    primaryStage.show();
+  }
+
+  @FXML
+  void editEvent(ActionEvent event) throws Exception {
+    Database.setCurrentEvent(listViewEvents.getSelectionModel().getSelectedItem());
+
+    Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    Parent root = FXMLLoader
+        .load(getClass().getResource("../newevent/NewEvent.fxml"));
+    primaryStage.setTitle("Edit an Event");
+    primaryStage.setScene(new Scene(root));
+    primaryStage.show();
   }
 
   /**

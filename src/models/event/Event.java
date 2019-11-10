@@ -101,7 +101,7 @@ public class Event {
         + "Date: %s\n"
         + "Description: %s";
     DateTimeFormatter formatDate;
-    formatDate = DateTimeFormatter.ofPattern("EEEE, MMM dd, yyyy").withZone(EST);
+    formatDate = DateTimeFormatter.ofPattern("EEEE, MMM dd, yyyy @ hh:mm a").withZone(EST);
     return String.format(format, getName(), formatDate.format(getDate()), getDescription());
   }
 }

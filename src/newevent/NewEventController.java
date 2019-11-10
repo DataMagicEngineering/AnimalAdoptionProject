@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.time.chrono.Chronology;
+import java.time.format.DateTimeFormatter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -78,6 +80,30 @@ public class NewEventController {
         timeOfDayToggle.setText("AM");
       }
     });
+
+    if (Database.getCurrentEvent() != null) {
+      Event event = Database.getCurrentEvent();
+
+      eventTitleInput.setText(event.getName());
+      eventDatePicker.setChronology(Chronology.from(event.getDate()));
+      eventDescriptionInput.setText(event.getDescription());
+      timeInput.setText(event.getDateTime().getHour() + ":" + event.getDateTime().getMinute());
+      if (event.getDateTime().getHour() > 11) {
+        timeOfDayToggle.setText("PM");
+        timeOfDayToggle.setSelected(true);
+      }
+      switch (event.getTargetAudience()) {
+        case ADMINISTRATION:
+          radioEmployees.setSelected(true);
+          break;
+        case VOLUNTEER:
+          radioVolunteers.setSelected(true);
+          break;
+        case BASIC:
+          radioCustomers.setSelected(true);
+          break;
+      }
+    }
   }
 
   public void createEvent() {
@@ -121,6 +147,11 @@ public class NewEventController {
     LocalDateTime eventDateAndTime = LocalDateTime.of(eventDate, LocalTime.of(hour, minutes));
 
     Event newEvent = new Event();
+
+    if (Database.getCurrentEvent() != null) {
+      newEvent = Database.getCurrentEvent();
+    }
+
     ZoneId EST = Event.EST;
 
     newEvent.setName(eventTitleInput.getText());
@@ -129,10 +160,18 @@ public class NewEventController {
     newEvent.setDescription(eventDescriptionInput.getText());
     newEvent.setPublished(publishEventToggle.isSelected());
 
-    if (database.addEvent(newEvent)) {
-      System.out.println("Event successfully saved!");
+    if (Database.getCurrentEvent() != null) {
+      if (database.updateEvent(newEvent)) {
+        System.out.println("Event successfully saved!");
+      } else {
+        System.out.println("Error saving event.");
+      }
     } else {
-      System.out.println("Error saving event.");
+      if (database.addEvent(newEvent)) {
+        System.out.println("Event successfully saved!");
+      } else {
+        System.out.println("Error saving event.");
+      }
     }
   }
 
@@ -183,12 +222,13 @@ public class NewEventController {
   }
 
   public void goBackToScreen(ActionEvent actionEvent) throws IOException {
-      Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-      Parent root = FXMLLoader
-          .load(getClass().getResource("../employeedashboard/EmployeeDashboard.fxml"));
-      primaryStage.setTitle("Dashboard");
-      primaryStage.setScene(new Scene(root));
-      primaryStage.show();
+    Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+    Parent root = FXMLLoader
+        .load(getClass().getResource("../employeedashboard/EmployeeDashboard.fxml"));
+    primaryStage.setTitle("Dashboard");
+    primaryStage.setScene(new Scene(root));
+    primaryStage.show();
 
+    Database.setCurrentEvent(null);
   }
 }
