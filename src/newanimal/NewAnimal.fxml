@@ -10,124 +10,136 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
-<VBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171"
-  xmlns:fx="http://javafx.com/fxml/1" fx:controller="newanimal.NewAnimalController">
 
-  <GridPane maxWidth="Infinity" prefWidth="Infinity" hgap="6" vgap="8">
+<VBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="newanimal.NewAnimalController">
+
+  <GridPane hgap="6" maxWidth="Infinity" prefWidth="Infinity" vgap="8">
     <VBox GridPane.columnIndex="0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0">
-      <Label text="Name"/>
-      <TextField fx:id="nameInput"/>
+      <Label text="Name" />
+      <TextField fx:id="nameInput" />
     </VBox>
 
     <VBox GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0">
-      <Label text="Vaccines"/>
-      <TextField fx:id="vaccineInput"/>
+      <Label text="Vaccines" />
+      <TextField fx:id="vaccineInput" />
     </VBox>
 
     <VBox GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0">
-      <Label text="Species"/>
-      <TextField fx:id="speciesInput"/>
+      <Label text="Species" />
+      <TextField fx:id="speciesInput" />
     </VBox>
 
 
     <VBox GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0">
-      <Label text="Breeds"/>
-      <TextField fx:id="breedsInput"/>
+      <Label text="Breeds" />
+      <TextField fx:id="breedsInput" />
     </VBox>
 
 
-    <VBox GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.hgrow="ALWAYS">
-      <Label text="Weight (lbs)"/>
-      <TextField fx:id="weightInput" minWidth="-Infinity" prefWidth="0"/>
+    <VBox GridPane.columnIndex="0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
+      <Label text="Weight (lbs)" />
+      <TextField fx:id="weightInput" minWidth="-Infinity" prefWidth="0" />
 
     </VBox>
 
-    <VBox GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.hgrow="ALWAYS">
-      <Label text="Height (in)"/>
-      <TextField fx:id="heightInput" minWidth="-Infinity" prefWidth="0"/>
+    <VBox GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
+      <Label text="Height (in)" />
+      <TextField fx:id="heightInput" minWidth="-Infinity" prefWidth="0" />
     </VBox>
 
-    <VBox GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="1">
-      <Label text="Aggression:"/>
-      <Text fx:id="currentAggression"/>
-      <Slider fx:id="aggressionSlider"/>
+    <VBox GridPane.columnIndex="0" GridPane.columnSpan="1" GridPane.rowIndex="2">
+      <Label text="Aggression:" />
+      <Text fx:id="currentAggression" />
+      <Slider fx:id="aggressionSlider" />
     </VBox>
 
     <VBox GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
-      <Label text="Tricks"/>
-      <TextField fx:id="tricksInput"/>
+      <Label text="Tricks" />
+      <TextField fx:id="tricksInput" />
     </VBox>
 
-    <VBox GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.hgrow="ALWAYS">
-      <Label text="Date of Birth"/>
-      <DatePicker fx:id="dateOfBirth"/>
+    <VBox GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
+      <Label text="Date of Birth" />
+      <DatePicker fx:id="dateOfBirth" />
     </VBox>
 
-    <HBox GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2"
-      GridPane.columnSpan="2">
+    <HBox GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2">
       <VBox>
-        <Label text="Bathroom Training"/>
+        <Label text="Bathroom Training" />
 
         <ComboBox fx:id="bathroomTrainingBox">
           <HBox.margin>
-            <Insets left="16"/>
+            <Insets left="16" />
           </HBox.margin>
         </ComboBox>
       </VBox>
 
       <VBox GridPane.hgrow="ALWAYS">
-        <Label text="Gender:"/>
-        <ToggleButton text="Female" fx:id="genderToggle"/>
+        <Label text="Gender:" />
+        <ToggleButton fx:id="genderToggle" text="Female" />
 
         <HBox.margin>
-          <Insets left="16"/>
+          <Insets left="16" />
         </HBox.margin>
       </VBox>
 
       <VBox.margin>
-        <Insets bottom="8"/>
+        <Insets bottom="8" />
       </VBox.margin>
 
     </HBox>
 
     <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
-      <Label text="Service Training"/>
-      <ToggleButton fx:id="serviceTrainingToggle" text="No"/>
+      <Label text="Service Training" />
+      <ToggleButton fx:id="serviceTrainingToggle" text="No" />
     </VBox>
 
-    <VBox GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.columnSpan="2"
-      GridPane.rowSpan="2">
-      <Label text="Color"/>
-      <ListView VBox.vgrow="ALWAYS" fx:id="colorsList">
+    <VBox GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
+      <Label text="Color" />
+      <ListView fx:id="colorsList" VBox.vgrow="ALWAYS">
       </ListView>
     </VBox>
 
-    <VBox GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.columnSpan="2"
-      GridPane.rowSpan="2">
+    <VBox GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
 
-      <Label text="Description"/>
-      <TextArea fx:id="descriptionInput"/>
+      <Label text="Description" />
+      <TextArea fx:id="descriptionInput" />
     </VBox>
+      <columnConstraints>
+         <ColumnConstraints />
+         <ColumnConstraints />
+         <ColumnConstraints />
+         <ColumnConstraints />
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+      </rowConstraints>
   </GridPane>
 
   <HBox alignment="BOTTOM_RIGHT" VBox.vgrow="ALWAYS">
-    <Button text="Cancel" onAction="#cancelCreation">
+    <Button onAction="#cancelCreation" text="Cancel">
       <HBox.margin>
-        <Insets right="8"/>
+        <Insets right="8" />
       </HBox.margin>
     </Button>
-    <Button text="Create" onAction="#createAnimal"/>
+    <Button fx:id="createBtn" onAction="#createAnimal" text="Create" />
 
     <padding>
-      <Insets top="8"/>
+      <Insets top="8" />
     </padding>
   </HBox>
 
   <padding>
-    <Insets bottom="32" left="32" right="32" top="32"/>
+    <Insets bottom="32" left="32" right="32" top="32" />
   </padding>
 </VBox>

@@ -130,8 +130,13 @@ public class AnimalProfileController {
    * @param event The ActionEvent that gets the Source, Scene, and Window.
    */
   @FXML
-  void goToEdit(ActionEvent event) {
-
+  void goToEdit(ActionEvent event) throws Exception {
+    Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    Parent root = FXMLLoader
+        .load(getClass().getResource("../newanimal/NewAnimal.fxml"));
+    primaryStage.setTitle("Edit " + Database.getCurrentAnimal().getName());
+    primaryStage.setScene(new Scene(root));
+    primaryStage.show();
   }
 
   /**
@@ -148,6 +153,8 @@ public class AnimalProfileController {
     primaryStage.setTitle("Animal List");
     primaryStage.setScene(new Scene(root));
     primaryStage.show();
+
+    Database.setCurrentAnimal(null);
   }
 
   /**
@@ -182,9 +189,9 @@ public class AnimalProfileController {
 
     String gender = animal.getGender() == 'M' ? "Male" : "Female";
     animGenderText.setText(gender);
-    animHeightText.setText(animal.getHeight() + " m");
+    animHeightText.setText(animal.getHeight() + " in");
     animIDText.setText(String.valueOf(animal.getId()));
     animServiceText.setText(animal.isServiceTrained() ? "✓" : "X");
-    animWeightText.setText(animal.getWeight() + " kg");
+    animWeightText.setText(animal.getWeight() + " lb");
   }
 }
