@@ -132,6 +132,8 @@ public class AnimalListController {
    */
   @FXML
   void createAnimal(ActionEvent event) throws Exception {
+    Database.setCurrentAnimal(null);
+
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
         .load(getClass().getResource("../newanimal/NewAnimal.fxml"));
