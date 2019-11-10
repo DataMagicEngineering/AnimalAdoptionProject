@@ -5,4 +5,8 @@ package models.user;
  */
 public class Customer extends User {
   protected boolean isVolunteer;
+
+  public Customer() {
+    privileges = AuthorizationLevel.BASIC;
+  }
 }
