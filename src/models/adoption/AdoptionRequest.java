@@ -131,4 +131,13 @@ public class AdoptionRequest {
   public void setDateApproved(Instant dateApproved) {
     this.dateApproved = dateApproved;
   }
+
+  /**
+   * Returns true if this request has been processed, meaning that the dateApproved is not
+   * null.
+   * @return true if this request has been processed, else false.
+   */
+  public boolean isProcessed() {
+    return dateApproved != null;
+  }
 }

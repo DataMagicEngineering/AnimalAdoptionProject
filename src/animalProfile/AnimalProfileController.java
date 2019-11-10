@@ -167,7 +167,7 @@ public class AnimalProfileController {
     animBioText.setText(animal.getDescription());
     animBirthdayText.setText(formatDate.format(animal.getDateOfBirth()));
     animBreedText.setText(animal.getBreedString());
-    animColorText.setText((animal.getColorString()));
+    animColorText.setText((animal.getColorString().replace('|', ' ')));
 
     animAdoptedText.setText(animal.isAdopted() ? "✓" : "X");
 
@@ -179,10 +179,12 @@ public class AnimalProfileController {
 
     animDateAdoptedText.setText(adoptedDate);
     animDateArrivedText.setText(formatDate.format(animal.getDateArrived()));
-    animGenderText.setText(String.valueOf(animal.getGender()));
+
+    String gender = animal.getGender() == 'M' ? "Male" : "Female";
+    animGenderText.setText(gender);
     animHeightText.setText(animal.getHeight() + " m");
     animIDText.setText(String.valueOf(animal.getId()));
-    animServiceText.setText(String.valueOf(animal.isServiceTrained()));
+    animServiceText.setText(animal.isServiceTrained() ? "✓" : "X");
     animWeightText.setText(animal.getWeight() + " kg");
   }
 }

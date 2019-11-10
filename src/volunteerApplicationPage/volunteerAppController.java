@@ -11,7 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import main.Database;
-import models.user.AuthorizationLevel;
 
 public class volunteerAppController {
 
@@ -27,7 +26,9 @@ public class volunteerAppController {
    * @throws IOException
    * @author Emily Schwarz and Luis Hernandez
    */
-  public void submitVolApp(javafx.event.ActionEvent actionEvent) throws IOException {
+  public void submitVolApp(ActionEvent actionEvent) throws IOException {
+    Database.get().applyForVolunteer(Database.getCurrentUser());
+
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
         .load(getClass().getResource("../volunteerApplicationPage/volunteerSuccess.fxml"));
