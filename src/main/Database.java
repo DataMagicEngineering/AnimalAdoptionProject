@@ -983,6 +983,7 @@ public class Database {
     myPet.setBreeds(forBreeds);
     myPet.setBathroomTraining(aniProf);
     myPet.setAggression(petAnger);
+    myPet.setTricks(new ArrayList<>());
 
     return myPet;
   }
