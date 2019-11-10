@@ -111,6 +111,9 @@ public class EmployeeDashboardController {
    * The answer question text box and button are also disabled.
    */
   public void initialize() {
+    answerTxt.setText("");
+    answerAuthorTxt.setText("");
+
     dashLoginLbl.setText(
         "Welcome " + Database.getCurrentUser().getLastName() + ", " + Database.getCurrentUser()
             .getFirstName() + "!");
@@ -162,6 +165,13 @@ public class EmployeeDashboardController {
     // adds the data to the database
     database.answerQuestion(Database.getCurrentUser(),
         unanwQuestionList.getSelectionModel().getSelectedItem().getQuestion());
+
+    updateQuestions();
+  }
+
+  private void updateQuestions() {
+    setUpAnsweredList();
+    setUpUnansweredList();
   }
 
   /**
@@ -343,6 +353,7 @@ public class EmployeeDashboardController {
     for (AdoptionWithAnimal request : unprocessedAdoptionsList.getSelectionModel()
         .getSelectedItems()) {
       request.getRequest().setApproved(false);
+      request.getRequest().setDateApproved(Instant.now());
       database.processAdoptionRequest(request.getAdopter(), request.getRequest());
     }
 
