@@ -50,8 +50,11 @@ import models.user.Volunteer;
 public class Database {
 
   private static Database thisDb;
+
   private static User currentUser;
   private static Animal currentAnimal;
+  private static Event currentEvent;
+
   private Connection conn;
 
   private Database() {
@@ -1037,5 +1040,8 @@ public class Database {
     }
   }
 
+  public static Event getCurrentEvent() {
+    return currentEvent;
+  }
 }
 

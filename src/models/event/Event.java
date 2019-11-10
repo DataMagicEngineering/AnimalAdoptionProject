@@ -97,7 +97,7 @@ public class Event {
   @Override
   public String toString() {
     String format =
-        "Event Name: %S\n"
+        "Event Name: %s\n"
         + "Date: %s\n"
         + "Description: %s";
     DateTimeFormatter formatDate;
