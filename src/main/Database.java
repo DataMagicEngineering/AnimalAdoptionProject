@@ -1043,5 +1043,9 @@ public class Database {
   public static Event getCurrentEvent() {
     return currentEvent;
   }
+
+  public static void setCurrentEvent(Event currentEvent) {
+    Database.currentEvent = currentEvent;
+  }
 }
 
