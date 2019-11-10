@@ -1,6 +1,5 @@
 package animalList;
 
-import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,9 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javax.xml.crypto.Data;
 import main.Database;
 import models.animal.Animal;
 import models.user.AuthorizationLevel;
@@ -73,17 +70,6 @@ public class AnimalListController {
   }
 
   /**
-   * Method that sets the current animal in the program to the animal that the user selects in the
-   * Table View.
-   *
-   * @param event a MouseEvent field.
-   */
-  @FXML
-  void selectAnimal(MouseEvent event) {
-    Database.setCurrentAnimal(animalsTableView.getSelectionModel().getSelectedItem());
-  }
-
-  /**
    * Method which sets the scene to the Main Menu.
    *
    * @param event an ActionEvent that gets the source, scene, and window of the program.
@@ -117,6 +103,8 @@ public class AnimalListController {
    */
   @FXML
   void goToAnimalProfile(ActionEvent event) throws Exception {
+    Database.setCurrentAnimal(animalsTableView.getSelectionModel().getSelectedItem());
+
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
         .load(getClass().getResource("../animalProfile/AnimalProfile.fxml"));
