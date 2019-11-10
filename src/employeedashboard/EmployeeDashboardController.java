@@ -280,6 +280,7 @@ public class EmployeeDashboardController {
     for (AdoptionWithAnimal request : unprocessedAdoptionsList.getSelectionModel()
         .getSelectedItems()) {
       request.getRequest().setApproved(false);
+      request.getRequest().setDateApproved(Instant.now());
       database.processAdoptionRequest(request.getAdopter(), request.getRequest());
     }
 
