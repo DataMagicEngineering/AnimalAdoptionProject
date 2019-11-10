@@ -101,6 +101,9 @@ public class EmployeeDashboardController {
 
 
   public void initialize() {
+    answerTxt.setText("");
+    answerAuthorTxt.setText("");
+
     dashLoginLbl.setText(
         "Welcome " + Database.getCurrentUser().getLastName() + ", " + Database.getCurrentUser()
             .getFirstName() + "!");
@@ -141,6 +144,13 @@ public class EmployeeDashboardController {
     // adds the data to the database
     database.answerQuestion(Database.getCurrentUser(),
         unanwQuestionList.getSelectionModel().getSelectedItem().getQuestion());
+
+    updateQuestions();
+  }
+
+  private void updateQuestions() {
+    setUpAnsweredList();
+    setUpUnansweredList();
   }
 
   private void setUpAnsweredList() {
