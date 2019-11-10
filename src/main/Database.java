@@ -650,16 +650,16 @@ public class Database {
     }
 
     String query = "UPDATE Event "
-        + "SET (name, date, published, targetAudience, description)=(?, ?, ?, ?, ?, ?) "
+        + "SET (name, date, published, targetAudience, description)=(?, ?, ?, ?, ?) "
         + "WHERE id=?";
 
     try (PreparedStatement statement = conn.prepareStatement(query)) {
-      statement.setString(2, event.getName());
-      statement.setTimestamp(3, Timestamp.from(event.getDate()));
-      statement.setBoolean(4, event.isPublished());
-      statement.setInt(5, event.getTargetAudience().ordinal());
-      statement.setString(6, event.getDescription());
-      statement.setInt(7, event.getId());
+      statement.setString(1, event.getName());
+      statement.setTimestamp(2, Timestamp.from(event.getDate()));
+      statement.setBoolean(3, event.isPublished());
+      statement.setInt(4, event.getTargetAudience().ordinal());
+      statement.setString(5, event.getDescription());
+      statement.setInt(6, event.getId());
 
       statement.executeUpdate();
       return true;
