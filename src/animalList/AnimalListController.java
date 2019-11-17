@@ -1,5 +1,6 @@
 package animalList;
 
+import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,8 +10,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import main.Database;
@@ -27,14 +30,26 @@ import models.user.AuthorizationLevel;
 public class AnimalListController {
 
   private Database database = Database.get();
-  private ObservableList<Animal> Animals = FXCollections
+  private ObservableList<Animal> animals = FXCollections
       .observableArrayList(database.getAnimalList());
 
   @FXML
-  private TableColumn<?, ?> breedColumn;
+  private TextField searchTxtFld;
+
+  @FXML
+  private ChoiceBox<String> filterChoiceBox;
+
+  @FXML
+  private TableView<Animal> animalsTableView;
 
   @FXML
   private TableColumn<?, ?> nameColumn;
+
+  @FXML
+  private TableColumn<?, ?> speciesColumn;
+
+  @FXML
+  private TableColumn<?, ?> breedColumn;
 
   @FXML
   private Button returnToMain;
@@ -44,12 +59,6 @@ public class AnimalListController {
 
   @FXML
   private Button editAnimalButton;
-
-  @FXML
-  private TableColumn<?, ?> speciesColumn;
-
-  @FXML
-  private TableView<Animal> animalsTableView;
 
   /**
    * The Initialize method in the Animal List Controller sets the Cell Value Factories for the Table
@@ -61,12 +70,16 @@ public class AnimalListController {
     nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
     speciesColumn.setCellValueFactory(new PropertyValueFactory<>("species"));
     breedColumn.setCellValueFactory(new PropertyValueFactory<>("breedString"));
-    animalsTableView.setItems(Animals);
+    loadAnimalList(animals);
 
     if (Database.getCurrentUser().getPrivileges() != AuthorizationLevel.ADMINISTRATION) {
       editAnimalButton.setDisable(true);
       editAnimalButton.setVisible(false);
     }
+
+    filterChoiceBox.setItems(FXCollections.observableArrayList("Breed", "Species"));
+    filterChoiceBox.getSelectionModel().selectFirst();
+
   }
 
   /**
@@ -128,5 +141,28 @@ public class AnimalListController {
     primaryStage.setTitle("New Animal");
     primaryStage.setScene(new Scene(root));
     primaryStage.show();
+  }
+
+  @FXML
+  void applyFilter(ActionEvent event) {
+    ObservableList<Animal> filteredAnimals;
+    if (searchTxtFld != null) {
+      if (filterChoiceBox.getSelectionModel().getSelectedItem().equals("Breed")) {
+        filteredAnimals= FXCollections.observableArrayList(
+            animals.stream().filter(p -> p.getBreedString().toLowerCase().contains(searchTxtFld.getText().toLowerCase()))
+                .collect(Collectors.toList()));
+      } else {
+        filteredAnimals = FXCollections.observableArrayList(
+            animals.stream().filter(p -> p.getSpecies().toLowerCase().contains(searchTxtFld.getText().toLowerCase()))
+                .collect(Collectors.toList()));
+      }
+    } else {
+      filteredAnimals = FXCollections
+          .observableArrayList(database.getAnimalList());
+    }
+    loadAnimalList(filteredAnimals);
+  }
+  private void loadAnimalList(ObservableList<Animal> animals) {
+    animalsTableView.setItems(animals);
   }
 }
