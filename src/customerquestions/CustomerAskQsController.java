@@ -76,8 +76,9 @@ public class CustomerAskQsController {
     // Switches scenes to the confirmation page. (CURRENTLY SWITCHES BACK TO CUSTOMER DASHBOARD)
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../customerdashboard/CustomerDashboard.fxml"));
-    primaryStage.setTitle("Main Screen");
+        .load(getClass()
+            .getResource("../customerquestionconfirmation/CustomerQuestionConfirmation.fxml"));
+    primaryStage.setTitle("Confirmation");
     primaryStage.setScene(new Scene(root));
     primaryStage.show();
   }
