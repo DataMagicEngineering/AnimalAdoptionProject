@@ -17,7 +17,7 @@ import main.Database;
 import models.adoption.AdoptionRequest;
 
 /**
- * Adoption Page Controller, which displays information about the animal being adopted and the user
+ * The Adoption Page Controller displays information about the animal being adopted and the user
  * that is requesting to adopt the animal.
  *
  * @author The Data Magic Engineering Team
@@ -48,6 +48,14 @@ public class AdoptionPageController {
   @FXML
   private Button adoptAnimalBtn;
 
+  /**
+   * Method that switches scenes to the Confirm Page screen while getting the ID of the current
+   * user, creating a new Adoption Request, and sending the Adoption Request to the database.
+   *
+   * @param event gets the Source, Scene, and Window of the selected scene, and is casted to a
+   *              Node.
+   * @throws IOException since the method has a chance to contain an IOException.
+   */
   @FXML
   void adoptAnimal(ActionEvent event) throws IOException {
     AdoptionRequest request = new AdoptionRequest();
@@ -66,7 +74,7 @@ public class AdoptionPageController {
   }
 
   /**
-   * returns the user to the menu scene when the button is pressed.
+   * Method that returns the user to the menu scene when the button is pressed.
    *
    * @param event User clicks/presses enter on the button
    * @throws Exception when the scene is not located at the same file location as stated
@@ -82,7 +90,10 @@ public class AdoptionPageController {
   }
 
   /**
-   * Method to test whether the First/Last name text fields match the users listed in the database.
+   * The initialize method in the AdoptionPageController changes the Instant of the user's date of
+   * birth to the format "MM/dd/yyyy". This method also sets the text of the animal's name, breed,
+   * species, first name, last name, and date of birth to the information obtained within the
+   * database.
    */
   public void initialize() {
     DateTimeFormatter formatDOB = DateTimeFormatter.ofPattern("MM/dd/yyyy").withZone(
