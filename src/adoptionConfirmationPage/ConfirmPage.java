@@ -14,6 +14,10 @@ import main.Database;
 import models.user.AuthorizationLevel;
 
 /**
+ * The ConfirmPage class contains all of the code and functionality of the Confirmation Page screen.
+ * The screen contains three different buttons, all of which go to different screens depending on
+ * the button clicked.
+ *
  * @author Luis Hernandez and Emily Schwarz
  */
 public class ConfirmPage {
@@ -30,6 +34,13 @@ public class ConfirmPage {
   @FXML
   private TextArea txtfieldThanks;
 
+  /**
+   * The method that logs the user off when the button is pressed.
+   *
+   * @param actionEvent gets the Source, Scene, and Window of the selected scene, and is casted to a
+   *                    Node.
+   * @throws IOException since the method has a chance to contain an IOException.
+   */
   public void LogUserOut(ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     Parent root = FXMLLoader.load(getClass().getResource("../login/LoginScreen.fxml"));
@@ -40,6 +51,13 @@ public class ConfirmPage {
     Database.setCurrentAnimal(null);
   }
 
+  /**
+   * The method that switches screens to the Main Screen.
+   *
+   * @param actionEvent gets the Source, Scene, and Window of the selected scene, and is casted to a
+   *                    Node.
+   * @throws IOException since the method has a chance to contain an IOException.
+   */
   public void goToMain(ActionEvent actionEvent) throws IOException {
     if (Database.getCurrentUser().getPrivileges() == AuthorizationLevel.ADMINISTRATION
         || Database.getCurrentUser().getPrivileges() == AuthorizationLevel.VOLUNTEER) {
@@ -61,6 +79,13 @@ public class ConfirmPage {
     Database.setCurrentAnimal(null);
   }
 
+  /**
+   * Method that switches scenes to the Animal List screen.
+   *
+   * @param actionEvent gets the Source, Scene, and Window of the selected scene, and is casted to a
+   *                    Node.
+   * @throws IOException since the method has a chance to contain an IOException.
+   */
   public void goToAnimalList(ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
