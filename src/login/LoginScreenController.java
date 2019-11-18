@@ -16,6 +16,15 @@ import main.Database;
 import models.user.AuthorizationLevel;
 import models.user.User;
 
+/**
+ * The Login Screen Controller is the first screen that users see when he or she starts the
+ * application. If the user has an account, they can type in their credentials, and depending on the
+ * user's administration level, it directs them to the appropriate screen. If the user does not have
+ * an account, there is a button at the bottom of the screen that new users can press, which directs
+ * them to a registration page.
+ *
+ * @author The Data Magic Engineering Team
+ */
 public class LoginScreenController {
 
   @FXML
@@ -44,6 +53,10 @@ public class LoginScreenController {
   }
 
   /**
+   * Method that gets the ID of the user logging in, determines if the user is a customer,
+   * volunteer, or employee, and once that information is processed, the program sends the user to
+   * the appropriate screens.
+   *
    * @param event pressing the login button
    */
   @FXML
@@ -54,15 +67,15 @@ public class LoginScreenController {
       errorLabel.setVisible(true);
     } else {
       errorLabel.setVisible(false);
-      if (user.getPrivileges() == AuthorizationLevel.VOLUNTEER || user.getPrivileges() == AuthorizationLevel.ADMINISTRATION) {
+      if (user.getPrivileges() == AuthorizationLevel.VOLUNTEER
+          || user.getPrivileges() == AuthorizationLevel.ADMINISTRATION) {
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent root = FXMLLoader
             .load(getClass().getResource("../employeedashboard/EmployeeDashboard.fxml"));
         primaryStage.setTitle("Main Screen");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-      }
-      else {
+      } else {
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent root = FXMLLoader
             .load(getClass().getResource("../customerdashboard/CustomerDashboard.fxml"));
@@ -73,8 +86,15 @@ public class LoginScreenController {
     }
   }
 
+  /**
+   * Method that directs a user to the Registration screen.
+   *
+   * @param event gets the Source, Scene, and Window of the selected scene, and is casted to a
+   *              Node.
+   * @throws Exception since the method has a chance to contain an IOException.
+   */
   @FXML
-  void goToRegisterScreen(ActionEvent event) throws Exception{
+  void goToRegisterScreen(ActionEvent event) throws Exception {
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
         .load(getClass().getResource("../registeruser/RegisterUser.fxml"));
