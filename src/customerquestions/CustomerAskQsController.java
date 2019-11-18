@@ -28,4 +28,13 @@ public class CustomerAskQsController {
   @FXML
   private Button customerSubmitQsBtn;
 
+  @FXML
+  void onActionGoBack(ActionEvent event) {
+
+  }
+
+  @FXML
+  void onActionSubmitQuestion(ActionEvent event) {
+
+  }
 }

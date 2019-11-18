@@ -3,25 +3,14 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane
-  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-  minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
-  xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171"
-  fx:controller="customerquestions.CustomerAskQsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="customerquestions.CustomerAskQsController">
   <children>
-    <Button fx:id="customerQsBackBtn" layoutX="36.0" layoutY="308.0" mnemonicParsing="false"
-      text="Go Back"/>
-    <Label layoutX="7.0" layoutY="25.0"
-      text="Do you have any questions regarding animal adoption policies, volunteering, or events? "/>
-    <Label layoutX="100.0" layoutY="57.0" prefHeight="21.0" prefWidth="398.0"
-      text="If so, feel free to submit any question you may have below:"/>
-    <TextArea fx:id="customerQsTxtArea" layoutX="36.0" layoutY="108.0" prefHeight="178.0"
-      prefWidth="525.0" promptText="Type your question here..."/>
-    <Button fx:id="customerSubmitQsBtn" layoutX="428.0" layoutY="308.0" mnemonicParsing="false"
-      text="Submit Question"/>
+    <Button fx:id="customerQsBackBtn" layoutX="36.0" layoutY="308.0" mnemonicParsing="false" onAction="#onActionGoBack" text="Go Back" />
+    <Label layoutX="7.0" layoutY="25.0" text="Do you have any questions regarding animal adoption policies, volunteering, or events? " />
+    <Label layoutX="100.0" layoutY="57.0" prefHeight="21.0" prefWidth="398.0" text="If so, feel free to submit any question you may have below:" />
+    <TextArea fx:id="customerQsTxtArea" layoutX="36.0" layoutY="108.0" prefHeight="178.0" prefWidth="525.0" promptText="Type your question here..." />
+    <Button fx:id="customerSubmitQsBtn" layoutX="428.0" layoutY="308.0" mnemonicParsing="false" onAction="#onActionSubmitQuestion" text="Submit Question" />
   </children>
 </AnchorPane>

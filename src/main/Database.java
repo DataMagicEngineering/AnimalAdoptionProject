@@ -44,8 +44,10 @@ import models.user.User;
 import models.user.Volunteer;
 
 /**
- * Wrapper around the database to facilitate requests. Commands and actions relating to the database
- * should go through here.
+ * The Database class is a wrapper around the database to facilitate requests. Commands and actions
+ * relating to the database should go through here.
+ *
+ * @author The Data Magic Engineering Team
  */
 public class Database {
 
@@ -57,6 +59,9 @@ public class Database {
 
   private Connection conn;
 
+  /**
+   * The Default Constructor which initializes the Database.
+   */
   private Database() {
     try {
       conn = DriverManager.getConnection("jdbc:sqlite:./res/shelter.db");
@@ -66,6 +71,10 @@ public class Database {
     }
   }
 
+  /**
+   * A method that returns a new Database if none are currently available.
+   * @return thisDb, which is a Database object.
+   */
   public static Database get() {
     if (thisDb == null) {
       thisDb = new Database();
@@ -183,8 +192,8 @@ public class Database {
   /**
    * Method to check Employee Status.
    *
-   * @param emp
-   * @return
+   * @param emp an Employee object.
+   * @return The privilege level of the Employee, which is an ADMINISTRATION enum.
    * @author Ramzy El-Taher
    */
   public boolean checkEmployee(Employee emp) {
@@ -194,7 +203,6 @@ public class Database {
   /**
    * Method which allows employees to edit an animal's information in the database.
    *
-   * @return void
    * @author Ramzy El-Taher
    */
   public void editAnimal(Animal animal) {
@@ -352,8 +360,8 @@ public class Database {
   }
 
   /**
-   * @see #removeAnimal(int)
    * @param animal The animal that should be removed
+   * @see #removeAnimal(int)
    */
   public boolean removeAnimal(Animal animal) {
     return removeAnimal(animal.getId());
@@ -361,11 +369,14 @@ public class Database {
 
   /**
    * Removes an animal from the database if the current user has the authority to do so.
+   *
    * @param animalId The id of the animal to be removed.
    * @return true if the removal was successful, else false.
    */
   public boolean removeAnimal(int animalId) {
-    if (currentUser.getPrivileges() != AuthorizationLevel.ADMINISTRATION) return false;
+    if (currentUser.getPrivileges() != AuthorizationLevel.ADMINISTRATION) {
+      return false;
+    }
 
     String query = "DELETE FROM Animal WHERE Animal.id=?";
 
@@ -390,8 +401,8 @@ public class Database {
   }
 
   /**
-   * @author Luis Hernandez
    * @return List<Animal> animal - list of all animals in db to be shown in the list screen
+   * @author Luis Hernandez
    */
   public List<Animal> getAnimalList() {
 
@@ -475,6 +486,7 @@ public class Database {
 
   /**
    * Returns a list of all questions that haven't been answered yet.
+   *
    * @return A list of unanswered questions.
    */
   public List<QuestionWithUser> getUnansweredQuestions() {
@@ -484,6 +496,7 @@ public class Database {
 
   /**
    * Returns a list of questions that have been answered already.
+   *
    * @return A list of answered questions.
    */
   public List<QuestionWithUser> getAnsweredQuestions() {
@@ -554,8 +567,8 @@ public class Database {
    * application approved or rejected.
    *
    * @param application The application that should be processed
-   * @param approved Whether the this application is approved and the user should become a
-   * volunteer.
+   * @param approved    Whether the this application is approved and the user should become a
+   *                    volunteer.
    * @return True if this update was successful, else false.
    */
   public boolean processVolunteerApplication(VolunteerApplication application, boolean approved) {
@@ -640,6 +653,7 @@ public class Database {
 
   /**
    * Updates a preexisting event.
+   *
    * @param event The event that should be updated
    * @return True if the update was successful.
    */
@@ -671,6 +685,7 @@ public class Database {
 
   /**
    * Returns a list of all events for all audiences.
+   *
    * @return A list with all saved events.
    */
   public List<Event> getEvents() {
@@ -698,6 +713,7 @@ public class Database {
 
   /**
    * Returns a list of all volunteer applications.
+   *
    * @return A list with all submitted volunteer applications.
    */
   public List<VolunteerApplicationWithUser> getVolunteerApplications() {
@@ -706,23 +722,27 @@ public class Database {
 
   /**
    * Returns a list of all volunteer applications that haven't been processed by an employee
+   *
    * @return A list with all unprocessed volunteer applications.
    */
   public List<VolunteerApplicationWithUser> getUnprocessedVolunteerApplications() {
-    return doVolunteerApplicationQuery("SELECT * FROM VolunteerApplication WHERE dateApproved IS NULL");
+    return doVolunteerApplicationQuery(
+        "SELECT * FROM VolunteerApplication WHERE dateApproved IS NULL");
   }
 
   /**
    * Returns a list of all volunteer applications that have been processed by an employee
+   *
    * @return A list with all processed volunteer applications.
    */
   public List<VolunteerApplicationWithUser> getProcessedVolunteerApplications() {
-    return doVolunteerApplicationQuery("SELECT * FROM VolunteerApplication WHERE dateApproved IS NOT NULL");
+    return doVolunteerApplicationQuery(
+        "SELECT * FROM VolunteerApplication WHERE dateApproved IS NOT NULL");
   }
 
   /**
-   * Executes a query for VolunteerApplications to the database and returns the response. Queries should use the
-   * `*` in order to get all columns of the VolunteerApplication table
+   * Executes a query for VolunteerApplications to the database and returns the response. Queries
+   * should use the `*` in order to get all columns of the VolunteerApplication table
    *
    * @param sql The query to be executed.
    * @return A list of VolunteerApplications and the result of the given SQL query
@@ -748,7 +768,7 @@ public class Database {
         }
 
         User requestingUser = getUserById(thisApplication.getApplicantId());
-        applications.add(new VolunteerApplicationWithUser(requestingUser,thisApplication));
+        applications.add(new VolunteerApplicationWithUser(requestingUser, thisApplication));
       }
     } catch (SQLException e) {
       e.printStackTrace();
@@ -804,7 +824,6 @@ public class Database {
         if (dateApprovedTS != null) {
           dateApproved = dateApprovedTS.toInstant();
         }
-
 
         Animal animal = getAnimal(animalId);
         User customer = getUserById(customerId);
@@ -1024,12 +1043,14 @@ public class Database {
 
   public boolean applyForVolunteer(User user) {
     // Only allow this user to apply for volunteer if they're not a volunteer or employee.
-    if (user.getPrivileges() != AuthorizationLevel.BASIC) return false;
+    if (user.getPrivileges() != AuthorizationLevel.BASIC) {
+      return false;
+    }
 
     String query = "INSERT INTO VolunteerApplication (applicantId, approved, dateRequested) VALUES (?, ?, ?)";
 
     try (PreparedStatement statement = conn.prepareStatement(query)) {
-      statement.setInt(1,user.getId());
+      statement.setInt(1, user.getId());
       statement.setBoolean(2, false);
       statement.setTimestamp(3, Timestamp.from(Instant.now()));
       statement.executeUpdate();
