@@ -21,7 +21,7 @@ import models.animal.Animal;
 import models.user.AuthorizationLevel;
 
 /**
- * Animal List Controller, which displays a list of animals available for adoption, and contains
+ * The Animal List Controller displays a list of animals available for adoption, and contains
  * functions which allows users to either view the animal profile or return back to main menu.
  * Employees have the ability to edit the animal's profile within this Scene.
  *
@@ -143,17 +143,23 @@ public class AnimalListController {
     primaryStage.show();
   }
 
+  /**
+   * Method which allows a user to filter a selection of animals when he or she is searching for an
+   * animal to adopt.
+   */
   @FXML
-  void applyFilter(ActionEvent event) {
+  void applyFilter() {
     ObservableList<Animal> filteredAnimals;
     if (searchTxtFld != null) {
       if (filterChoiceBox.getSelectionModel().getSelectedItem().equals("Breed")) {
-        filteredAnimals= FXCollections.observableArrayList(
-            animals.stream().filter(p -> p.getBreedString().toLowerCase().contains(searchTxtFld.getText().toLowerCase()))
+        filteredAnimals = FXCollections.observableArrayList(
+            animals.stream().filter(p -> p.getBreedString().toLowerCase()
+                .contains(searchTxtFld.getText().toLowerCase()))
                 .collect(Collectors.toList()));
       } else {
         filteredAnimals = FXCollections.observableArrayList(
-            animals.stream().filter(p -> p.getSpecies().toLowerCase().contains(searchTxtFld.getText().toLowerCase()))
+            animals.stream().filter(
+                p -> p.getSpecies().toLowerCase().contains(searchTxtFld.getText().toLowerCase()))
                 .collect(Collectors.toList()));
       }
     } else {
@@ -162,6 +168,7 @@ public class AnimalListController {
     }
     loadAnimalList(filteredAnimals);
   }
+
   private void loadAnimalList(ObservableList<Animal> animals) {
     animalsTableView.setItems(animals);
   }
