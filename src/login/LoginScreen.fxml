@@ -23,7 +23,7 @@
       text="ERROR! Incorrect Username or Password!" textFill="RED" visible="false"/>
     <Label fx:id="logginLabel" layoutX="96.0" layoutY="183.0" text="User Logged In!"
       textFill="GREEN" visible="false"/>
-    <Pane id="Pane" layoutX="270.0" prefHeight="248.0" prefWidth="330.0"/>
+    <Pane id="Pane" layoutX="270.0" prefHeight="248.0" prefWidth="253.0"/>
     <Button fx:id="registerHereButton" layoutX="134.0" layoutY="204.0" mnemonicParsing="false"
       onAction="#goToRegisterScreen" prefHeight="9.0" prefWidth="92.0" text="Register"/>
     <Text fill="WHITE" layoutX="31.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0"
