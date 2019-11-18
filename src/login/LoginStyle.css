@@ -1,7 +1,7 @@
 #Pane {
   -fx-background-image: url("animalAdoptionLogo.png");
   -fx-background-size: contain;
-  -fx-scale-x: -1;
+  -fx-scale-x: 1;
 }
 #AnchorPane {
   -fx-background-color: "#564D65";
