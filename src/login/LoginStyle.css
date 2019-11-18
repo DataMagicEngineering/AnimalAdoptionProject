@@ -1,5 +1,5 @@
 #Pane {
-  -fx-background-image: url("animal adoption logo.png");
+  -fx-background-image: url("animalAdoptionLogo.png");
   -fx-background-size: contain;
   -fx-scale-x: -1;
 }
