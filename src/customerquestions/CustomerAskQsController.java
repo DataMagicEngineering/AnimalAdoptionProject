@@ -19,8 +19,12 @@ import main.Database;
 import models.questions.Question;
 
 /**
+ * The CustomerAskQsController is the class that contains the functionality withing the "Ask a
+ * Question" screen from the customer's side. The scene includes a TextArea which a customer can
+ * type a question, and it includes two buttons: One that their goes back to the customer dashboard,
+ * or one that processes a question and sends the customer to a confirmation page.
  *
- * @author Emily Schwarz
+ * @author Emily Schwarz, Ramzy El-Taher
  */
 public class CustomerAskQsController {
 
@@ -35,6 +39,7 @@ public class CustomerAskQsController {
 
   /**
    * Method that switches scenes to the customer dashboard.
+   *
    * @param event gets the Source, Scene, and Window of the selected scene, and is casted to a
    *              Node.
    * @throws IOException since the method has a chance to contain an IOException.
@@ -52,6 +57,7 @@ public class CustomerAskQsController {
   /**
    * Method that processes an asked question, sends the information to the database, and informs the
    * user that the question was successfully submitted.
+   *
    * @param event gets the Source, Scene, and Window of the selected scene, and is casted to a
    *              Node.
    * @throws IOException since the method has a chance to contain an IOException.
