@@ -77,7 +77,7 @@ public class AnimalListController {
       editAnimalButton.setVisible(false);
     }
 
-    filterChoiceBox.setItems(FXCollections.observableArrayList("Breed", "Species"));
+    filterChoiceBox.setItems(FXCollections.observableArrayList("Breed", "Species", "Name"));
     filterChoiceBox.getSelectionModel().selectFirst();
 
   }
@@ -87,6 +87,8 @@ public class AnimalListController {
    *
    * @param event an ActionEvent that gets the source, scene, and window of the program.
    * @throws Exception is thrown since this method has the potential to contain an Exception.
+   *
+   * @Author Zachary Maroney
    */
   @FXML
   void goToMainMenu(ActionEvent event) throws Exception {
@@ -145,27 +147,57 @@ public class AnimalListController {
 
   /**
    * Method which allows a user to filter a selection of animals when he or she is searching for an
-   * animal to adopt.
+   *
+   *
+   * @author Zachary Maroney
    */
   @FXML
   void applyFilter() {
+    // initialize filtered Animal List.
     ObservableList<Animal> filteredAnimals;
+
+    // if the search box is not empty.
     if (searchTxtFld != null) {
+
+      // if the user wants to filter throw Breeds.
       if (filterChoiceBox.getSelectionModel().getSelectedItem().equals("Breed")) {
+
+        // filterAnimal is set to filter throw the animal's breed with the User's search criteria.
         filteredAnimals = FXCollections.observableArrayList(
             animals.stream().filter(p -> p.getBreedString().toLowerCase()
                 .contains(searchTxtFld.getText().toLowerCase()))
                 .collect(Collectors.toList()));
-      } else {
+
+      }
+      // if the user wants to filter throw Species.
+      else if (filterChoiceBox.getSelectionModel().getSelectedItem().equals("Species")) {
+
+        // filterAnimal is set to filter throw the animal's species with the User's search criteria.
         filteredAnimals = FXCollections.observableArrayList(
             animals.stream().filter(
                 p -> p.getSpecies().toLowerCase().contains(searchTxtFld.getText().toLowerCase()))
                 .collect(Collectors.toList()));
       }
-    } else {
+
+      // if the user wants to filter throw animal names.
+      else {
+        // filter is set to filter throw the animal's name with the user's search criteria.
+        filteredAnimals = FXCollections.observableArrayList(
+            animals.stream().filter(
+                p -> p.getName().toLowerCase().contains(searchTxtFld.getText().toLowerCase()))
+                .collect(Collectors.toList()));
+      }
+    }
+
+    // search criteria is empty.
+    else {
+
+      // unfilter the list to show all animals.
       filteredAnimals = FXCollections
           .observableArrayList(database.getAnimalList());
     }
+
+    // sets the tables to the filtered animals list.
     loadAnimalList(filteredAnimals);
   }
 
