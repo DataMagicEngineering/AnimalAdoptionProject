@@ -1010,6 +1010,12 @@ public class Database {
     return myPet;
   }
 
+  /**
+   * Method that creates a new User, and reads the database for all of the users that already exists.
+   * @param resultSet The ResultSet used to get each column in the database.
+   * @return user, which is a User object used for creating new users.
+   * @throws SQLException since the code has the potential to contain an exception.
+   */
   private User parseUserInRow(ResultSet resultSet) throws SQLException {
     int userId = resultSet.getInt(1);
     String thisUserName = resultSet.getString(2);
@@ -1041,6 +1047,11 @@ public class Database {
     return user;
   }
 
+  /**
+   * Method that only allows the user to apply for volunteer if they are not a volunteer or employee.
+   * @param user A user object that is used to check if the current user's privileges are not a customer.
+   * @return false if the user is not a customer, true if the user is a customer.
+   */
   public boolean applyForVolunteer(User user) {
     // Only allow this user to apply for volunteer if they're not a volunteer or employee.
     if (user.getPrivileges() != AuthorizationLevel.BASIC) {
@@ -1061,10 +1072,18 @@ public class Database {
     }
   }
 
+  /**
+   * Accessor for currentEvent.
+   * @return currentEvent, which is a field of type Event.
+   */
   public static Event getCurrentEvent() {
     return currentEvent;
   }
 
+  /**
+   * Mutator for currentEvent
+   * @param currentEvent the variable the the "currentEvent" field is assigned to.
+   */
   public static void setCurrentEvent(Event currentEvent) {
     Database.currentEvent = currentEvent;
   }
