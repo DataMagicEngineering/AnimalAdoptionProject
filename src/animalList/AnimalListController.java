@@ -65,6 +65,8 @@ public class AnimalListController {
    * View in this Scene. It also populates the Table View with data from the Animal table in the
    * database. It also disables the "Edit Animal Button" visibility to any user who is not an
    * employee.
+   *
+   * @author Zachary Maroney
    */
   public void initialize() {
     nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
