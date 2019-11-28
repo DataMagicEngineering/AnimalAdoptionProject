@@ -6,6 +6,9 @@ package models.user;
 public class Customer extends User {
   protected boolean isVolunteer;
 
+  /**
+   * The Default Constructor which sets a Customer instance's privileges to BASIC by default.
+   */
   public Customer() {
     privileges = AuthorizationLevel.BASIC;
   }

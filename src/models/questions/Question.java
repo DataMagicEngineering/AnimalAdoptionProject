@@ -1,5 +1,9 @@
 package models.questions;
 
+/**
+ * The base class for a Question.
+ * @author The Data Magic Engineering Team.
+ */
 public class Question {
   private int id;
 
@@ -37,7 +41,7 @@ public class Question {
   }
 
   /**
-   * Accessor for id
+   * Accessor for id.
    * @return id, the int variable in the Question class.
    */
   public int getId() {
@@ -45,7 +49,7 @@ public class Question {
   }
 
   /**
-   * Mutator for id
+   * Mutator for id.
    * @param id the int variable that the id field is assigned to.
    */
   public void setId(int id) {
@@ -53,7 +57,7 @@ public class Question {
   }
 
   /**
-   * Accessor for userId
+   * Accessor for userId.
    * @return userId, the int variable in the Question class.
    */
   public int getUserId() {
@@ -61,7 +65,7 @@ public class Question {
   }
 
   /**
-   * Mutator for userId
+   * Mutator for userId.
    * @param userId the int variable that the userId field is assigned to.
    */
   public void setUserId(int userId) {
@@ -69,7 +73,7 @@ public class Question {
   }
 
   /**
-   * Accessor for answered
+   * Accessor for answered.
    * @return answered, the boolean variable in the Question class.
    */
   public boolean isAnswered() {
@@ -77,7 +81,7 @@ public class Question {
   }
 
   /**
-   * Mutator for answered
+   * Mutator for answered.
    * @param answered the boolean variable that the id field is assigned to.
    */
   public void setAnswered(boolean answered) {
@@ -85,7 +89,7 @@ public class Question {
   }
 
   /**
-   * Accessor for employeeId
+   * Accessor for employeeId.
    * @return employeeId, the int variable in the Question class.
    */
   public int getEmployeeId() {
@@ -93,7 +97,7 @@ public class Question {
   }
 
   /**
-   * Mutator for employeeId
+   * Mutator for employeeId.
    * @param employeeId the int variable that the id field is assigned to.
    */
   public void setEmployeeId(int employeeId) {
@@ -101,7 +105,7 @@ public class Question {
   }
 
   /**
-   * Accessor for question
+   * Accessor for question.
    * @return question, the String variable in the Question class.
    */
   public String getQuestion() {
@@ -109,7 +113,7 @@ public class Question {
   }
 
   /**
-   * Mutator for question
+   * Mutator for question.
    * @param question the String variable that the id field is assigned to.
    */
   public void setQuestion(String question) {
@@ -117,7 +121,7 @@ public class Question {
   }
 
   /**
-   * Accessor for answer
+   * Accessor for answer.
    * @return answer, the String variable in the Question class.
    */
   public String getAnswer() {
@@ -125,7 +129,7 @@ public class Question {
   }
 
   /**
-   * Mutator for answer
+   * Mutator for answer.
    * @param answer the String variable that the id field is assigned to.
    */
   public void setAnswer(String answer) {
@@ -133,8 +137,8 @@ public class Question {
   }
 
   /**
-   * toString override for Question
-   * @return question, the string varaible in the questions class.
+   * toString override for Question.
+   * @return question, the string variable in the questions class.
    */
   @Override
   public String toString() {
