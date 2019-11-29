@@ -29,6 +29,10 @@ import models.animal.Color;
 import models.animal.Proficiency;
 import models.event.Event;
 
+/**
+ * The NewAnimalController class is the Controller for the scene which creates a new animal. This class allows the user
+ * to edit an animal's information and to add a new animal to the list of animals in the Animal List page.
+ */
 public class NewAnimalController {
 
   private static Database database = Database.get();
@@ -50,6 +54,10 @@ public class NewAnimalController {
   public TextArea descriptionInput;
   public Button createBtn;
 
+  /**
+   * The initialize method in the NewAnimaLController class sets values for an animal's date of birth, aggression,
+   * bathroom training, color, service trained, and gender. These values will be used for every time the program starts.
+   */
   public void initialize() {
     dateOfBirth.setValue(LocalDate.now());
     aggressionSlider.setMax(Color.values().length - 1);
@@ -76,6 +84,11 @@ public class NewAnimalController {
     editAnimal();
   }
 
+  /**
+   * A method that returns the user back to the Animal List.
+   * @param event gets the source, scene, and window.
+   * @throws Exception since the method has a chance to contain an Exception.
+   */
   public void cancelCreation(ActionEvent event) throws Exception {
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Parent root = FXMLLoader.load(getClass().getResource("../animalList/AnimalList.fxml"));
@@ -86,6 +99,11 @@ public class NewAnimalController {
     Database.setCurrentAnimal(null);
   }
 
+  /**
+   * The editAnimal method gives the user the ability to edit an animal's information, which includes the animal's name,
+   * species, breed, height, weight, description, tricks, color, date of birth, service trained, bathroom trained, and
+   * aggression.
+   */
   public void editAnimal() {
     Animal animal = Database.getCurrentAnimal();
     if (animal != null) {
@@ -109,6 +127,12 @@ public class NewAnimalController {
 
   }
 
+  /**
+   * The method which changes the animal's information that the user had edited, and switchers the user's scenes back to
+   * the Animal List Scene.
+   * @param actionEvent an ActionEvent that gets the Source, Scene, and Window of the Animal List page.
+   * @throws Exception since the method has a chance to contain an Exception.
+   */
   public void createAnimal(ActionEvent actionEvent) throws Exception {
     if (!validInput()) {
       return;
@@ -151,6 +175,11 @@ public class NewAnimalController {
     Database.setCurrentAnimal(null);
   }
 
+  /**
+   * The validInput method is used to determine if the user is entering a valid entry in the text fields when creating
+   * a new animal
+   * @return true, which means that the input is valid.
+   */
   private boolean validInput() {
 
     return true;
