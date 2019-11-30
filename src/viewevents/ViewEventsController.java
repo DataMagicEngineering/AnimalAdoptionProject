@@ -18,6 +18,9 @@ import models.event.Event;
 import models.user.AuthorizationLevel;
 import models.user.User;
 
+/**
+ * The Controller Class to view events.
+ */
 public class ViewEventsController {
 
   @FXML
@@ -38,6 +41,10 @@ public class ViewEventsController {
   @FXML
   private Button editEventBtn;
 
+  /**
+   * The initialize method for the ViewEventController class that sets the current events to the List View once the
+   * program starts.
+   */
   public void initialize() {
     Database database = Database.get();
     ObservableList<Event> events = FXCollections.observableArrayList(database.getEvents());
@@ -54,16 +61,26 @@ public class ViewEventsController {
     }
   }
 
+  /**
+   * Method for a button that switches the user to the "Create an Event" page once pressed.
+   * @param event gets the Source, Scene, and Window of the "Create an Event" page.
+   * @throws Exception since the code has a chance to contain an Exception.
+   */
   @FXML
   void addEvent(ActionEvent event) throws Exception {
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
         .load(getClass().getResource("../newevent/NewEvent.fxml"));
-    primaryStage.setTitle("Creat an Event");
+    primaryStage.setTitle("Create an Event");
     primaryStage.setScene(new Scene(root));
     primaryStage.show();
   }
 
+  /**
+   * Method for a button that switches the user to the "Edit Event" screen once pressed.
+   * @param event gets the Source, Scene, and Window of the "Edit Event" page.
+   * @throws Exception since the code has a chance to contain an Exception.
+   */
   @FXML
   void editEvent(ActionEvent event) throws Exception {
     Database.setCurrentEvent(listViewEvents.getSelectionModel().getSelectedItem());
@@ -77,8 +94,9 @@ public class ViewEventsController {
   }
 
   /**
-   * @param actionEvent
-   * @throws IOException
+   * The method for the button that, once pressed, returns the user back to the Employee Dashboard.
+   * @param actionEvent gets the Source, Scene, and Window for the Employee Dashboard.
+   * @throws IOException since the code has a chance to contain an IOException.
    * @author Emily Schwarz and Luis Hernandez
    */
   public void goBack(ActionEvent actionEvent) throws IOException {
