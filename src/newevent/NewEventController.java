@@ -27,6 +27,9 @@ import models.event.Event;
 import models.user.AuthorizationLevel;
 import models.user.User;
 
+/**
+ * The Base Controller Class to create new events.
+ */
 public class NewEventController {
 
   private Database database = Database.get();
@@ -70,6 +73,10 @@ public class NewEventController {
   @FXML
   private Text errorText;
 
+  /**
+   * The initialize method in the NewEventController Class sets the currently created events every time the program
+   * starts.
+   */
   public void initialize() {
     eventDatePicker.setValue(LocalDate.now());
 
@@ -106,6 +113,10 @@ public class NewEventController {
     }
   }
 
+  /**
+   * The method that allows a user to create an event. If an invalid input is entered, the user will be prompted to
+   * re-enter the input.
+   */
   public void createEvent() {
     if (eventTitleInput.getText().length() == 0) {
       showError("Please enter an event title");
@@ -175,6 +186,10 @@ public class NewEventController {
     }
   }
 
+  /**
+   * The method that shows text whenever an invalid input is entered.
+   * @param message The text of the error.
+   */
   private void showError(String message) {
     if (message.length() == 0) {
       hideError();
@@ -221,6 +236,11 @@ public class NewEventController {
     return true;
   }
 
+  /**
+   * Method that switches the user's scenes to the Employee Dashboard.
+   * @param actionEvent gets the Source, Scene, and Window.
+   * @throws IOException since the code has a chance to contain an Exception.
+   */
   public void goBackToScreen(ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
