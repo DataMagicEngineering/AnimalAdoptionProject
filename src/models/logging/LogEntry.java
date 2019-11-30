@@ -1,12 +1,17 @@
 package models.logging;
 
-import java.sql.Timestamp;
+import java.time.Instant;
 
 /**
  * A LogEntry represents a brief description and record of an action that happened and the entities
  * that may have been involved in the action.
  */
 public class LogEntry {
+
+  /**
+   * The id of this log entry.
+   */
+  private int entryId;
 
   /**
    * The type of entity that was changed.
@@ -29,15 +34,33 @@ public class LogEntry {
    */
   private int affectedId;
 
-  private Timestamp dateOccurred;
+  private Instant dateOccurred;
 
   public LogEntry(LogEntity entityAffected, int userId, String message, int affectedId,
-      Timestamp dateOccurred) {
+      Instant dateOccurred) {
     this.entityAffected = entityAffected;
     this.userId = userId;
     this.message = message;
     this.affectedId = affectedId;
     this.dateOccurred = dateOccurred;
+  }
+
+  public LogEntry(int entryId, LogEntity entityAffected, int userId, String message, int affectedId,
+      Instant dateOccurred) {
+    this.entryId = entryId;
+    this.entityAffected = entityAffected;
+    this.userId = userId;
+    this.message = message;
+    this.affectedId = affectedId;
+    this.dateOccurred = dateOccurred;
+  }
+
+  public int getEntryId() {
+    return entryId;
+  }
+
+  public void setEntryId(int entryId) {
+    this.entryId = entryId;
   }
 
   public LogEntity getEntityAffected() {
@@ -72,11 +95,11 @@ public class LogEntry {
     this.affectedId = affectedId;
   }
 
-  public Timestamp getDateOccurred() {
+  public Instant getDateOccurred() {
     return dateOccurred;
   }
 
-  public void setDateOccurred(Timestamp dateOccurred) {
+  public void setDateOccurred(Instant dateOccurred) {
     this.dateOccurred = dateOccurred;
   }
 

@@ -35,6 +35,8 @@ import models.animal.Proficiency;
 import models.application.VolunteerApplication;
 import models.application.VolunteerApplicationWithUser;
 import models.event.Event;
+import models.logging.LogEntry;
+import models.logging.LogEntry.LogEntity;
 import models.questions.Question;
 import models.questions.QuestionWithUser;
 import models.user.AuthorizationLevel;
@@ -1087,5 +1089,47 @@ public class Database {
   public static void setCurrentEvent(Event currentEvent) {
     Database.currentEvent = currentEvent;
   }
+
+  private void log(LogEntry entry) {
+    String insertQuery = "INSERT INTO Log "
+        + "(entityAffected, userId, message, affectedId, dateOccurred) "
+        + "VALUES (?, ?, ?, ?, ?)";
+
+    try (PreparedStatement stmt = conn.prepareStatement(insertQuery)) {
+      stmt.setInt(1, entry.getEntityAffected().ordinal());
+      stmt.setInt(2, entry.getUserId());
+      stmt.setString(3, entry.getMessage());
+      stmt.setInt(4, entry.getAffectedId());
+      stmt.setTimestamp(5, Timestamp.from(entry.getDateOccurred()));
+
+      stmt.executeUpdate();
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+      System.err.println("There was an issue logging an action.");
+    }
+  }
+
+  public List<LogEntry> getLogs() {
+    List<LogEntry> logs = new ArrayList<>();
+
+    try (ResultSet results = conn.createStatement().executeQuery("SELECT * FROM Log")) {
+      while (results.next()) {
+        int entryId = results.getInt(1);
+        LogEntity affectedEntity = LogEntity.values()[results.getInt(2)];
+        int userId = results.getInt(3);
+        String message = results.getString(4);
+        int affectedId = results.getInt(5);
+        Instant date = results.getTimestamp(6).toInstant();
+        logs.add(new LogEntry(entryId, affectedEntity, userId, message, affectedId, date));
+      }
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
+    return logs;
+  }
+
 }
 

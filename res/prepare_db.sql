@@ -125,3 +125,14 @@ CREATE TABLE IF NOT EXISTS `VolunteerApplication`(
     dateApproved TIMESTAMP,
     FOREIGN KEY (applicantId) REFERENCES USER(id)
 );
+
+CREATE TABLE IF NOT EXISTS `Log`
+(
+    id             INTEGER PRIMARY KEY AUTOINCREMENT,
+    entityAffected INTEGER,
+    userId         INTEGER,
+    message        TEXT,
+    affectedId     INTEGER,
+    dateOccurred   TIMESTAMP,
+    FOREIGN KEY (userId) REFERENCES User (id)
+);
