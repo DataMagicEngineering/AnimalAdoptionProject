@@ -16,6 +16,9 @@ import models.event.Event;
 import models.user.AuthorizationLevel;
 import models.user.Customer;
 
+/**
+ * The Controller Class for registering a user.
+ */
 public class RegisterUserController {
 
   @FXML
@@ -45,6 +48,12 @@ public class RegisterUserController {
   @FXML
   private TextField newUserRePasswordTextFld;
 
+  /**
+   * The method for a button that once pressed, gets the text fields for a new user and creates a new customer account
+   * for them. The scene switches back to the login page afterwards.
+   * @param event gets the Source, Scene, and Window for the login page.
+   * @throws Exception since the code has a chance to contain an Exception.
+   */
   @FXML
   void registerUser(ActionEvent event) throws Exception {
     if (newUserPasswordTextFld.getText().equals(newUserRePasswordTextFld.getText())) {
@@ -67,6 +76,11 @@ public class RegisterUserController {
     }
   }
 
+  /**
+   * A method for a button that, once pressed, returns the user back to the login screen.
+   * @param event gets the Source, Scene, and Window for the login screen.
+   * @throws Exception since the code has a chance to contain an Exception.
+   */
   @FXML
   void returnToLoginScreen(ActionEvent event) throws Exception {
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
