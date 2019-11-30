@@ -14,8 +14,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-
-public class recordLogsController {
+/**
+ * The Controller Class to record hours of volunteers or employees.
+ */
+public class RecordLogsController {
 
   @FXML
   private AnchorPane lblEnterHrs;
@@ -36,9 +38,9 @@ public class recordLogsController {
   private Button btnReturntoEmployeeMenu;
 
   /**
-   *
-   * @param actionEvent
-   * @throws IOException
+   * Method that switches scenes to the "Confirm Hours" page.
+   * @param actionEvent gets the Source, Scene, and Window.
+   * @throws IOException since the code has a chance to contain an Exception.
    * @author Luis Hernandez
    */
   public void goToConfirmHours(ActionEvent actionEvent) throws IOException {
@@ -51,9 +53,9 @@ public class recordLogsController {
   }
 
   /**
-   *
-   * @param actionEvent
-   * @throws IOException
+   * Method that switches scenes to the Employee Dashboard page.
+   * @param actionEvent gets the Source, Scene, and Window.
+   * @throws IOException since the code has a chance to contain an Exception.
    * @author Luis Hernandez
    */
   public void goBackToDashboard(ActionEvent actionEvent) throws IOException {
