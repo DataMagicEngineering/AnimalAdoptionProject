@@ -12,7 +12,10 @@ import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import main.Database;
 
-public class volunteerAppController {
+/**
+ * Controller Class for the Volunteer Application page.
+ */
+public class VolunteerAppController {
 
   @FXML
   private TextArea txtFappSuccess;
@@ -21,9 +24,9 @@ public class volunteerAppController {
   private Button btnReturnFromVolApp;
 
   /**
-   *
-   * @param actionEvent
-   * @throws IOException
+   * Method for a button that submits a volunteer application and sends the user to a confirmation page.
+   * @param actionEvent gets the Source, Scene, and Window to the confirmation page.
+   * @throws IOException since the code has a chance to contain an IOException.
    * @author Emily Schwarz and Luis Hernandez
    */
   public void submitVolApp(ActionEvent actionEvent) throws IOException {
@@ -38,9 +41,9 @@ public class volunteerAppController {
   }
 
   /**
-   *
-   * @param actionEvent
-   * @throws IOException
+   * Method for a button that returns the user back to the Customer Dashboard once pressed.
+   * @param actionEvent gets the Source, Scene, and Window for the Customer Dashboard.
+   * @throws IOException since the code has a chance to contain an IOException.
    * @author Emily Schwarz and Luis Hernandez
    */
   public void goBackToCustomerScreen(ActionEvent actionEvent) throws IOException {
