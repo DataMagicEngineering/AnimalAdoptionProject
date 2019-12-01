@@ -43,13 +43,13 @@ public class AnimalListController {
   private TableView<Animal> animalsTableView;
 
   @FXML
-  private TableColumn<?, ?> nameColumn;
+  private TableColumn<Animal, String> nameColumn;
 
   @FXML
-  private TableColumn<?, ?> speciesColumn;
+  private TableColumn<Animal, String> speciesColumn;
 
   @FXML
-  private TableColumn<?, ?> breedColumn;
+  private TableColumn<Animal, String> breedColumn;
 
   @FXML
   private Button returnToMain;
@@ -71,7 +71,7 @@ public class AnimalListController {
   public void initialize() {
     nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
     speciesColumn.setCellValueFactory(new PropertyValueFactory<>("species"));
-    breedColumn.setCellValueFactory(new PropertyValueFactory<>("breedString"));
+    breedColumn.setCellValueFactory(new PropertyValueFactory<>("formattedBreeds"));
     loadAnimalList(animals);
 
     if (Database.getCurrentUser().getPrivileges() != AuthorizationLevel.ADMINISTRATION) {

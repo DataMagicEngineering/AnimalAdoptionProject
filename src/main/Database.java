@@ -27,6 +27,7 @@ import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import models.adoption.AdoptionRequest;
 import models.adoption.AdoptionWithAnimal;
 import models.animal.Animal;
@@ -37,6 +38,7 @@ import models.application.VolunteerApplicationWithUser;
 import models.event.Event;
 import models.logging.LogEntry;
 import models.logging.LogEntry.LogEntity;
+import models.logging.LogEntryWithUser;
 import models.questions.Question;
 import models.questions.QuestionWithUser;
 import models.user.AuthorizationLevel;
@@ -104,6 +106,20 @@ public class Database {
       statement.setInt(6, user.getPrivileges().ordinal());
 
       statement.executeUpdate();
+
+      // Fetch the user that was just created with their id.
+      currentUser = getUsers()
+          .stream()
+          .filter(fetchedUser -> fetchedUser.getUsername().equals(user.getUsername()))
+          .collect(Collectors.toList()).get(0);
+
+      log(new LogEntry(
+          LogEntity.User,
+          currentUser.getId(),
+          String.format("User %s %s created an account", user.getFirstName(), user.getLastName()),
+          currentUser.getId())
+      );
+
       return true;
     } catch (SQLException e) {
       e.printStackTrace();
@@ -186,6 +202,22 @@ public class Database {
       statement.setString(15, animal.getAggression().toString());
 
       statement.executeUpdate();
+
+      int createdAnimalId = getAnimalList()
+          .stream()
+          .filter(fetchedAnimal -> {
+            return fetchedAnimal.getName().equals(animal.getName()) &&
+                fetchedAnimal.getDescription().equals(animal.getDescription());
+          })
+          .collect(Collectors.toList()).get(0).getId();
+
+      log(new LogEntry(
+          LogEntity.Animal,
+          currentUser.getId(),
+          String.format("Created animal '%s'", animal.getName()),
+          createdAnimalId)
+      );
+
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -247,6 +279,14 @@ public class Database {
       ps.setInt(16, animal.getId());
       //Execute Query
       ps.executeUpdate();
+
+      log(new LogEntry(
+          LogEntity.Animal,
+          currentUser.getId(),
+          String.format("Updated animal %s", animal.getName()),
+          animal.getId())
+      );
+
     } catch (SQLException ex) {
       ex.printStackTrace();
     }
@@ -266,6 +306,23 @@ public class Database {
       ps.setBoolean(2, false);
       ps.setString(3, question.getQuestion());
       ps.executeUpdate();
+
+      // Fetch the question that was just created.
+      int createdQuestionId = getQuestions()
+          .stream()
+          .filter(fetchedQuestion -> fetchedQuestion.getQuestion().getQuestion()
+              .equals(question.getQuestion()))
+          .collect(Collectors.toList())
+          .get(0)
+          .getQuestion()
+          .getId();
+
+      log(new LogEntry(
+          LogEntity.Question,
+          currentUser.getId(),
+          String.format("Asked question '%s'", question.getQuestion()),
+          createdQuestionId)
+      );
       return true;
     } catch (SQLException e) {
       e.printStackTrace()
@@ -283,7 +340,7 @@ public class Database {
    * @author Travis Gayle
    */
   public boolean answerQuestion(User answerer, Question question) {
-    if (answerer.getPrivileges() != AuthorizationLevel.ADMINISTRATION) {
+    if (answerer.getPrivileges().ordinal() < AuthorizationLevel.VOLUNTEER.ordinal()) {
       return false;
     }
 
@@ -298,6 +355,14 @@ public class Database {
       ps.setString(3, question.getAnswer());
       ps.setInt(4, question.getId());
       ps.executeUpdate();
+
+      log(new LogEntry(
+          LogEntity.Question,
+          currentUser.getId(),
+          String.format("Answered question '%s'", question.getQuestion()),
+          question.getId())
+      );
+
       return true;
     } catch (SQLException e) {
       e.printStackTrace();
@@ -324,6 +389,24 @@ public class Database {
       ps.setBoolean(3, false);
       ps.setTimestamp(4, Timestamp.from(request.getDateRequested()));
       ps.executeUpdate();
+
+      int createdAdoptionRequestId = getAdoptionRequests()
+          .stream()
+          .filter(req -> {
+            return req.getRequest().getAnimalId() == request.getAnimalId() &&
+                req.getAdopter().getId() == request.getCustomerId();
+          })
+          .collect(Collectors.toList()).get(0)
+          .getRequest().getId();
+
+      log(new LogEntry(
+          LogEntity.Animal,
+          currentUser.getId(),
+          String.format("Submitted adoption request for '%s'",
+              getAnimal(request.getAnimalId()).getName()),
+          createdAdoptionRequestId)
+      );
+
       return true;
     } catch (SQLException e) {
       e.printStackTrace();
@@ -353,6 +436,23 @@ public class Database {
       ps.setBoolean(1, request.isApproved());
       ps.setTimestamp(2, Timestamp.from(request.getDateApproved()));
       ps.setInt(3, request.getId());
+
+      User requestingUser = getUserById(request.getCustomerId());
+      Animal requestedAnimal = getAnimal(request.getAnimalId());
+
+      String approvedOrRejected = request.isApproved() ? "Approved" : "Rejected";
+
+      log(new LogEntry(
+          LogEntity.Animal,
+          currentUser.getId(),
+          String.format(
+              "%s %s %s's adoption request for '%s'",
+              approvedOrRejected,
+              requestingUser.getFirstName(),
+              requestingUser.getLastName(),
+              requestedAnimal.getName()),
+          request.getId())
+      );
       ps.executeUpdate();
       return true;
     } catch (SQLException e) {
@@ -380,11 +480,19 @@ public class Database {
       return false;
     }
 
+    Animal animalToRemove = getAnimal(animalId);
     String query = "DELETE FROM Animal WHERE Animal.id=?";
 
     try (PreparedStatement statement = conn.prepareStatement(query)) {
       statement.setInt(1, animalId);
       statement.executeUpdate();
+
+      log(new LogEntry(
+          LogEntity.Animal,
+          currentUser.getId(),
+          String.format("Removed animal '%s'", animalToRemove.getName()),
+          animalToRemove.getId())
+      );
       return true;
     } catch (SQLException e) {
       e.printStackTrace();
@@ -557,6 +665,20 @@ public class Database {
       statement.setString(6, event.getDescription());
 
       statement.executeUpdate();
+
+      // Fetch the event that was just inserted so we can log this.
+      int createdEventId = getEvents()
+          .stream()
+          .filter(evt -> evt.getName().equals(event.getName()))
+          .collect(Collectors.toList()).get(0).getId();
+
+      log(new LogEntry(
+          LogEntity.Event,
+          currentUser.getId(),
+          String.format("Created event '%s'", event.getName()),
+          createdEventId)
+      );
+
       return true;
     } catch (SQLException e) {
       e.printStackTrace();
@@ -585,20 +707,36 @@ public class Database {
       statement.setInt(3, application.getId());
       statement.executeUpdate();
 
+      User applicantUser = getUserById(application.getApplicantId());
+
       if (approved) {
         if (makeUserVolunteer(application.getApplicantId())) {
+          log(new LogEntry(
+              LogEntity.User,
+              currentUser.getId(),
+              String.format("Promoted '%s %s' to volunteer", applicantUser.getFirstName(),
+                  applicantUser.getLastName()),
+              applicantUser.getId())
+          );
           return true;
         } else {
           System.err.println("There was an issue making the given user a volunteer.");
           return false;
         }
+      } else {
+        log(new LogEntry(
+            LogEntity.User,
+            currentUser.getId(),
+            String.format("Rejected %s %s's volunteer application", applicantUser.getFirstName(),
+                applicantUser.getLastName()),
+            applicantUser.getId())
+        );
       }
-
-      return true;
     } catch (SQLException e) {
       e.printStackTrace();
-      return false;
     }
+
+    return false;
   }
 
   /**
@@ -638,6 +776,7 @@ public class Database {
       statement.setInt(1, AuthorizationLevel.VOLUNTEER.ordinal());
       statement.setInt(2, userId);
       statement.executeUpdate();
+
       return true;
     } catch (SQLException e) {
       e.printStackTrace();
@@ -676,6 +815,13 @@ public class Database {
       statement.setInt(4, event.getTargetAudience().ordinal());
       statement.setString(5, event.getDescription());
       statement.setInt(6, event.getId());
+
+      log(new LogEntry(
+          LogEntity.Event,
+          currentUser.getId(),
+          String.format("Modified the event '%s'", event.getName()),
+          event.getId())
+      );
 
       statement.executeUpdate();
       return true;
@@ -1067,6 +1213,9 @@ public class Database {
       statement.setBoolean(2, false);
       statement.setTimestamp(3, Timestamp.from(Instant.now()));
       statement.executeUpdate();
+
+      log(new LogEntry(LogEntity.User, user.getId(), "Applied for volunteer.", user.getId()));
+
       return true;
     } catch (SQLException e) {
       e.printStackTrace();
@@ -1110,8 +1259,8 @@ public class Database {
     }
   }
 
-  public List<LogEntry> getLogs() {
-    List<LogEntry> logs = new ArrayList<>();
+  public List<LogEntryWithUser> getLogs() {
+    List<LogEntryWithUser> logs = new ArrayList<>();
 
     try (ResultSet results = conn.createStatement().executeQuery("SELECT * FROM Log")) {
       while (results.next()) {
@@ -1121,7 +1270,9 @@ public class Database {
         String message = results.getString(4);
         int affectedId = results.getInt(5);
         Instant date = results.getTimestamp(6).toInstant();
-        logs.add(new LogEntry(entryId, affectedEntity, userId, message, affectedId, date));
+
+        LogEntry entry = new LogEntry(entryId, affectedEntity, userId, message, affectedId, date);
+        logs.add(new LogEntryWithUser(entry, getUserById(userId)));
       }
 
     } catch (SQLException e) {
@@ -1129,6 +1280,19 @@ public class Database {
     }
 
     return logs;
+  }
+
+  private List<User> getUsers() {
+    List<User> users = new ArrayList<>();
+    try (ResultSet results = conn.createStatement().executeQuery("SELECT * FROM User")) {
+      while (results.next()) {
+        users.add(parseUserInRow(results));
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
+    return users;
   }
 
 }

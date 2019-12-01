@@ -22,7 +22,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javax.xml.crypto.Data;
 import main.Database;
 import models.animal.Animal;
 import models.animal.Color;
@@ -42,8 +41,6 @@ public class NewAnimalController {
   public TextField weightInput;
   public TextField heightInput;
   public TextField breedsInput;
-  public TextField tricksInput;
-  public TextField vaccineInput;
   public Text currentAggression;
   public Slider aggressionSlider;
   public ComboBox<Proficiency> bathroomTrainingBox;
@@ -53,6 +50,7 @@ public class NewAnimalController {
   public DatePicker dateOfBirth;
   public TextArea descriptionInput;
   public Button createBtn;
+  public Text errorMessage;
 
   /**
    * The initialize method in the NewAnimaLController class sets values for an animal's date of birth, aggression,
@@ -109,11 +107,10 @@ public class NewAnimalController {
     if (animal != null) {
       nameInput.setText(animal.getName());
       speciesInput.setText(animal.getSpecies());
-      breedsInput.setText(animal.getBreedString().replace("|", ","));
+      breedsInput.setText(animal.getFormattedBreeds());
       heightInput.setText(String.valueOf(animal.getHeight()));
       weightInput.setText(String.valueOf(animal.getWeight()));
       descriptionInput.setText(animal.getDescription());
-      tricksInput.setText(animal.getTricks().toString().replace("{", "").replace("}", ""));
       for (Color colors : animal.getColors()) {
         colorsList.getSelectionModel().select(colors);
       }
@@ -181,7 +178,37 @@ public class NewAnimalController {
    * @return true, which means that the input is valid.
    */
   private boolean validInput() {
+    errorMessage.setText("");
+    errorMessage.setVisible(true);
 
+    if (nameInput.getText().length() < 1) {
+      errorMessage.setText("A valid name must be entered.");
+      return false;
+    }
+
+    if (speciesInput.getText().length() < 1) {
+      errorMessage.setText("Please enter the animal's species.");
+      return false;
+    }
+    if (weightInput.getText().length() < 1) {
+      errorMessage.setText("Please enter the animal's weight.");
+      return false;
+    }
+    if (heightInput.getText().length() < 1) {
+      errorMessage.setText("Please enter the animal's height.");
+      return false;
+    }
+    if (breedsInput.getText().length() < 1) {
+      errorMessage.setText("Please enter the animal's breed(s).");
+      return false;
+    }
+
+    String dateTxt = dateOfBirth.getEditor().getText();
+    if (!dateTxt.matches("[0-9]{2}/[0-9]{2}/[0-9]{4}")) {
+      errorMessage.setText("Please enter a valid date of birth.");
+    }
+
+    errorMessage.setVisible(false);
     return true;
   }
 }

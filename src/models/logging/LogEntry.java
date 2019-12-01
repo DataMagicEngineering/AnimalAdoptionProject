@@ -47,12 +47,14 @@ public class LogEntry {
 
   public LogEntry(int entryId, LogEntity entityAffected, int userId, String message, int affectedId,
       Instant dateOccurred) {
+
+    this(entityAffected, userId, message, affectedId, dateOccurred);
     this.entryId = entryId;
-    this.entityAffected = entityAffected;
-    this.userId = userId;
-    this.message = message;
-    this.affectedId = affectedId;
-    this.dateOccurred = dateOccurred;
+  }
+
+  public LogEntry(LogEntity entityAffected, int userId, String message,
+      int affectedId) {
+    this(entityAffected, userId, message, affectedId, Instant.now());
   }
 
   public int getEntryId() {

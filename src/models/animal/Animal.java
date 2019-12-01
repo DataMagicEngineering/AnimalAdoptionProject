@@ -26,7 +26,6 @@ public class Animal {
   private Proficiency bathroomTraining;
   private List<Vaccine> vaccines;
   private Color aggression;
-  private String breedString;
 
   /**
    * Default constructor for filling in an animal's properties at another time.
@@ -426,6 +425,14 @@ public class Animal {
       theColors += "|";
     }
     return theColors;
+  }
+
+  public String getFormattedBreeds() {
+    if (getBreedString().contains("|")) {
+      return getBreedString().replace("  |   ", ", ");
+    }
+
+    return getBreedString();
   }
 
   /**

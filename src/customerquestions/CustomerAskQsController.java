@@ -1,11 +1,6 @@
 package customerquestions;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -77,7 +72,7 @@ public class CustomerAskQsController {
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
         .load(getClass()
-            .getResource("../customerquestionconfirmation/CustomerQuestionConfirmation.fxml"));
+            .getResource("../customerquestionconfirmation/customerQuestionConfirmation.fxml.fxml"));
     primaryStage.setTitle("Confirmation");
     primaryStage.setScene(new Scene(root));
     primaryStage.show();

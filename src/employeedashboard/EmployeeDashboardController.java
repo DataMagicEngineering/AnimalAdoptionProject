@@ -15,7 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -23,6 +23,7 @@ import javafx.stage.Stage;
 import main.Database;
 import models.adoption.AdoptionWithAnimal;
 import models.application.VolunteerApplicationWithUser;
+import models.logging.LogEntryWithUser;
 import models.questions.QuestionWithUser;
 import models.user.AuthorizationLevel;
 
@@ -40,6 +41,9 @@ public class EmployeeDashboardController {
 
   @FXML
   private Button viewAnimalBtn;
+
+  @FXML
+  private TabPane rootTabPane;
 
   @FXML
   private Tab adoptionApplicationTab;
@@ -72,7 +76,7 @@ public class EmployeeDashboardController {
   private ListView<QuestionWithUser> unanwQuestionList;
 
   @FXML
-  private TextArea logList;
+  private ListView<LogEntryWithUser> logList;
 
   @FXML
   private Label dashLoginLbl;
@@ -127,10 +131,26 @@ public class EmployeeDashboardController {
       answerBtn.setDisable(true);
     }
 
+    rootTabPane.getSelectionModel().selectedItemProperty().addListener(
+        (currentValue, oldTab, newTab) -> {
+          try {
+            if (newTab.getId().equals("logList")) {
+              updateLogsPage();
+            }
+          } catch (Exception ignored) {
+
+          }
+        });
+
     setUpUnansweredList();
     setUpAnsweredList();
     setupVolunteerApplicationsPage();
     updateAdoptionsPage();
+    updateLogsPage();
+  }
+
+  private void updateLogsPage() {
+    logList.setItems(FXCollections.observableList(database.getLogs()));
   }
 
   /**

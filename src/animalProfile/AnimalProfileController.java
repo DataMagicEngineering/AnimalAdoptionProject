@@ -173,7 +173,7 @@ public class AnimalProfileController {
     animBathroomText.setText(animal.getBathroomTraining().toString());
     animBioText.setText(animal.getDescription());
     animBirthdayText.setText(formatDate.format(animal.getDateOfBirth()));
-    animBreedText.setText(animal.getBreedString());
+    animBreedText.setText(animal.getFormattedBreeds());
     animColorText.setText((animal.getColorString().replace('|', ' ')));
 
     animAdoptedText.setText(animal.isAdopted() ? "✓" : "X");
