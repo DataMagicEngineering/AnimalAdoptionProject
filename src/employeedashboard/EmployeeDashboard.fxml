@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<TabPane fx:id="rootTabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" stylesheets="@../mainCSS.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="employeedashboard.EmployeeDashboardController">
+<TabPane fx:id="rootTabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" stylesheets="@../mainCSS.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="employeedashboard.EmployeeDashboardController">
   <tabs>
     <Tab text="Main">
       <content>
@@ -25,19 +25,19 @@
                 <AnchorPane fx:id="anchorPaneHeader" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="598.0">
                   <children>
                     <Label fx:id="dashLoginLbl" layoutX="58.0" layoutY="16.0" stylesheets="@../login/LoginStyle.css" text="Welcome!" />
-                    <Label fx:id="userStatusLbl" layoutX="387.0" layoutY="16.0" stylesheets="@../login/LoginStyle.css" text="Status">
+                    <Label fx:id="userStatusLbl" layoutX="472.0" layoutY="18.0" stylesheets="@../login/LoginStyle.css" text="Status">
                       <font>
                         <Font name="System Bold" size="12.0" />
                       </font>
                     </Label>
                   </children>
                 </AnchorPane>
-                <AnchorPane fx:id="anchorPaneMain" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                <AnchorPane fx:id="anchorPaneMain" minHeight="0.0" minWidth="0.0" prefHeight="355.0" prefWidth="592.0">
                   <children>
                     <Button fx:id="viewAnimalBtn" layoutX="187.0" layoutY="70.0" mnemonicParsing="false" onAction="#goToAnimalScreen" prefHeight="45.0" prefWidth="227.0" text="View Animals" />
                     <Button fx:id="viewEventsBtn" layoutX="187.0" layoutY="158.0" mnemonicParsing="false" onAction="#goToEventsPage" prefHeight="48.0" prefWidth="225.0" text="View Events" />
                     <Button fx:id="recordHoursBtn" layoutX="187.0" layoutY="249.0" mnemonicParsing="false" onAction="#goToRecordLog" prefHeight="48.0" prefWidth="225.0" text="Record Hours" />
-                              <Button fx:id="logOutBtn" layoutX="523.0" layoutY="325.0" mnemonicParsing="false" onAction="#logOut" text="Log Out" />
+                              <Button fx:id="logOutBtn" layoutX="509.0" layoutY="312.0" mnemonicParsing="false" onAction="#logOut" text="Log Out" />
                   </children>
                 </AnchorPane>
               </items>

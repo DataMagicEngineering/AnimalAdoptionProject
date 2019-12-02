@@ -165,6 +165,7 @@ public class EmployeeDashboardController {
     Parent root = FXMLLoader.load(getClass().getResource("../login/LoginScreen.fxml"));
     primaryStage.setTitle("Adoption Apps");
     primaryStage.setScene(new Scene(root));
+    root.getStylesheets().add("mainCSS.css");
     primaryStage.show();
   }
 
@@ -244,6 +245,7 @@ public class EmployeeDashboardController {
         .load(getClass().getResource("../animalList/AnimalList.fxml"));
     primaryStage.setTitle("Animal Screen");
     primaryStage.setScene(new Scene(root));
+    root.getStylesheets().add("mainCSS.css");
     primaryStage.show();
   }
 
