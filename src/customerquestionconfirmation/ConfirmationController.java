@@ -18,6 +18,7 @@ public class ConfirmationController {
         .load(getClass().getResource("../customerdashboard/CustomerDashboard.fxml"));
     primaryStage.setTitle("Main Screen");
     primaryStage.setScene(new Scene(root));
+    root.getStylesheets().add("mainCSS.css");
     primaryStage.show();
   }
 

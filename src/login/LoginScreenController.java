@@ -74,6 +74,7 @@ public class LoginScreenController {
             .load(getClass().getResource("../employeedashboard/EmployeeDashboard.fxml"));
         primaryStage.setTitle("Main Screen");
         primaryStage.setScene(new Scene(root));
+        root.getStylesheets().add("mainCSS.css");
         primaryStage.show();
       } else {
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -81,6 +82,7 @@ public class LoginScreenController {
             .load(getClass().getResource("../customerdashboard/CustomerDashboard.fxml"));
         primaryStage.setTitle("Main Screen");
         primaryStage.setScene(new Scene(root));
+        root.getStylesheets().add("mainCSS.css");
         primaryStage.show();
       }
     }
@@ -100,6 +102,7 @@ public class LoginScreenController {
         .load(getClass().getResource("../registeruser/RegisterUser.fxml"));
     primaryStage.setTitle("Registration Page");
     primaryStage.setScene(new Scene(root));
+    root.getStylesheets().add("mainCSS.css");
     primaryStage.show();
   }
 }

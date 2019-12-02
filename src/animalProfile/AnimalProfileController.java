@@ -121,6 +121,7 @@ public class AnimalProfileController {
         .load(getClass().getResource("../adoptionPage/AdoptionPage.fxml"));
     primaryStage.setTitle("Adoption Page");
     primaryStage.setScene(new Scene(root));
+    root.getStylesheets().add("mainCSS.css");
     primaryStage.show();
   }
 
@@ -136,6 +137,7 @@ public class AnimalProfileController {
         .load(getClass().getResource("../newanimal/NewAnimal.fxml"));
     primaryStage.setTitle("Edit " + Database.getCurrentAnimal().getName());
     primaryStage.setScene(new Scene(root));
+    root.getStylesheets().add("mainCSS.css");
     primaryStage.show();
   }
 
@@ -152,6 +154,7 @@ public class AnimalProfileController {
         .load(getClass().getResource("../animalList/AnimalList.fxml"));
     primaryStage.setTitle("Animal List");
     primaryStage.setScene(new Scene(root));
+    root.getStylesheets().add("mainCSS.css");
     primaryStage.show();
 
     Database.setCurrentAnimal(null);

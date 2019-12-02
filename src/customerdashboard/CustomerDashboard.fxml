@@ -4,13 +4,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="customerDashboardPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../mainCSS.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="customerdashboard.CustomerDashboardController">
+<AnchorPane fx:id="customerDashboardPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../mainCSS.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="customerdashboard.CustomerDashboardController">
   <children>
-    <Button fx:id="btnViewAnimals" layoutX="251.0" layoutY="129.0" mnemonicParsing="false" onAction="#goToAnimalScreen" prefHeight="25.0" prefWidth="98.0" text="View Animals" />
-    <Button fx:id="btnViewEvents" layoutX="252.0" layoutY="175.0" mnemonicParsing="false" onAction="#goToEventsScreen" prefHeight="25.0" prefWidth="98.0" text="View Events" />
-    <Button fx:id="btnAskQuestions" layoutX="251.0" layoutY="224.0" mnemonicParsing="false" onAction="#askQuestion" prefHeight="25.0" prefWidth="98.0" text="Ask a Question" />
-    <Button fx:id="btnLogOff" layoutX="529.0" layoutY="361.0" mnemonicParsing="false" onAction="#logOut" text="Log Off" />
-    <Button fx:id="btnApplyVolunteer" layoutX="229.0" layoutY="276.0" mnemonicParsing="false" onAction="#goToVolunteerApplication" text="Apply to be a Volunteer" />
-    <Label fx:id="lblWelcome" layoutX="261.0" layoutY="77.0" text="Welcome User!" />
+    <Button fx:id="btnViewAnimals" layoutX="238.0" layoutY="114.0" mnemonicParsing="false" onAction="#goToAnimalScreen" prefHeight="31.0" prefWidth="125.0" text="View Animals" />
+    <Button fx:id="btnViewEvents" layoutX="238.0" layoutY="169.0" mnemonicParsing="false" onAction="#goToEventsScreen" prefHeight="31.0" prefWidth="125.0" text="View Events" />
+    <Button fx:id="btnAskQuestions" layoutX="238.0" layoutY="225.0" mnemonicParsing="false" onAction="#askQuestion" prefHeight="31.0" prefWidth="125.0" text="Ask a Question" />
+    <Button fx:id="btnLogOff" layoutX="515.0" layoutY="355.0" mnemonicParsing="false" onAction="#logOut" text="Log Off" />
+    <Button fx:id="btnApplyVolunteer" layoutX="212.0" layoutY="275.0" mnemonicParsing="false" onAction="#goToVolunteerApplication" text="Apply to be a Volunteer" />
+    <Label fx:id="lblWelcome" layoutX="251.0" layoutY="68.0" text="Welcome User!" />
   </children>
 </AnchorPane>

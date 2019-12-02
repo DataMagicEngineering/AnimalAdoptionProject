@@ -65,6 +65,7 @@ public class RecordLogsController {
         .load(getClass().getResource("../employeedashboard/EmployeeDashboard.fxml"));
     primaryStage.setTitle("Dashboard");
     primaryStage.setScene(new Scene(root));
+    root.getStylesheets().add("mainCSS.css");
     primaryStage.show();
   }
 }

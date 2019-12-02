@@ -127,6 +127,7 @@ public class AnimalListController {
         .load(getClass().getResource("../animalProfile/AnimalProfile.fxml"));
     primaryStage.setTitle("Animal Profile");
     primaryStage.setScene(new Scene(root));
+    root.getStylesheets().add("mainCSS.css");
     primaryStage.show();
   }
 
@@ -144,6 +145,7 @@ public class AnimalListController {
         .load(getClass().getResource("../newanimal/NewAnimal.fxml"));
     primaryStage.setTitle("New Animal");
     primaryStage.setScene(new Scene(root));
+    root.getStylesheets().add("mainCSS.css");
     primaryStage.show();
   }
 

@@ -46,6 +46,7 @@ public class CustomerAskQsController {
         .load(getClass().getResource("../customerdashboard/CustomerDashboard.fxml"));
     primaryStage.setTitle("Main Screen");
     primaryStage.setScene(new Scene(root));
+    root.getStylesheets().add("mainCSS.css");
     primaryStage.show();
   }
 
@@ -75,6 +76,7 @@ public class CustomerAskQsController {
             .getResource("../customerquestionconfirmation/customerQuestionConfirmation.fxml.fxml"));
     primaryStage.setTitle("Confirmation");
     primaryStage.setScene(new Scene(root));
+    root.getStylesheets().add("mainCSS.css");
     primaryStage.show();
   }
 }

@@ -92,6 +92,7 @@ public class NewAnimalController {
     Parent root = FXMLLoader.load(getClass().getResource("../animalList/AnimalList.fxml"));
     primaryStage.setTitle("Animal List");
     primaryStage.setScene(new Scene(root));
+    root.getStylesheets().add("mainCSS.css");
     primaryStage.show();
 
     Database.setCurrentAnimal(null);

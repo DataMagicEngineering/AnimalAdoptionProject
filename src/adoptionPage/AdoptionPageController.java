@@ -70,6 +70,7 @@ public class AdoptionPageController {
         .load(getClass().getResource("../adoptionConfirmationPage/ConfirmPage.fxml"));
     primaryStage.setTitle("Adoption");
     primaryStage.setScene(new Scene(root));
+    root.getStylesheets().add("mainCSS.css");
     primaryStage.show();
   }
 
@@ -86,6 +87,7 @@ public class AdoptionPageController {
         .load(getClass().getResource("../animalList/AnimalList.fxml"));
     primaryStage.setTitle("Main Screen");
     primaryStage.setScene(new Scene(root));
+    root.getStylesheets().add("mainCSS.css");
     primaryStage.show();
   }
 

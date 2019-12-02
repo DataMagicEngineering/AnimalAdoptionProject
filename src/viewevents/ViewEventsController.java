@@ -73,6 +73,7 @@ public class ViewEventsController {
         .load(getClass().getResource("../newevent/NewEvent.fxml"));
     primaryStage.setTitle("Create an Event");
     primaryStage.setScene(new Scene(root));
+    root.getStylesheets().add("mainCSS.css");
     primaryStage.show();
   }
 
@@ -90,6 +91,7 @@ public class ViewEventsController {
         .load(getClass().getResource("../newevent/NewEvent.fxml"));
     primaryStage.setTitle("Edit an Event");
     primaryStage.setScene(new Scene(root));
+    root.getStylesheets().add("mainCSS.css");
     primaryStage.show();
   }
 
@@ -109,6 +111,7 @@ public class ViewEventsController {
           .load(getClass().getResource("../employeedashboard/EmployeeDashboard.fxml"));
       primaryStage.setTitle("Main Screen");
       primaryStage.setScene(new Scene(root));
+      root.getStylesheets().add("mainCSS.css");
       primaryStage.show();
     } else {
       Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -116,6 +119,7 @@ public class ViewEventsController {
           .load(getClass().getResource("../customerdashboard/CustomerDashboard.fxml"));
       primaryStage.setTitle("Main Screen");
       primaryStage.setScene(new Scene(root));
+      root.getStylesheets().add("mainCSS.css");
       primaryStage.show();
     }
   }
