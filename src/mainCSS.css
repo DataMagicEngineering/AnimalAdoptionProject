@@ -24,6 +24,17 @@
   -fx-background-color: #AFEEEE;
 }
 
+.table-cell:even {
+  -fx-background-color: #D3D3D3;
+}
+
+.table-row-cell:selected .table-cell {
+  -fx-background-color: #1E90FF;
+  -fx-text-fill: white;
+  -fx-border-color: black;
+
+}
+
 #anchorPane {
   -fx-background-color: #E0FFFF;
 }
