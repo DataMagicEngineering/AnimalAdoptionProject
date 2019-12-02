@@ -10,13 +10,16 @@
 
 <AnchorPane id="AnchorPane" fx:id="backPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="248.0" prefWidth="500.0" stylesheets="@LoginStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.LoginScreenController">
   <children>
-    <TextField fx:id="usernameText" layoutX="31.0" layoutY="27.0" prefHeight="35.0" prefWidth="212.0" promptText="Username" />
-    <PasswordField fx:id="passwordText" layoutX="31.0" layoutY="74.0" prefHeight="35.0" prefWidth="212.0" promptText="Password" />
-    <Button fx:id="loginButton" layoutX="95.0" layoutY="121.0" mnemonicParsing="false" onAction="#pressedLogin" prefHeight="35.0" prefWidth="85.0" text="Login" />
+    <TextField fx:id="usernameText" layoutX="32.0" layoutY="35.0" prefHeight="35.0" prefWidth="212.0" promptText="Username" />
+    <PasswordField fx:id="passwordText" layoutX="32.0" layoutY="101.0" prefHeight="35.0" prefWidth="212.0" promptText="Password" />
+    <Button fx:id="loginButton" layoutX="96.0" layoutY="158.0" mnemonicParsing="false" onAction="#pressedLogin" prefHeight="25.0" prefWidth="85.0" text="Log in" />
     <Label fx:id="errorLabel" layoutX="25.0" layoutY="183.0" text="ERROR! Incorrect Username or Password!" textFill="RED" visible="false" />
     <Label fx:id="logginLabel" layoutX="96.0" layoutY="183.0" text="User Logged In!" textFill="GREEN" visible="false" />
     <Pane id="Pane" layoutX="270.0" prefHeight="248.0" prefWidth="253.0" />
-    <Button fx:id="registerHereButton" layoutX="96.0" layoutY="204.0" mnemonicParsing="false" onAction="#goToRegisterScreen" prefHeight="25.0" prefWidth="84.0" text="Register" />
-    <Text layoutX="110.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New User?" />
+    <Button fx:id="registerHereButton" layoutX="97.0" layoutY="209.0" mnemonicParsing="false" onAction="#goToRegisterScreen" prefHeight="25.0" prefWidth="84.0" text="Register" />
+    <Text layoutX="111.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New User?" />
+      <Label layoutX="119.0" layoutY="6.0" text="Login" />
+      <Label layoutX="32.0" layoutY="15.0" text="Username" />
+      <Label layoutX="32.0" layoutY="84.0" text="Password" />
   </children>
 </AnchorPane>
