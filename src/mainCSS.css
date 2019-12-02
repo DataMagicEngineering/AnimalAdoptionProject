@@ -1,3 +1,29 @@
 * {
   -fx-font-family: Tahoma;
 }
+
+.button {
+ -fx-background-color: #B0C4DE;
+  -fx-border-color: black;
+}
+
+.button:hover {
+  -fx-background-color: #AFEEEE;
+}
+
+.label {
+  
+}
+
+.tab {
+  -fx-background-color: #B0C4DE;
+  -fx-border-color: black;
+}
+
+.tab:hover {
+  -fx-background-color: #AFEEEE;
+}
+
+#anchorPane {
+  -fx-background-color: #E0FFFF;
+}

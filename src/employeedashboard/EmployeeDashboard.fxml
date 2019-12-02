@@ -13,10 +13,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<TabPane fx:id="rootTabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-  minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" stylesheets="@../mainCSS.css"
-  tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1"
-  xmlns:fx="http://javafx.com/fxml/1" fx:controller="employeedashboard.EmployeeDashboardController">
+
+<TabPane fx:id="rootTabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" stylesheets="@../mainCSS.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="employeedashboard.EmployeeDashboardController">
   <tabs>
     <Tab text="Main">
       <content>
@@ -24,7 +22,7 @@
           <children>
             <SplitPane dividerPositions="0.12200956937799043" layoutY="1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="420.0" prefWidth="600.0">
               <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="598.0">
+                <AnchorPane fx:id="anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="598.0">
                   <children>
                     <Label fx:id="dashLoginLbl" layoutX="58.0" layoutY="16.0" stylesheets="@../login/LoginStyle.css" text="Welcome!" />
                     <Label fx:id="userStatusLbl" layoutX="387.0" layoutY="16.0" stylesheets="@../login/LoginStyle.css" text="Status">
@@ -34,23 +32,11 @@
                     </Label>
                   </children>
                 </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                <AnchorPane fx:id="anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                   <children>
-                    <Button fx:id="viewAnimalBtn" layoutX="187.0" layoutY="70.0" mnemonicParsing="false" onAction="#goToAnimalScreen" prefHeight="45.0" prefWidth="227.0" text="View Animals">
-                      <font>
-                        <Font size="20.0" />
-                      </font>
-                    </Button>
-                    <Button fx:id="viewEventsBtn" layoutX="187.0" layoutY="158.0" mnemonicParsing="false" onAction="#goToEventsPage" prefHeight="48.0" prefWidth="225.0" text="View Events">
-                      <font>
-                        <Font size="20.0" />
-                      </font>
-                    </Button>
-                    <Button fx:id="recordHoursBtn" layoutX="187.0" layoutY="249.0" mnemonicParsing="false" onAction="#goToRecordLog" prefHeight="48.0" prefWidth="225.0" text="Record Hours">
-                      <font>
-                        <Font size="20.0" />
-                      </font>
-                    </Button>
+                    <Button fx:id="viewAnimalBtn" layoutX="187.0" layoutY="70.0" mnemonicParsing="false" onAction="#goToAnimalScreen" prefHeight="45.0" prefWidth="227.0" text="View Animals" />
+                    <Button fx:id="viewEventsBtn" layoutX="187.0" layoutY="158.0" mnemonicParsing="false" onAction="#goToEventsPage" prefHeight="48.0" prefWidth="225.0" text="View Events" />
+                    <Button fx:id="recordHoursBtn" layoutX="187.0" layoutY="249.0" mnemonicParsing="false" onAction="#goToRecordLog" prefHeight="48.0" prefWidth="225.0" text="Record Hours" />
                               <Button fx:id="logOutBtn" layoutX="498.0" layoutY="14.0" mnemonicParsing="false" onAction="#logOut" text="Log Out" />
                   </children>
                 </AnchorPane>
@@ -68,7 +54,7 @@
               <tabs>
                 <Tab fx:id="unansweredQuestionsTab" text="Unanswered Questions">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <AnchorPane fx:id="anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                       <children>
                         <ListView fx:id="unanwQuestionList" layoutX="16.0" layoutY="37.0" prefHeight="274.0" prefWidth="569.0" />
                         <TextField fx:id="answerQuestionTxtBox" alignment="TOP_LEFT" layoutX="17.0" layoutY="323.0" prefHeight="38.0" prefWidth="407.0" promptText="Type response here" />
@@ -84,7 +70,7 @@
                 </Tab>
                 <Tab fx:id="answeredQuestionTab" text="Answered Questions">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <AnchorPane fx:id="anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                       <children>
                         <ListView fx:id="ans" layoutX="12.0" layoutY="14.0" onMouseClicked="#requestAnswer" prefHeight="284.0" prefWidth="576.0" />
                         <Text fx:id="answerTxt" layoutX="65.0" layoutY="347.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Answer here." wrappingWidth="470.0" />
@@ -114,7 +100,7 @@
                             <Insets />
                           </VBox.margin>
                         </ListView>
-                        <HBox alignment="CENTER_RIGHT" prefWidth="200.0">
+                        <HBox fx:id="anchorPane" alignment="CENTER_RIGHT" prefWidth="200.0">
                           <children>
                             <Button fx:id="adoptionUnprocessedRejectBtn" mnemonicParsing="false" onAction="#rejectAdoptionRequest" text="Reject">
                               <HBox.margin>
@@ -157,7 +143,7 @@
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
           <children>
-            <TabPane prefHeight="420.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane fx:id="anchorPane" prefHeight="420.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab text="Unprocessed">
                   <content>
@@ -211,7 +197,7 @@
       <content>
         <VBox>
           <children>
-            <ListView fx:id="logList"/>
+            <ListView fx:id="logList" />
           </children>
         </VBox>
       </content>
