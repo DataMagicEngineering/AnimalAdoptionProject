@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anchorPaneVolunteerApp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="volunteerApplicationPage.VolunteerAppController">
+<AnchorPane fx:id="anchorPaneVolunteerApp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="volunteerApplicationPage.VolunteerAppController">
   <children>
     <Label layoutX="24.0" layoutY="66.0" text="Name:" />
     <Label layoutX="234.0" layoutY="66.0" prefHeight="21.0" prefWidth="35.0" text="Age:" />
@@ -29,8 +29,8 @@
 
     <Button layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#goBackToCustomerScreen" text="Go Back" />
     <Button layoutX="274.0" layoutY="347.0" mnemonicParsing="false" onAction="#submitVolApp" text="Submit" />
-    <Label layoutX="100.0" layoutY="298.0" text="I understand that as a volunteer, it is my duty to treat animals with kindness," />
-    <Label layoutX="93.0" layoutY="315.0" text="Report any animal injuries, illness, or escapes, and log my hours when finished." />
+    <Label layoutX="44.0" layoutY="302.0" text="I understand that as a volunteer, it is my duty to treat animals with kindness," />
+    <Label layoutX="36.0" layoutY="323.0" text="Report any animal injuries, illness, or escapes, and log my hours when finished." />
     <Label layoutX="252.0" layoutY="281.0" text="By clicking Submit," />
   </children>
 </AnchorPane>
