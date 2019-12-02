@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../mainCSS.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="customerquestions.CustomerAskQsController">
+<AnchorPane fx:id="anchorPaneQuestions" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../mainCSS.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="customerquestions.CustomerAskQsController">
   <children>
     <Button fx:id="customerQsBackBtn" layoutX="36.0" layoutY="308.0" mnemonicParsing="false" onAction="#onActionGoBack" text="Go Back" />
     <Label layoutX="65.0" layoutY="28.0" text="Do you have any questions regarding animal adoption policies, volunteering, or events? " />

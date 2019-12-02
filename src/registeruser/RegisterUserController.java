@@ -72,6 +72,7 @@ public class RegisterUserController {
           .load(getClass().getResource("../login/LoginScreen.fxml"));
       primaryStage.setTitle("Adoption Application");
       primaryStage.setScene(new Scene(root));
+      root.getStylesheets().add("mainCSS.css");
       primaryStage.show();
     }
   }
@@ -88,6 +89,7 @@ public class RegisterUserController {
         .load(getClass().getResource("../login/LoginScreen.fxml"));
     primaryStage.setTitle("Adoption Application");
     primaryStage.setScene(new Scene(root));
+    root.getStylesheets().add("mainCSS.css");
     primaryStage.show();
   }
 

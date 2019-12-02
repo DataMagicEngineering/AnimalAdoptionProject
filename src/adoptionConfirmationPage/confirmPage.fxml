@@ -8,13 +8,13 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../mainCSS.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="adoptionConfirmationPage.ConfirmPage">
   <children>
-    <AnchorPane layoutX="-1.0" prefHeight="403.0" prefWidth="600.0">
+    <AnchorPane fx:id="anchorPaneAdopt" layoutX="-1.0" prefHeight="403.0" prefWidth="600.0">
       <children>
-        <Button fx:id="btnReturntoList" layoutX="69.0" layoutY="314.0" mnemonicParsing="false" onAction="#goToAnimalList" text="Return to Animal List" />
-        <Button fx:id="btnReturntoMain" layoutX="371.0" layoutY="314.0" mnemonicParsing="false" onAction="#goToMain" text="Return to Main Screen" />
-        <Button fx:id="btnLogOff" layoutX="505.0" layoutY="29.0" mnemonicParsing="false" onAction="#LogUserOut" text="Log off" />
-        <TextArea fx:id="txtfieldThanks" layoutX="69.0" layoutY="179.0" prefHeight="85.0" prefWidth="462.0" text="Thank you for applying to adopt our wonderful friend! We will look through your application soon to ensure that your home is right for them! " wrapText="true" />
-            <Label layoutX="224.0" layoutY="98.0" text="Thank you!">
+        <Button fx:id="btnReturntoList" layoutX="70.0" layoutY="230.0" mnemonicParsing="false" onAction="#goToAnimalList" text="Return to Animal List" />
+        <Button fx:id="btnReturntoMain" layoutX="395.0" layoutY="230.0" mnemonicParsing="false" onAction="#goToMain" text="Return to Main Screen" />
+        <Button fx:id="btnLogOff" layoutX="531.0" layoutY="364.0" mnemonicParsing="false" onAction="#LogUserOut" text="Log off" />
+        <TextArea fx:id="txtfieldThanks" layoutX="70.0" layoutY="117.0" prefHeight="85.0" prefWidth="462.0" text="Thank you for applying to adopt our wonderful friend! We will look through your application soon to ensure that your home is right for them! " wrapText="true" />
+            <Label layoutX="221.0" layoutY="38.0" text="Thank you!">
                <font>
                   <Font name="Ink Free" size="32.0" />
                </font>

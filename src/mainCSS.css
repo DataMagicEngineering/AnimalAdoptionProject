@@ -5,6 +5,7 @@
 .button {
  -fx-background-color: #B0C4DE;
   -fx-border-color: black;
+  -fx-text-alignment: center;
 }
 
 .button:hover {
@@ -45,6 +46,14 @@
 
 }
 
+#anchorPaneAdopt {
+  -fx-background-color: #E0FFFF;
+}
+
+#anchorPaneAnimalPage {
+  -fx-background-color: #E0FFFF;
+}
+
 #anchorPaneMain {
   -fx-background-color: #E0FFFF;
 }
@@ -62,6 +71,18 @@
 }
 
 #anchorPaneRecordedHrs {
+  -fx-background-color: #E0FFFF;
+}
+
+#anchorPaneVolunteerApp {
+  -fx-background-color: #E0FFFF;
+}
+
+#anchorPaneVolunteerSuccess {
+  -fx-background-color: #E0FFFF;
+}
+
+#customerDashboardPane {
   -fx-background-color: #E0FFFF;
 }
 

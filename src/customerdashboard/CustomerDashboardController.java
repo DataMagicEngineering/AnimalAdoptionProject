@@ -48,6 +48,7 @@ public class CustomerDashboardController {
         .load(getClass().getResource("../animalList/AnimalList.fxml"));
     primaryStage.setTitle("Animal List");
     primaryStage.setScene(new Scene(root));
+    root.getStylesheets().add("mainCSS.css");
     primaryStage.show();
   }
 
@@ -63,6 +64,7 @@ public class CustomerDashboardController {
         .load(getClass().getResource("../viewevents/ViewEvents.fxml"));
     primaryStage.setTitle("Events");
     primaryStage.setScene(new Scene(root));
+    root.getStylesheets().add("mainCSS.css");
     primaryStage.show();
   }
 
@@ -78,6 +80,7 @@ public class CustomerDashboardController {
         .load(getClass().getResource("../volunteerApplicationPage/volunteerApplication.fxml"));
     primaryStage.setTitle("Volunteer Application");
     primaryStage.setScene(new Scene(root));
+    root.getStylesheets().add("mainCSS.css");
     primaryStage.show();
   }
 
@@ -93,6 +96,7 @@ public class CustomerDashboardController {
     Parent root = FXMLLoader.load(getClass().getResource("../login/LoginScreen.fxml"));
     primaryStage.setTitle("Adoption Apps");
     primaryStage.setScene(new Scene(root));
+    root.getStylesheets().add("mainCSS.css");
     primaryStage.show();
   }
 
@@ -108,6 +112,7 @@ public class CustomerDashboardController {
         + "CustomerAskQsScreen.fxml"));
     primaryStage.setTitle("Ask a Question");
     primaryStage.setScene(new Scene(root));
+    root.getStylesheets().add("mainCSS.css");
     primaryStage.show();
   }
 }

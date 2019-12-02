@@ -37,6 +37,7 @@ public class VolunteerAppController {
         .load(getClass().getResource("../volunteerApplicationPage/volunteerSuccess.fxml"));
     primaryStage.setTitle("Dashboard");
     primaryStage.setScene(new Scene(root));
+    root.getStylesheets().add("mainCSS.css");
     primaryStage.show();
   }
 
@@ -52,6 +53,7 @@ public class VolunteerAppController {
         .load(getClass().getResource("../customerdashboard/CustomerDashboard.fxml"));
     primaryStage.setTitle("Main Screen");
     primaryStage.setScene(new Scene(root));
+    root.getStylesheets().add("mainCSS.css");
     primaryStage.show();
   }
 }
