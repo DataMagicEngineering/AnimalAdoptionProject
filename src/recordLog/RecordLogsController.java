@@ -49,6 +49,7 @@ public class RecordLogsController {
         .load(getClass().getResource("../recordLog/recordedLogs.fxml"));
     primaryStage.setTitle("Record Log");
     primaryStage.setScene(new Scene(root));
+    root.getStylesheets().add("mainCSS.css");
     primaryStage.show();
   }
 

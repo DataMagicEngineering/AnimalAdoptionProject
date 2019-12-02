@@ -15,6 +15,16 @@
 
 }
 
+.list-cell:even {
+  -fx-background-color: #D3D3D3;
+}
+
+.list-cell:selected {
+  -fx-background-color: #1E90FF;
+  -fx-text-fill: white;
+  -fx-border-color: black;
+}
+
 .tab {
   -fx-background-color: #B0C4DE;
   -fx-border-color: black;
@@ -35,6 +45,34 @@
 
 }
 
-#anchorPane {
+#anchorPaneMain {
+  -fx-background-color: #E0FFFF;
+}
+
+#anchorPaneHeader {
+  -fx-background-color: #E0FFFF;
+}
+
+#anchorPaneQuestions {
+  -fx-background-color: #E0FFFF;
+}
+
+#anchorPaneRecLogs {
+  -fx-background-color: #E0FFFF;
+}
+
+#anchorPaneRecordedHrs {
+  -fx-background-color: #E0FFFF;
+}
+
+#HBoxAdopApp {
+  -fx-background-color: #E0FFFF;
+}
+
+#HBoxVolunteerApp {
+  -fx-background-color: #E0FFFF;
+}
+
+#viewEventsPane {
   -fx-background-color: #E0FFFF;
 }

@@ -290,6 +290,7 @@ public class EmployeeDashboardController {
         .load(getClass().getResource("../viewevents/ViewEvents.fxml"));
     primaryStage.setTitle("Events");
     primaryStage.setScene(new Scene(root));
+    root.getStylesheets().add("mainCSS.css");
     primaryStage.show();
   }
 
@@ -305,6 +306,7 @@ public class EmployeeDashboardController {
         .load(getClass().getResource("../recordLog/recordLogPage.fxml"));
     primaryStage.setTitle("Record Log");
     primaryStage.setScene(new Scene(root));
+    root.getStylesheets().add("mainCSS.css");
     primaryStage.show();
   }
 
