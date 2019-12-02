@@ -11,12 +11,12 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../mainCSS.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="animalList.AnimalListController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../mainCSS.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="animalList.AnimalListController">
   <children>
-    <TextField fx:id="searchTxtFld" layoutX="300.0" layoutY="103.0" promptText="Search..." />
+    <TextField fx:id="searchTxtFld" layoutX="279.0" layoutY="103.0" promptText="Search..." />
     <ChoiceBox fx:id="filterChoiceBox" layoutX="114.0" layoutY="103.0" prefWidth="150.0" />
     <Label layoutX="47.0" layoutY="107.0" text="Filter By:" />
-    <Button layoutX="467.0" layoutY="102.0" mnemonicParsing="false" onAction="#applyFilter" text="Apply Filter" />
+    <Button layoutX="473.0" layoutY="102.0" mnemonicParsing="false" onAction="#applyFilter" text="Apply Filter" />
     <Pane layoutX="30.0" layoutY="128.0" prefHeight="217.0" prefWidth="541.0">
       <children>
         <TableView fx:id="animalsTableView" layoutX="17.0" layoutY="14.0" prefHeight="200.0" prefWidth="508.0">
@@ -28,10 +28,10 @@
         </TableView>
       </children>
     </Pane>
-    <Button fx:id="returnToMain" layoutX="441.0" layoutY="353.0" mnemonicParsing="false" onAction="#goToMainMenu" text="Return to Main Menu" />
-    <Button fx:id="selectedAnimalButton" layoutX="214.0" layoutY="353.0" mnemonicParsing="false" onAction="#goToAnimalProfile" text="Go to Selected Animal's Page" />
-    <Button fx:id="editAnimalButton" layoutX="14.0" layoutY="353.0" mnemonicParsing="false" onAction="#createAnimal" text="Create an Animal Profile" />
-      <Text layoutX="189.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Looking for a New Friend">
+    <Button fx:id="returnToMain" layoutX="425.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToMainMenu" text="Return to Main Menu" />
+    <Button fx:id="selectedAnimalButton" layoutX="338.0" layoutY="353.0" mnemonicParsing="false" onAction="#goToAnimalProfile" prefHeight="31.0" prefWidth="216.0" text="Go to Selected Animal's Page" />
+    <Button fx:id="editAnimalButton" layoutX="47.0" layoutY="353.0" mnemonicParsing="false" onAction="#createAnimal" prefHeight="31.0" prefWidth="190.0" text="Create an Animal Profile" />
+      <Text layoutX="168.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Looking for a New Friend">
          <font>
             <Font size="20.0" />
          </font>
