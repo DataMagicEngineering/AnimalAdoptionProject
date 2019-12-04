@@ -9,6 +9,8 @@ The Animal Shelter Management System is a program designed for Animal Shelters/H
 
 ## Documentation
 
+[SRS](documents/SRS.pdf)
+
 (link to a generated JavaDoc URL goes here)
 
 ## Diagrams
