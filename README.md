@@ -13,7 +13,7 @@ The Animal Shelter Management System is a program designed for Animal Shelters/H
 
 ## Diagrams
 
-[Class Diagram](documents/Class_Diagram.jpg)
+[Class Diagram](documents/Class_Diagram.JPG)
 
 ## Getting Started
 
