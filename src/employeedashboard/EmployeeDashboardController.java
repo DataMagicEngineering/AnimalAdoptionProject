@@ -150,7 +150,10 @@ public class EmployeeDashboardController {
   }
 
   private void updateLogsPage() {
-    logList.setItems(FXCollections.observableList(database.getLogs()));
+    logList.setItems(FXCollections.observableList(database.getLogs())
+        .sorted(
+            (first, second) -> second.getEntry().getDateOccurred()
+                .compareTo(first.getEntry().getDateOccurred())));
   }
 
   /**

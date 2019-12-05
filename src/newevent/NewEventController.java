@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.chrono.Chronology;
-import java.time.format.DateTimeFormatter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,7 +24,6 @@ import javafx.stage.Stage;
 import main.Database;
 import models.event.Event;
 import models.user.AuthorizationLevel;
-import models.user.User;
 
 /**
  * The Base Controller Class to create new events.
@@ -117,7 +115,7 @@ public class NewEventController {
    * The method that allows a user to create an event. If an invalid input is entered, the user will be prompted to
    * re-enter the input.
    */
-  public void createEvent() {
+  public void createEvent(ActionEvent actionEvent) throws IOException {
     if (eventTitleInput.getText().length() == 0) {
       showError("Please enter an event title");
       return;
@@ -184,6 +182,15 @@ public class NewEventController {
         System.out.println("Error saving event.");
       }
     }
+
+    Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+    Parent root = FXMLLoader.load(getClass().getResource("../viewevents/ViewEvents.fxml"));
+    primaryStage.setTitle("Dashboard");
+    primaryStage.setScene(new Scene(root));
+    root.getStylesheets().add("mainCSS.css");
+    primaryStage.show();
+
+    Database.setCurrentEvent(null);
   }
 
   /**

@@ -73,7 +73,7 @@ public class CustomerAskQsController {
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
         .load(getClass()
-            .getResource("../customerquestionconfirmation/customerQuestionConfirmation.fxml.fxml"));
+            .getResource("../customerquestionconfirmation/customerQuestionConfirmation.fxml"));
     primaryStage.setTitle("Confirmation");
     primaryStage.setScene(new Scene(root));
     root.getStylesheets().add("mainCSS.css");
