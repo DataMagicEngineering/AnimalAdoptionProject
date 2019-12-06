@@ -15,11 +15,16 @@ The Animal Shelter Management System is a program designed for Animal Shelters/H
 
 [Class Diagram](documents/Class_Diagram.JPG)
 
-## Getting Started
+## Getting Started (Running the Application)
 
 If you wish to get a copy of the program up and running on your machine, here is a detailed guide on how to do so: https://guides.github.com/activities/forking/
 
-[Here is also instruction on building](https://github.com/processing/processing/wiki/Build-Instructions)
+* Using IntelliJ:
+  * Open
+  * Select the AnimalAdoptionProject directory that came with this archive
+  * OK
+  * Run the program by selecting the green play button in the upper right corner.
+  * If the play button is not available, navigate to the src/main/Main.java file and select the green play button to the right of 'public class Main...'
 
 ## Built With
 
