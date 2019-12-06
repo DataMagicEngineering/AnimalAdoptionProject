@@ -11,8 +11,6 @@ The Animal Shelter Management System is a program designed for Animal Shelters/H
 
 [SRS](documents/SRS.pdf)
 
-(link to a generated JavaDoc URL goes here)
-
 ## Diagrams
 
 [Class Diagram](documents/Class_Diagram.JPG)
@@ -56,17 +54,13 @@ Nathalie Crespo - Mentor for our project, helped us with database recommendation
 
 ## History
 
-First Deliverable:
+[First Deliverable](https://www.youtube.com/watch?v=AO-EwASzAlE&feature=youtu.be)
 
-https://www.youtube.com/watch?v=AO-EwASzAlE&feature=youtu.be
+[Second Deliverable](https://www.youtube.com/watch?v=PWZGA3bWjR4&feature=youtu.be)
 
-Second Deliverable:
+[Final Deliverable](https://www.youtube.com/watch?v=rEBMXnVyjAY&feature=youtu.be)
 
-https://www.youtube.com/watch?v=PWZGA3bWjR4&feature=youtu.be
-
-Final Deliverable:
-
-https://www.youtube.com/watch?v=rEBMXnVyjAY&feature=youtu.be
+[Final Project Presentation](https://docs.google.com/presentation/d/1i3vpx4oN-gIv3jzLdffUpt-qf1DuTPqymr4MR0mEe_o/edit?usp=sharing)
 
 ## Key Programming Concepts Utilized
 
