@@ -5,7 +5,7 @@ The Animal Shelter Management System is a program designed for Animal Shelters/H
 
 ## Demonstration
 
-[YouTube Video](https://www.youtube.com/watch?v=rEBMXnVyjAY&feature=youtu.be)
+[YouTube Video demonstration of our program (2 mins long)](https://www.youtube.com/watch?v=rEBMXnVyjAY&feature=youtu.be)
 
 ## Documentation
 
@@ -52,7 +52,7 @@ If you would like to make any contributions to this project, then fork the proje
 
 ## Acknowledgments
 
-(Websites, professors, classmates, and TAs who helped goes here)
+Nathalie Crespo - Mentor for our program, helped us with database recommendations, SRS improvements, and has helped keeped us in track for the project.
 
 ## History
 
