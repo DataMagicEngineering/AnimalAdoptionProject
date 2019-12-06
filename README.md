@@ -52,7 +52,7 @@ If you would like to make any contributions to this project, then fork the proje
 
 ## Acknowledgments
 
-Nathalie Crespo - Mentor for our program, helped us with database recommendations, SRS improvements, and has helped keeped us in track for the project.
+Nathalie Crespo - Mentor for our project, helped us with database recommendations, SRS improvements, and has helped keeped us in track for the program.
 
 ## History
 
