@@ -98,14 +98,14 @@ public class AnimalListController {
         || Database.getCurrentUser().getPrivileges() == AuthorizationLevel.VOLUNTEER) {
       Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
       Parent root = FXMLLoader
-          .load(getClass().getResource("../employeedashboard/EmployeeDashboard.fxml"));
+          .load(getClass().getResource("/employeedashboard/EmployeeDashboard.fxml"));
       primaryStage.setTitle("Dashboard");
       primaryStage.setScene(new Scene(root));
       primaryStage.show();
     } else {
       Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
       Parent root = FXMLLoader
-          .load(getClass().getResource("../customerdashboard/CustomerDashboard.fxml"));
+          .load(getClass().getResource("/customerdashboard/CustomerDashboard.fxml"));
       primaryStage.setTitle("Main Screen");
       primaryStage.setScene(new Scene(root));
       primaryStage.show();
@@ -124,7 +124,7 @@ public class AnimalListController {
 
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../animalProfile/AnimalProfile.fxml"));
+        .load(getClass().getResource("/animalProfile/AnimalProfile.fxml"));
     primaryStage.setTitle("Animal Profile");
     primaryStage.setScene(new Scene(root));
     root.getStylesheets().add("mainCSS.css");
@@ -142,7 +142,7 @@ public class AnimalListController {
 
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../newanimal/NewAnimal.fxml"));
+        .load(getClass().getResource("/newanimal/NewAnimal.fxml"));
     primaryStage.setTitle("New Animal");
     primaryStage.setScene(new Scene(root));
     root.getStylesheets().add("mainCSS.css");

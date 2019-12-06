@@ -34,7 +34,7 @@ public class VolunteerAppController {
 
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../volunteerApplicationPage/volunteerSuccess.fxml"));
+        .load(getClass().getResource("/volunteerApplicationPage/volunteerSuccess.fxml"));
     primaryStage.setTitle("Dashboard");
     primaryStage.setScene(new Scene(root));
     root.getStylesheets().add("mainCSS.css");
@@ -50,7 +50,7 @@ public class VolunteerAppController {
   public void goBackToCustomerScreen(ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../customerdashboard/CustomerDashboard.fxml"));
+        .load(getClass().getResource("/customerdashboard/CustomerDashboard.fxml"));
     primaryStage.setTitle("Main Screen");
     primaryStage.setScene(new Scene(root));
     root.getStylesheets().add("mainCSS.css");

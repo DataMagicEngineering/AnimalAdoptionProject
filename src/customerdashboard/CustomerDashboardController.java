@@ -45,7 +45,7 @@ public class CustomerDashboardController {
   public void goToAnimalScreen(ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../animalList/AnimalList.fxml"));
+        .load(getClass().getResource("/animalList/AnimalList.fxml"));
     primaryStage.setTitle("Animal List");
     primaryStage.setScene(new Scene(root));
     root.getStylesheets().add("mainCSS.css");
@@ -61,7 +61,7 @@ public class CustomerDashboardController {
   public void goToEventsScreen(ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../viewevents/ViewEvents.fxml"));
+        .load(getClass().getResource("/viewevents/ViewEvents.fxml"));
     primaryStage.setTitle("Events");
     primaryStage.setScene(new Scene(root));
     root.getStylesheets().add("mainCSS.css");
@@ -77,7 +77,7 @@ public class CustomerDashboardController {
   public void goToVolunteerApplication(ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../volunteerApplicationPage/volunteerApplication.fxml"));
+        .load(getClass().getResource("/volunteerApplicationPage/volunteerApplication.fxml"));
     primaryStage.setTitle("Volunteer Application");
     primaryStage.setScene(new Scene(root));
     root.getStylesheets().add("mainCSS.css");
@@ -93,7 +93,7 @@ public class CustomerDashboardController {
   @FXML
   void logOut(ActionEvent actionEvent) throws Exception {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-    Parent root = FXMLLoader.load(getClass().getResource("../login/LoginScreen.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("/login/LoginScreen.fxml"));
     primaryStage.setTitle("Adoption Apps");
     primaryStage.setScene(new Scene(root));
     root.getStylesheets().add("mainCSS.css");
@@ -108,7 +108,7 @@ public class CustomerDashboardController {
   @FXML
   void askQuestion(ActionEvent actionEvent) throws Exception {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-    Parent root = FXMLLoader.load(getClass().getResource("../customerquestions/"
+    Parent root = FXMLLoader.load(getClass().getResource("/customerquestions/"
         + "CustomerAskQsScreen.fxml"));
     primaryStage.setTitle("Ask a Question");
     primaryStage.setScene(new Scene(root));

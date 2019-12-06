@@ -118,7 +118,7 @@ public class AnimalProfileController {
   void goToAdoptionPage(ActionEvent event) throws Exception {
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../adoptionPage/AdoptionPage.fxml"));
+        .load(getClass().getResource("/adoptionPage/AdoptionPage.fxml"));
     primaryStage.setTitle("Adoption Page");
     primaryStage.setScene(new Scene(root));
     root.getStylesheets().add("mainCSS.css");
@@ -134,7 +134,7 @@ public class AnimalProfileController {
   void goToEdit(ActionEvent event) throws Exception {
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../newanimal/NewAnimal.fxml"));
+        .load(getClass().getResource("/newanimal/NewAnimal.fxml"));
     primaryStage.setTitle("Edit " + Database.getCurrentAnimal().getName());
     primaryStage.setScene(new Scene(root));
     root.getStylesheets().add("mainCSS.css");
@@ -151,7 +151,7 @@ public class AnimalProfileController {
   void goBack(ActionEvent event) throws Exception {
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../animalList/AnimalList.fxml"));
+        .load(getClass().getResource("/animalList/AnimalList.fxml"));
     primaryStage.setTitle("Animal List");
     primaryStage.setScene(new Scene(root));
     root.getStylesheets().add("mainCSS.css");

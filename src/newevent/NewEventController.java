@@ -184,7 +184,7 @@ public class NewEventController {
     }
 
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-    Parent root = FXMLLoader.load(getClass().getResource("../viewevents/ViewEvents.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("/viewevents/ViewEvents.fxml"));
     primaryStage.setTitle("Dashboard");
     primaryStage.setScene(new Scene(root));
     root.getStylesheets().add("mainCSS.css");
@@ -251,7 +251,7 @@ public class NewEventController {
   public void goBackToScreen(ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../employeedashboard/EmployeeDashboard.fxml"));
+        .load(getClass().getResource("/employeedashboard/EmployeeDashboard.fxml"));
     primaryStage.setTitle("Dashboard");
     primaryStage.setScene(new Scene(root));
     root.getStylesheets().add("mainCSS.css");

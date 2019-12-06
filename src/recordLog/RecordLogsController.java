@@ -46,7 +46,7 @@ public class RecordLogsController {
   public void goToConfirmHours(ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../recordLog/recordedLogs.fxml"));
+        .load(getClass().getResource("/recordLog/recordedLogs.fxml"));
     primaryStage.setTitle("Record Log");
     primaryStage.setScene(new Scene(root));
     root.getStylesheets().add("mainCSS.css");
@@ -62,7 +62,7 @@ public class RecordLogsController {
   public void goBackToDashboard(ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../employeedashboard/EmployeeDashboard.fxml"));
+        .load(getClass().getResource("/employeedashboard/EmployeeDashboard.fxml"));
     primaryStage.setTitle("Dashboard");
     primaryStage.setScene(new Scene(root));
     root.getStylesheets().add("mainCSS.css");

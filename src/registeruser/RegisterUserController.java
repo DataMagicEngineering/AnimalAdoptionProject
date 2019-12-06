@@ -69,7 +69,7 @@ public class RegisterUserController {
 
       Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
       Parent root = FXMLLoader
-          .load(getClass().getResource("../login/LoginScreen.fxml"));
+          .load(getClass().getResource("/login/LoginScreen.fxml"));
       primaryStage.setTitle("Adoption Application");
       primaryStage.setScene(new Scene(root));
       root.getStylesheets().add("mainCSS.css");
@@ -86,7 +86,7 @@ public class RegisterUserController {
   void returnToLoginScreen(ActionEvent event) throws Exception {
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../login/LoginScreen.fxml"));
+        .load(getClass().getResource("/login/LoginScreen.fxml"));
     primaryStage.setTitle("Adoption Application");
     primaryStage.setScene(new Scene(root));
     root.getStylesheets().add("mainCSS.css");

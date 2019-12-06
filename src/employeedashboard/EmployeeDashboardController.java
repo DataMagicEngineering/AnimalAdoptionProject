@@ -165,7 +165,7 @@ public class EmployeeDashboardController {
   @FXML
   void logOut(ActionEvent actionEvent) throws Exception{
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-    Parent root = FXMLLoader.load(getClass().getResource("../login/LoginScreen.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("/login/LoginScreen.fxml"));
     primaryStage.setTitle("Adoption Apps");
     primaryStage.setScene(new Scene(root));
     root.getStylesheets().add("mainCSS.css");
@@ -245,7 +245,7 @@ public class EmployeeDashboardController {
   public void goToAnimalScreen(ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../animalList/AnimalList.fxml"));
+        .load(getClass().getResource("/animalList/AnimalList.fxml"));
     primaryStage.setTitle("Animal Screen");
     primaryStage.setScene(new Scene(root));
     root.getStylesheets().add("mainCSS.css");
@@ -292,7 +292,7 @@ public class EmployeeDashboardController {
   public void goToEventsPage(ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../viewevents/ViewEvents.fxml"));
+        .load(getClass().getResource("/viewevents/ViewEvents.fxml"));
     primaryStage.setTitle("Events");
     primaryStage.setScene(new Scene(root));
     root.getStylesheets().add("mainCSS.css");
@@ -308,7 +308,7 @@ public class EmployeeDashboardController {
   public void goToRecordLog(ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../recordLog/recordLogPage.fxml"));
+        .load(getClass().getResource("/recordLog/recordLogPage.fxml"));
     primaryStage.setTitle("Record Log");
     primaryStage.setScene(new Scene(root));
     root.getStylesheets().add("mainCSS.css");

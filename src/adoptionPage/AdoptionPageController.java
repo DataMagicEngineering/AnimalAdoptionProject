@@ -67,7 +67,7 @@ public class AdoptionPageController {
 
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../adoptionConfirmationPage/confirmPage.fxml"));
+        .load(getClass().getResource("/adoptionConfirmationPage/confirmPage.fxml"));
     primaryStage.setTitle("Adoption");
     primaryStage.setScene(new Scene(root));
     root.getStylesheets().add("mainCSS.css");
@@ -84,7 +84,7 @@ public class AdoptionPageController {
   void returnToMenu(ActionEvent event) throws Exception {
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../animalList/AnimalList.fxml"));
+        .load(getClass().getResource("/animalList/AnimalList.fxml"));
     primaryStage.setTitle("Main Screen");
     primaryStage.setScene(new Scene(root));
     root.getStylesheets().add("mainCSS.css");

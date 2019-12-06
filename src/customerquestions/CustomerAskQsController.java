@@ -43,7 +43,7 @@ public class CustomerAskQsController {
   void onActionGoBack(ActionEvent event) throws IOException {
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../customerdashboard/CustomerDashboard.fxml"));
+        .load(getClass().getResource("/customerdashboard/CustomerDashboard.fxml"));
     primaryStage.setTitle("Main Screen");
     primaryStage.setScene(new Scene(root));
     root.getStylesheets().add("mainCSS.css");
@@ -73,7 +73,7 @@ public class CustomerAskQsController {
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
         .load(getClass()
-            .getResource("../customerquestionconfirmation/customerQuestionConfirmation.fxml"));
+            .getResource("/customerquestionconfirmation/customerQuestionConfirmation.fxml"));
     primaryStage.setTitle("Confirmation");
     primaryStage.setScene(new Scene(root));
     root.getStylesheets().add("mainCSS.css");

@@ -70,7 +70,7 @@ public class ViewEventsController {
   void addEvent(ActionEvent event) throws Exception {
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../newevent/NewEvent.fxml"));
+        .load(getClass().getResource("/newevent/NewEvent.fxml"));
     primaryStage.setTitle("Create an Event");
     primaryStage.setScene(new Scene(root));
     root.getStylesheets().add("mainCSS.css");
@@ -88,7 +88,7 @@ public class ViewEventsController {
 
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../newevent/NewEvent.fxml"));
+        .load(getClass().getResource("/newevent/NewEvent.fxml"));
     primaryStage.setTitle("Edit an Event");
     primaryStage.setScene(new Scene(root));
     root.getStylesheets().add("mainCSS.css");
@@ -108,7 +108,7 @@ public class ViewEventsController {
         || user.getPrivileges() == AuthorizationLevel.ADMINISTRATION) {
       Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
       Parent root = FXMLLoader
-          .load(getClass().getResource("../employeedashboard/EmployeeDashboard.fxml"));
+          .load(getClass().getResource("/employeedashboard/EmployeeDashboard.fxml"));
       primaryStage.setTitle("Main Screen");
       primaryStage.setScene(new Scene(root));
       root.getStylesheets().add("mainCSS.css");
@@ -116,7 +116,7 @@ public class ViewEventsController {
     } else {
       Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
       Parent root = FXMLLoader
-          .load(getClass().getResource("../customerdashboard/CustomerDashboard.fxml"));
+          .load(getClass().getResource("/customerdashboard/CustomerDashboard.fxml"));
       primaryStage.setTitle("Main Screen");
       primaryStage.setScene(new Scene(root));
       root.getStylesheets().add("mainCSS.css");

@@ -15,7 +15,7 @@ public class ConfirmationController {
   void onActionBackToMain(ActionEvent event) throws IOException {
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../customerdashboard/CustomerDashboard.fxml"));
+        .load(getClass().getResource("/customerdashboard/CustomerDashboard.fxml"));
     primaryStage.setTitle("Main Screen");
     primaryStage.setScene(new Scene(root));
     root.getStylesheets().add("mainCSS.css");

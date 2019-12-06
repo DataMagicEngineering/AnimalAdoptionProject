@@ -43,7 +43,7 @@ public class ConfirmPage {
    */
   public void LogUserOut(ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-    Parent root = FXMLLoader.load(getClass().getResource("../login/LoginScreen.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("/login/LoginScreen.fxml"));
     primaryStage.setTitle("Adoption Apps");
     primaryStage.setScene(new Scene(root));
     primaryStage.show();
@@ -63,14 +63,14 @@ public class ConfirmPage {
         || Database.getCurrentUser().getPrivileges() == AuthorizationLevel.VOLUNTEER) {
       Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
       Parent root = FXMLLoader
-          .load(getClass().getResource("../employeedashboard/EmployeeDashboard.fxml"));
+          .load(getClass().getResource("/employeedashboard/EmployeeDashboard.fxml"));
       primaryStage.setTitle("Dashboard");
       primaryStage.setScene(new Scene(root));
       primaryStage.show();
     } else {
       Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
       Parent root = FXMLLoader
-          .load(getClass().getResource("../customerdashboard/CustomerDashboard.fxml"));
+          .load(getClass().getResource("/customerdashboard/CustomerDashboard.fxml"));
       primaryStage.setTitle("Main Screen");
       primaryStage.setScene(new Scene(root));
       primaryStage.show();
@@ -89,7 +89,7 @@ public class ConfirmPage {
   public void goToAnimalList(ActionEvent actionEvent) throws IOException {
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../animalList/AnimalList.fxml"));
+        .load(getClass().getResource("/animalList/AnimalList.fxml"));
     primaryStage.setTitle("Main Screen");
     primaryStage.setScene(new Scene(root));
     primaryStage.show();

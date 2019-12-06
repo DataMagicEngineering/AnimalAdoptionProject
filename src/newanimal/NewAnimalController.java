@@ -89,7 +89,7 @@ public class NewAnimalController {
    */
   public void cancelCreation(ActionEvent event) throws Exception {
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    Parent root = FXMLLoader.load(getClass().getResource("../animalList/AnimalList.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("/animalList/AnimalList.fxml"));
     primaryStage.setTitle("Animal List");
     primaryStage.setScene(new Scene(root));
     root.getStylesheets().add("mainCSS.css");
@@ -165,7 +165,7 @@ public class NewAnimalController {
     }
 
     Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-    Parent root = FXMLLoader.load(getClass().getResource("../animalList/AnimalList.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("/animalList/AnimalList.fxml"));
     primaryStage.setTitle("Animal List");
     primaryStage.setScene(new Scene(root));
     primaryStage.show();

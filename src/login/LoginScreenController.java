@@ -71,7 +71,7 @@ public class LoginScreenController {
           || user.getPrivileges() == AuthorizationLevel.ADMINISTRATION) {
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent root = FXMLLoader
-            .load(getClass().getResource("../employeedashboard/EmployeeDashboard.fxml"));
+            .load(getClass().getResource("/employeedashboard/EmployeeDashboard.fxml"));
         primaryStage.setTitle("Main Screen");
         primaryStage.setScene(new Scene(root));
         root.getStylesheets().add("mainCSS.css");
@@ -79,7 +79,7 @@ public class LoginScreenController {
       } else {
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent root = FXMLLoader
-            .load(getClass().getResource("../customerdashboard/CustomerDashboard.fxml"));
+            .load(getClass().getResource("/customerdashboard/CustomerDashboard.fxml"));
         primaryStage.setTitle("Main Screen");
         primaryStage.setScene(new Scene(root));
         root.getStylesheets().add("mainCSS.css");
@@ -99,7 +99,7 @@ public class LoginScreenController {
   void goToRegisterScreen(ActionEvent event) throws Exception {
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Parent root = FXMLLoader
-        .load(getClass().getResource("../registeruser/RegisterUser.fxml"));
+        .load(getClass().getResource("/registeruser/RegisterUser.fxml"));
     primaryStage.setTitle("Registration Page");
     primaryStage.setScene(new Scene(root));
     root.getStylesheets().add("mainCSS.css");
