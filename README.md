@@ -70,4 +70,23 @@ https://www.youtube.com/watch?v=rEBMXnVyjAY&feature=youtu.be
 
 ## Key Programming Concepts Utilized
 
-(Brief description of concepts that we utilized goes here)
+### Technologies used:
+
+#### Language:
+
+Java 8
+
+#### Framework:
+
+JavaFX
+
+SceneBuilder
+
+#### Styling:
+
+CSS
+
+#### Database:
+
+SQLite
+
