@@ -56,7 +56,17 @@ If you would like to make any contributions to this project, then fork the proje
 
 ## History
 
-(History of the development of the program goes here)
+First Deliverable:
+
+https://www.youtube.com/watch?v=AO-EwASzAlE&feature=youtu.be
+
+Second Deliverable:
+
+https://www.youtube.com/watch?v=PWZGA3bWjR4&feature=youtu.be
+
+Final Deliverable:
+
+https://www.youtube.com/watch?v=rEBMXnVyjAY&feature=youtu.be
 
 ## Key Programming Concepts Utilized
 
