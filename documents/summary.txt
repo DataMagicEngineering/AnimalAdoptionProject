@@ -1,0 +1,18 @@
+* Login: User is prompted to log in with their username and password and click the “Log in” button to access the program. If the user does not have an account, they click the “Register” button to create an account.
+* Registration Page: New users are prompted to enter their first name, last name, user name of choice, password of choice, to re-enter their password, and their date of birth. Once finish, they click the “Submit” button to create an account.
+* Customer Main Scene: The customer has a choice of five buttons – One to take them to view animals, one to take them to view events, one to take them to ask a question, one to take them to apply to be a volunteer, and one to log them out.
+* Employee Main Scene: The Employee has a choice of four buttons – One to view animals, one to view events, one to record hours, and one to log out. An employee also has access to five different tabs – Main, Questions, Adoption Applications, Volunteer Applications, and Logs.
+* Employee Questions Scene: Employees can view two different tabs: One for unanswered questions, and one for answered questions. Employees can click on a question, type a response in the TextArea, and press the “Answer” button to answer the question. The question is then switched to the “Answered Questions” tab, which the answer can be viewed by clicking on the question.
+* Employee Adoption Applications Scene: The functionality is a similar concept to the Adoption Applications tab, except the difference is that Employees can click on an application, and can click either the “Reject” button to reject an application, or the “Approve” button to approve an application.
+* Employee Logs Scene: A ListView of Customer and Employee actions are listed on this tab.
+* View Animals Scene: Users can search for an animal listed in the TableView, and the search can be filtered by Name, Species, and Breed.
+* Animal Profile Scene: Users can view an animal’s profile selected from the TableView in the previous scene, and the profile contains information about the animal, which includes name, species, breed, gender, ID, description, colors, weight, height, aggression, bathroom trained, service trained, adopted, date arrived, date adopted, and birthday.
+* Adoption Page Scene: Contains the animal’s name, species, and breed, and contain the user’s first name, last name, and date of birth.
+* Adoption Confirmation Scene: Contains a TextArea with text thanking the user for applying to adopt an animal. The user has a choice to return to animal list, return to main screen, or log off.
+* Create Animal Profile Scene: Employees can enter the animal’s information and create a new animal profile through this scene.
+* Edit Animal Profile Scene: Employees can edit an existing animal’s information through this scene.
+* Events Scene: Users can view existing events on a ListView, and Employees have the option of adding a new event, or editing an existing event.
+* Employee Create an Event Scene: Employees are prompted with an Event Title, who the event is visible to, a date and time, and a description of the event.
+* Employee Edit Event Scene: Employees are prompted with the same functionality as the “Create an Event Scene” except that the information is already filled with a currently made event.
+* Record Log: Employees are prompted to enter their hours worked. Once entered, they press the “Confirm Hours” button to confirm their logged hours.
+* Recorded Hours: Employees can view their recorded hours through a TextArea.
