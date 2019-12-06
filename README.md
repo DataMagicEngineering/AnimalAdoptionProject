@@ -5,7 +5,7 @@ The Animal Shelter Management System is a program designed for Animal Shelters/H
 
 ## Demonstration
 
-(gif of program running goes here)
+[YouTube Video](https://www.youtube.com/watch?v=rEBMXnVyjAY&feature=youtu.be)
 
 ## Documentation
 
