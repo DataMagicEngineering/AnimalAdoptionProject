@@ -19,11 +19,13 @@ The Animal Shelter Management System is a program designed for Animal Shelters/H
 
 If you wish to get a copy of the program up and running on your machine, here is a detailed guide on how to do so: https://guides.github.com/activities/forking/
 
+[Here is also instruction on building](https://github.com/processing/processing/wiki/Build-Instructions)
+
 ## Built With
 
 IntelliJ IDEA 2019
 
-(Brief description of IDE/Development skills knowledge goes here)
+IntelliJ is a Java IDE built for professional developers. Some of the best features of IntelliJ includes giving relevant suggestions for each context, which includes code suggestions, refactoring tools, and shortcuts for code completion, such as a driver method for java (psvm -> tab) and the method to print to the console (sout -> tab).
 
 ## Contributing
 
@@ -42,11 +44,6 @@ If you would like to make any contributions to this project, then fork the proje
 ##### Zachary Maroney
 
 ##### Luis Hernandez
-
-
-## License
-
-(Liscense and link to the Liscense page goes here)
 
 ## Acknowledgments
 
