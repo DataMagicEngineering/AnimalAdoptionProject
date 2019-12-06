@@ -17,7 +17,8 @@ The Animal Shelter Management System is a program designed for Animal Shelters/H
 
 ## Getting Started (Running the Application)
 
-If you wish to get a copy of the program up and running on your machine, here is a detailed guide on how to do so: https://guides.github.com/activities/forking/
+* Prebuilt JAR:
+  * Extract all the contents of the AnimalAdoptionProject.zip and run the AnimalAdoptionProject.jar file.
 
 * Using IntelliJ:
   * Open
